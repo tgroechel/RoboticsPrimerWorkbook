@@ -37,13 +37,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.robotics.urdf-importer": {
-      "version": "https://github.com/Unity-Technologies/URDF-Importer.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "2c7afc5fc1125f39384514beba399b1f1fc97fd1"
-    },
     "com.unity.test-framework": {
       "version": "1.1.20",
       "depth": 0,
