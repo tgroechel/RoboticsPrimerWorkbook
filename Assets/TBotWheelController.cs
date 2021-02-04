@@ -18,7 +18,6 @@ namespace RoboticsPrimer {
         {
             SendVelocityCommand(tbc.RightWheelHinge, leftWheelVelocity);
             SendVelocityCommand(tbc.LeftWheelHinge, rightWheelVelocity);
-            Debug.Log(tbc.GetPosition());
         }
 
         public void SendVelocityCommand(HingeJoint wheelHinge, float targetVelocity)

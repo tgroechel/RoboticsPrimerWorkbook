@@ -8,8 +8,9 @@ public class TBotCommon : MonoBehaviour
         public static string base_link = string.Join("/", base_footprint, "base_link");
         public static string wheel_left_link = string.Join("/", base_link, "wheel_left_link");
         public static string wheel_right_link = string.Join("/", base_link, "wheel_right_link");
+        public static string base_scan = string.Join("/", base_link, "base_scan");
 
-        Transform baseLink;
+        Transform baseLink, baseScanLink;
         HingeJoint leftWheelHinge, rightWheelHinge;
         public HingeJoint LeftWheelHinge
         {
@@ -45,6 +46,18 @@ public class TBotCommon : MonoBehaviour
                     baseLink = GetLink(base_link);
                 }
                 return baseLink;
+            }
+        }
+
+        public Transform BaseScanLink
+        {
+            get
+            {
+                if (!baseScanLink)
+                {
+                    baseScanLink = GetLink(base_scan);
+                }
+                return baseScanLink;
             }
         }
 
