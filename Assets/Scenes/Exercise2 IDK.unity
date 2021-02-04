@@ -1028,6 +1028,7 @@ GameObject:
   - component: {fileID: 566901892}
   - component: {fileID: 566901891}
   - component: {fileID: 566901890}
+  - component: {fileID: 566901896}
   m_Layer: 0
   m_Name: wheel_left_link
   m_TagString: Untagged
@@ -1075,16 +1076,16 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.144, y: 0.023, z: 0}
+  m_ConnectedAnchor: {x: -0.144, y: 0.022999993, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
     damper: 0
     targetPosition: 0
-  m_UseMotor: 0
+  m_UseMotor: 1
   m_Motor:
     targetVelocity: 0
-    force: 0
+    force: 0.01
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
@@ -1098,7 +1099,7 @@ HingeJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_ConnectedMassScale: 240
 --- !u!114 &566901892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,9 +1132,9 @@ MonoBehaviour:
   DisplayInertiaGizmo: 0
   rigidbodyDataSource: 0
   Mass: 0.02849894
-  CenterOfMass: {x: -0, y: 0, z: 0}
-  InertiaTensor: {x: 0.0000111753825, y: 0.000011192607, z: 0.000020712561}
-  InertiaTensorRotation: {x: -0.5007772, y: 0.49953333, z: 0.49922165, w: 0.5004662}
+  CenterOfMass: {x: -2.844848e-10, y: -4.9049577e-11, z: -1.0555944e-10}
+  InertiaTensor: {x: 0.000008471793, y: 0.00001540464, z: 0.000008471793}
+  InertiaTensorRotation: {x: 0, y: 0.92387956, z: 0, w: -0.38268328}
   UrdfMass: 0.02849894
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
   UrdfInertiaTensor: {x: 0.0000111753825, y: 0.000011192607, z: 0.000020712561}
@@ -1167,6 +1168,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBaseLink: 0
+--- !u!114 &566901896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566901888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5ab4daf6c93324dbf28898bdd613d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxVelocity: 900
 --- !u!1 &595828405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,9 +2018,9 @@ MonoBehaviour:
   DisplayInertiaGizmo: 0
   rigidbodyDataSource: 0
   Mass: 1.3729095
-  CenterOfMass: {x: -0, y: 0, z: 0}
-  InertiaTensor: {x: 0.008597184, y: 0.00872052, z: 0.014614835}
-  InertiaTensorRotation: {x: -0.152998, y: -0.6834878, z: -0.696626, w: 0.15539727}
+  CenterOfMass: {x: 0, y: 0.047255997, z: -0.06337899}
+  InertiaTensor: {x: 0.009193229, y: 0.0162345, z: 0.009091145}
+  InertiaTensorRotation: {x: 0.0032075907, y: 0, z: 0, w: -0.9999949}
   UrdfMass: 1.3729095
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
   UrdfInertiaTensor: {x: 0.008597184, y: 0.00872052, z: 0.014614835}
@@ -2188,13 +2202,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1086142212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2285,7 +2299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086142212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.06, z: -5.67}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2387,7 +2401,7 @@ FixedJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_ConnectedMassScale: 240
 --- !u!114 &1093854383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3636,7 +3650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707311383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6.59}
+  m_LocalPosition: {x: 0, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1330282162}
@@ -4098,7 +4112,7 @@ FixedJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_ConnectedMassScale: 240
 --- !u!114 &1954203457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4131,8 +4145,8 @@ MonoBehaviour:
   DisplayInertiaGizmo: 0
   rigidbodyDataSource: 0
   Mass: 0.005
-  CenterOfMass: {x: -0, y: 0, z: 0}
-  InertiaTensor: {x: 0.001, y: 0.001, z: 0.001}
+  CenterOfMass: {x: -0.0009999997, y: 0, z: 0}
+  InertiaTensor: {x: 0.0000005416666, y: 0.00000040875, z: 0.00000020041662}
   InertiaTensorRotation: {x: 0, y: -0, z: -0, w: 1}
   UrdfMass: 0.005
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
@@ -4182,6 +4196,7 @@ GameObject:
   - component: {fileID: 1990081708}
   - component: {fileID: 1990081707}
   - component: {fileID: 1990081706}
+  - component: {fileID: 1990081712}
   m_Layer: 0
   m_Name: wheel_right_link
   m_TagString: Untagged
@@ -4229,16 +4244,16 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.144, y: 0.023, z: 0}
+  m_ConnectedAnchor: {x: 0.144, y: 0.022999993, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
     damper: 0
     targetPosition: 0
-  m_UseMotor: 0
+  m_UseMotor: 1
   m_Motor:
     targetVelocity: 0
-    force: 0
+    force: 0.01
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
@@ -4252,7 +4267,7 @@ HingeJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_ConnectedMassScale: 240
 --- !u!114 &1990081708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4285,9 +4300,9 @@ MonoBehaviour:
   DisplayInertiaGizmo: 0
   rigidbodyDataSource: 0
   Mass: 0.02849894
-  CenterOfMass: {x: -0, y: 0, z: 0}
-  InertiaTensor: {x: 0.0000111753825, y: 0.000011192607, z: 0.000020712561}
-  InertiaTensorRotation: {x: -0.5007772, y: 0.49953333, z: 0.49922165, w: 0.5004662}
+  CenterOfMass: {x: -2.844848e-10, y: -4.9049577e-11, z: -1.0555944e-10}
+  InertiaTensor: {x: 0.000008471793, y: 0.00001540464, z: 0.000008471793}
+  InertiaTensorRotation: {x: 0, y: 0.92387956, z: 0, w: -0.38268328}
   UrdfMass: 0.02849894
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
   UrdfInertiaTensor: {x: 0.0000111753825, y: 0.000011192607, z: 0.000020712561}
@@ -4321,6 +4336,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBaseLink: 0
+--- !u!114 &1990081712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990081704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5ab4daf6c93324dbf28898bdd613d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxVelocity: 900
 --- !u!1 &2019095109
 GameObject:
   m_ObjectHideFlags: 0
