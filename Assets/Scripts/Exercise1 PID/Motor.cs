@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace ExercisePID
+namespace RoboticsPrimer.ExercisePID
 {
     public class Motor : MonoBehaviour
     {
