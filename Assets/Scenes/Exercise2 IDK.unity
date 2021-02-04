@@ -1648,9 +1648,9 @@ MonoBehaviour:
   DisplayInertiaGizmo: 0
   rigidbodyDataSource: 0
   Mass: 0.114
-  CenterOfMass: {x: -0, y: 0, z: 0}
-  InertiaTensor: {x: 0.001, y: 0.001, z: 0.001}
-  InertiaTensorRotation: {x: 0, y: -0, z: -0, w: 1}
+  CenterOfMass: {x: -4.7414134e-10, y: -0.0065000057, z: 0.015000001}
+  InertiaTensor: {x: 0.00009501089, y: 0.00017116904, z: 0.00009501089}
+  InertiaTensorRotation: {x: 0, y: 0.3826834, z: 0, w: 0.92387956}
   UrdfMass: 0.114
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
   UrdfInertiaTensor: {x: 0.001, y: 0.001, z: 0.001}
@@ -3622,6 +3622,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1707311385}
   - component: {fileID: 1707311384}
+  - component: {fileID: 1707311386}
+  - component: {fileID: 1707311387}
   m_Layer: 0
   m_Name: turtlebot3_waffle
   m_TagString: Untagged
@@ -3658,6 +3660,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707311386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707311383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7367c3da0f48149a7fe7158c4ce365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftWheelVelocity: 4.95
+  rightWheelVelocity: 0
+--- !u!114 &1707311387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707311383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7faa015523b44dd4b9b234adbfa25560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1739254338
 GameObject:
   m_ObjectHideFlags: 8
