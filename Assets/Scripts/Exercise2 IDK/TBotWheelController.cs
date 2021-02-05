@@ -4,56 +4,62 @@ namespace RoboticsPrimer {
     public class TBotWheelController : MonoBehaviour
     {
         [SerializeField]
-        float leftWheelVelocity, rightWheelVelocity, baseSpeed;
+        float baseSpeed;
 
         TBotCommon tbc;
+        Vector2 totalVelocity;
 
         private void Awake()
         {
             tbc = GetComponent<TBotCommon>();
         }
 
-        private void FixedUpdate()
+        private void UpdateTargetVelocity()
         {
-            SendVelocityCommand(tbc.RightWheelHinge, leftWheelVelocity);
-            SendVelocityCommand(tbc.LeftWheelHinge, rightWheelVelocity);
+            JointMotor leftMotor = tbc.LeftWheelHinge.motor;
+            JointMotor rightMotor = tbc.RightWheelHinge.motor;
+            leftMotor.targetVelocity = -totalVelocity.x;
+            rightMotor.targetVelocity = -totalVelocity.y;
+            tbc.LeftWheelHinge.motor = leftMotor;
+            tbc.RightWheelHinge.motor = rightMotor;
         }
 
-        public void SendVelocityCommand(HingeJoint wheelHinge, float targetVelocity)
+        public void SendVelocityCommand(Vector2 velVec, bool additiveVel = false)
         {
-            JointMotor motor = wheelHinge.motor;
-            motor.targetVelocity = -targetVelocity;
-            wheelHinge.motor = motor;
+            if (additiveVel)
+            {
+                totalVelocity += velVec;
+            }
+            else
+            {
+                totalVelocity = velVec;
+            }
+            UpdateTargetVelocity();
         }
 
         public void TurnRight()
         {
-            SendVelocityCommand(tbc.RightWheelHinge, 0);
-            SendVelocityCommand(tbc.LeftWheelHinge, baseSpeed);
+           SendVelocityCommand(new Vector2(baseSpeed,0));
         }
 
         public void TurnLeft()
         {
-            SendVelocityCommand(tbc.LeftWheelHinge, 0);
-            SendVelocityCommand(tbc.RightWheelHinge, baseSpeed);
+            SendVelocityCommand(new Vector2(0,baseSpeed));
         }
 
         public void GoForward()
         {
-            SendVelocityCommand(tbc.RightWheelHinge, baseSpeed);
-            SendVelocityCommand(tbc.LeftWheelHinge, baseSpeed);
+            SendVelocityCommand(new Vector2(baseSpeed, baseSpeed));
         }
 
         public void Reverse()
         {
-            SendVelocityCommand(tbc.RightWheelHinge, -baseSpeed);
-            SendVelocityCommand(tbc.LeftWheelHinge, -baseSpeed);
+            SendVelocityCommand(new Vector2(-baseSpeed,-baseSpeed));
         }
 
         public void Stop()
         {
-            SendVelocityCommand(tbc.LeftWheelHinge, 0);
-            SendVelocityCommand(tbc.RightWheelHinge, 0);
+           SendVelocityCommand(new Vector2(0,0));
         }
 
     }
