@@ -5,8 +5,7 @@ namespace RoboticsPrimer
 {
     public class TBotWheelController : MonoBehaviour
     {
-        [SerializeField]
-        float maxWheelSpeed;
+        public float maxWheelSpeed;
 
         TBotCommon tbc;
         Vector2 totalVelocity;
@@ -29,31 +28,13 @@ namespace RoboticsPrimer
 
         private void ClampAndNormalizeTotalVelocity()
         {
-            bool lOver = totalVelocity.x > maxWheelSpeed;
-            bool rOver = totalVelocity.y > maxWheelSpeed;
-            if (lOver && rOver)
+            float largestVelSent = totalVelocity.x > totalVelocity.y ?
+                Mathf.Abs(totalVelocity.x) :
+                Mathf.Abs(totalVelocity.y);
+            if (largestVelSent > maxWheelSpeed)
             {
-                if (totalVelocity.x > totalVelocity.y)
-                {
-                    totalVelocity /= totalVelocity.x;
-                }
-                else
-                {
-                    totalVelocity /= totalVelocity.y;
-                }
-                totalVelocity *= maxWheelSpeed;
+                totalVelocity = totalVelocity / largestVelSent * maxWheelSpeed;
             }
-            else if (rOver)
-            {
-                totalVelocity /= totalVelocity.y;
-                totalVelocity *= maxWheelSpeed;
-            }
-            else if (lOver)
-            {
-                totalVelocity /= totalVelocity.x;
-                totalVelocity *= maxWheelSpeed;
-            }
-
         }
 
         private void LateUpdate()
@@ -75,12 +56,12 @@ namespace RoboticsPrimer
 
         public void TurnRight()
         {
-            SendVelocityCommand(new Vector2(maxWheelSpeed, 0));
+            SendVelocityCommand(new Vector2(maxWheelSpeed, -maxWheelSpeed));
         }
 
         public void TurnLeft()
         {
-            SendVelocityCommand(new Vector2(0, maxWheelSpeed));
+            SendVelocityCommand(new Vector2(-maxWheelSpeed, maxWheelSpeed));
         }
 
         public void GoForward()

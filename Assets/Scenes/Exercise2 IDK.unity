@@ -3865,7 +3865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7367c3da0f48149a7fe7158c4ce365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 1000
+  maxWheelSpeed: 1000
 --- !u!114 &1707311387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3918,6 +3918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1000
+  useAdditiveSteering: 0
 --- !u!1 &1739254338
 GameObject:
   m_ObjectHideFlags: 8
