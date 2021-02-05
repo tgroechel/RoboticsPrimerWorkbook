@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoboticsPrimer { 
+namespace RoboticsPrimer
+{
     public class TBotTurnGoTurn : MonoBehaviour
     {
         [SerializeField]
@@ -19,8 +18,16 @@ namespace RoboticsPrimer {
 
         private void FixedUpdate()
         {
+            SetGoalOnGround();
             UpdateTurnGoTurn();
+        }
 
+        private void SetGoalOnGround()
+        {
+            if (Mathf.Approximately(goal.position.y, 0))
+            {
+                goal.position = new Vector3(goal.position.x, 0, goal.position.z);
+            }
         }
 
         private void UpdateTurnGoTurn()

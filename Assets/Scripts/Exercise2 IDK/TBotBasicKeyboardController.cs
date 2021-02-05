@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace RoboticsPrimer { 
+namespace RoboticsPrimer
+{
     public class TBotBasicKeyboardController : MonoBehaviour
     {
         [SerializeField]
@@ -37,6 +38,7 @@ namespace RoboticsPrimer {
             {
                 tbWheelController.Stop();
             }
+            Debug.Log(tbc.Velocity);
         }
     }
 }

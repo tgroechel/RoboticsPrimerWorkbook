@@ -22,7 +22,6 @@ namespace RoboticsPrimer
         private void UpdateLaserScan()
         {
             float angle = 0;
-
             for (int i = 0; i < numLaserScanLines; i++)
             {
                 Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
@@ -30,7 +29,7 @@ namespace RoboticsPrimer
 
                 if (Physics.Raycast(tbc.BaseScanLink.position, dir, out hit))
                 {
-                    Debug.DrawLine(tbc.BaseScanLink.position, hit.point, Color.red);
+                    Debug.DrawLine(tbc.BaseScanLink.position, hit.point, Color.HSVToRGB(Vector3.Distance(hit.point, tbc.BaseScanLink.position) / maxLaserRange, 1, 1));
                 }
                 else
                 {

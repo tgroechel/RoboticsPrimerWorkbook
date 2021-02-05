@@ -1373,7 +1373,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: da0694433bde00c4daf1597b8e325fb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2208,9 +2208,9 @@ MonoBehaviour:
   DisplayInertiaGizmo: 0
   rigidbodyDataSource: 1
   Mass: 1.3729095
-  CenterOfMass: {x: 0, y: 0.047000006, z: -0.064}
-  InertiaTensor: {x: 0.009106052, y: 0.016190266, z: 0.009106051}
-  InertiaTensorRotation: {x: 0, y: 0, z: 0, w: 1}
+  CenterOfMass: {x: 0, y: 0.047255997, z: -0.06337899}
+  InertiaTensor: {x: 0.009193229, y: 0.0162345, z: 0.009091145}
+  InertiaTensorRotation: {x: 0.0032075907, y: 0, z: 0, w: -0.9999949}
   UrdfMass: 1.3729095
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
   UrdfInertiaTensor: {x: 0.008597184, y: 0.00872052, z: 0.014614835}
@@ -3865,8 +3865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7367c3da0f48149a7fe7158c4ce365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftWheelVelocity: 1000
-  rightWheelVelocity: 1000
   baseSpeed: 1000
 --- !u!114 &1707311387
 MonoBehaviour:

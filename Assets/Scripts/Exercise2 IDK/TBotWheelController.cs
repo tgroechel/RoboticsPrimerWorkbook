@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace RoboticsPrimer { 
+namespace RoboticsPrimer
+{
     public class TBotWheelController : MonoBehaviour
     {
         [SerializeField]
@@ -24,9 +25,9 @@ namespace RoboticsPrimer {
             tbc.RightWheelHinge.motor = rightMotor;
         }
 
-        public void SendVelocityCommand(Vector2 velVec, bool additiveVel = false)
+        public void SendVelocityCommand(Vector2 velVec, bool additiveVelocity = false)
         {
-            if (additiveVel)
+            if (additiveVelocity)
             {
                 totalVelocity += velVec;
             }
@@ -39,12 +40,12 @@ namespace RoboticsPrimer {
 
         public void TurnRight()
         {
-           SendVelocityCommand(new Vector2(baseSpeed,0));
+            SendVelocityCommand(new Vector2(baseSpeed, 0));
         }
 
         public void TurnLeft()
         {
-            SendVelocityCommand(new Vector2(0,baseSpeed));
+            SendVelocityCommand(new Vector2(0, baseSpeed));
         }
 
         public void GoForward()
@@ -54,12 +55,12 @@ namespace RoboticsPrimer {
 
         public void Reverse()
         {
-            SendVelocityCommand(new Vector2(-baseSpeed,-baseSpeed));
+            SendVelocityCommand(new Vector2(-baseSpeed, -baseSpeed));
         }
 
         public void Stop()
         {
-           SendVelocityCommand(new Vector2(0,0));
+            SendVelocityCommand(new Vector2(0, 0));
         }
 
     }

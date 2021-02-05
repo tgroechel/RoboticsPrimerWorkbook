@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoboticsPrimer { 
-public class TBotCommon : MonoBehaviour
+namespace RoboticsPrimer
+{
+    public class TBotCommon : MonoBehaviour
     {
         public static string base_footprint = "base_footprint";
         public static string base_link = string.Join("/", base_footprint, "base_link");
@@ -11,12 +12,13 @@ public class TBotCommon : MonoBehaviour
         public static string base_scan = string.Join("/", base_link, "base_scan");
 
         Transform baseLink, baseScanLink;
+        Rigidbody baseLinkRigidBody;
         HingeJoint leftWheelHinge, rightWheelHinge;
 
         private void Awake()
         {
             BaseLink.GetComponent<Rigidbody>().centerOfMass = new Vector3(0, 0.00f, 0);
-            
+
         }
 
         public HingeJoint LeftWheelHinge
@@ -43,7 +45,7 @@ public class TBotCommon : MonoBehaviour
             }
             set { rightWheelHinge = value; }
         }
-      
+
         public Transform BaseLink
         {
             get
@@ -83,6 +85,17 @@ public class TBotCommon : MonoBehaviour
             get { return BaseLink.forward; }
         }
 
+        public Vector3 Velocity
+        {
+            get
+            {
+                if (!baseLinkRigidBody)
+                {
+                    baseLinkRigidBody = BaseLink.GetComponent<Rigidbody>();
+                }
+                return baseLinkRigidBody.velocity;
+            }
+        }
 
         public Transform GetLink(string s)
         {
