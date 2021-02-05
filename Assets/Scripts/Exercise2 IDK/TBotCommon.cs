@@ -12,6 +12,13 @@ public class TBotCommon : MonoBehaviour
 
         Transform baseLink, baseScanLink;
         HingeJoint leftWheelHinge, rightWheelHinge;
+
+        private void Awake()
+        {
+            BaseLink.GetComponent<Rigidbody>().centerOfMass = new Vector3(0, 0.00f, 0);
+            
+        }
+
         public HingeJoint LeftWheelHinge
         {
             get

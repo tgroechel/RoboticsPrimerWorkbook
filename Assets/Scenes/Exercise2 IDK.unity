@@ -1181,7 +1181,7 @@ HingeJoint:
   m_Motor:
     targetVelocity: 0
     force: 0.01
-    freeSpin: 0
+    freeSpin: 1
   m_UseLimits: 0
   m_Limits:
     min: 0
@@ -2111,11 +2111,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 883251198}
   DisplayInertiaGizmo: 0
-  rigidbodyDataSource: 0
+  rigidbodyDataSource: 1
   Mass: 1.3729095
-  CenterOfMass: {x: -0.000023702834, y: 0.047255997, z: -0.06337899}
-  InertiaTensor: {x: 0.0091934055, y: 0.01623466, z: 0.00909113}
-  InertiaTensorRotation: {x: -0.0032092775, y: -0.020818882, z: -0.000055455144, w: 0.99977815}
+  CenterOfMass: {x: 0, y: 0.047000006, z: -0.064}
+  InertiaTensor: {x: 0.009106052, y: 0.016190266, z: 0.009106051}
+  InertiaTensorRotation: {x: 0, y: 0, z: 0, w: 1}
   UrdfMass: 1.3729095
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
   UrdfInertiaTensor: {x: 0.008597184, y: 0.00872052, z: 0.014614835}
@@ -3769,8 +3769,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7367c3da0f48149a7fe7158c4ce365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftWheelVelocity: 0
-  rightWheelVelocity: 0
+  leftWheelVelocity: 1000
+  rightWheelVelocity: 1000
 --- !u!114 &1707311387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3810,7 +3810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 0}
-  speed: 1000
+  speed: 500
 --- !u!1 &1739254338
 GameObject:
   m_ObjectHideFlags: 8
@@ -4407,7 +4407,7 @@ HingeJoint:
   m_Motor:
     targetVelocity: 0
     force: 0.01
-    freeSpin: 0
+    freeSpin: 1
   m_UseLimits: 0
   m_Limits:
     min: 0
