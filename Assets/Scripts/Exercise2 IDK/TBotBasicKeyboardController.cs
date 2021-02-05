@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace RoboticsPrimer
@@ -10,13 +9,10 @@ namespace RoboticsPrimer
 
         [SerializeField]
         bool useAdditiveSteering;
-
-        TBotCommon tbc;
         TBotWheelController tbWheelController;
 
         private void Awake()
         {
-            tbc = GetComponent<TBotCommon>();
             tbWheelController = GetComponent<TBotWheelController>();
         }
 
@@ -30,7 +26,6 @@ namespace RoboticsPrimer
             {
                 UpdateStaticSteering();
             }
-            //Debug.Log(tbc.Velocity);
         }
 
         private void UpdateAdditiveSteering()
@@ -56,7 +51,6 @@ namespace RoboticsPrimer
                 left -= speed;
                 right -= speed;
             }
-            Debug.Log(left);
             tbWheelController.SendVelocityCommand(new Vector2(left, right));
         }
 
