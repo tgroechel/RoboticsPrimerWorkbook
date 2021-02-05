@@ -3817,6 +3817,8 @@ GameObject:
   - component: {fileID: 1707311388}
   - component: {fileID: 1707311389}
   - component: {fileID: 1707311390}
+  - component: {fileID: 1707311392}
+  - component: {fileID: 1707311391}
   m_Layer: 0
   m_Name: turtlebot3_waffle
   m_TagString: Untagged
@@ -3860,7 +3862,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707311383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db7367c3da0f48149a7fe7158c4ce365, type: 3}
   m_Name: 
@@ -3885,13 +3887,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707311383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e437a9396918b134293b106cba649f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <NumLaserScans>k__BackingField: 4
-  <MaxLaserRage>k__BackingField: 4
+  <MaxLaserRange>k__BackingField: 0
 --- !u!114 &1707311389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3899,7 +3901,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707311383}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1280c44aa19725848b0283854d6801c9, type: 3}
   m_Name: 
@@ -3912,13 +3914,38 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707311383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d39eef0102e9d8947bee663c83e07f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1000
   useAdditiveSteering: 1
+--- !u!114 &1707311391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707311383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143d15d9378052343bcfb39cf07db840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLaserRange: 4
+--- !u!114 &1707311392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707311383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4818b534eb04d047980acdaf25a75bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1739254338
 GameObject:
   m_ObjectHideFlags: 8

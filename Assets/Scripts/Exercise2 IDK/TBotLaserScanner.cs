@@ -11,7 +11,7 @@ namespace RoboticsPrimer
             get; set;
         }
         [field: SerializeField]
-        public int MaxLaserRage
+        public float MaxLaserRange
         {
             get; set;
         }
@@ -52,10 +52,10 @@ namespace RoboticsPrimer
                 Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
                 RaycastHit hit;
 
-                if (!Physics.Raycast(tbc.BaseScanLink.position, dir, out hit, MaxLaserRage))
+                if (!Physics.Raycast(tbc.BaseScanLink.position, dir, out hit, MaxLaserRange))
                 {
-                    hit.point = tbc.BaseScanLink.position + dir * MaxLaserRage;
-                    hit.distance = MaxLaserRage;
+                    hit.point = tbc.BaseScanLink.position + dir * MaxLaserRange;
+                    hit.distance = MaxLaserRange;
                 }
 
                 Scans[i] = hit;
@@ -67,7 +67,7 @@ namespace RoboticsPrimer
         {
             foreach (RaycastHit scanHit in Scans)
             {
-                Debug.DrawLine(tbc.BaseScanLink.position, scanHit.point, Color.HSVToRGB(scanHit.distance / MaxLaserRage, 1, 1));
+                Debug.DrawLine(tbc.BaseScanLink.position, scanHit.point, Color.HSVToRGB(scanHit.distance / MaxLaserRange, 1, 1));
             }
         }
     }
