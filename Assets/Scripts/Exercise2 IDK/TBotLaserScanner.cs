@@ -40,6 +40,7 @@ namespace RoboticsPrimer
         private void FixedUpdate()
         {
             UpdateLaserScan();
+            DrawDebugLaserLines();
         }
 
 
@@ -51,21 +52,22 @@ namespace RoboticsPrimer
                 Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
                 RaycastHit hit;
 
-                if (Physics.Raycast(tbc.BaseScanLink.position, dir, out hit))
+                if (!Physics.Raycast(tbc.BaseScanLink.position, dir, out hit, MaxLaserRage))
                 {
-                    Scans[i] = hit;
-                    Debug.DrawLine(tbc.BaseScanLink.position, hit.point, Color.HSVToRGB(hit.distance / MaxLaserRage, 1, 1));
+                    hit.point = tbc.BaseScanLink.position + dir * MaxLaserRage;
+                    hit.distance = MaxLaserRage;
                 }
-                else
-                {
-                    Vector3 rangePositionVec = tbc.BaseScanLink.position + dir * MaxLaserRage;
-                    RaycastHit noHit = new RaycastHit();
-                    noHit.point = rangePositionVec;
-                    noHit.distance = MaxLaserRage;
-                    Scans[i] = hit;
-                    Debug.DrawLine(tbc.BaseScanLink.position, rangePositionVec, Color.red);
-                }
+
+                Scans[i] = hit;
                 angle += 2 * Mathf.PI / NumLaserScans;
+            }
+        }
+
+        private void DrawDebugLaserLines()
+        {
+            foreach (RaycastHit scanHit in Scans)
+            {
+                Debug.DrawLine(tbc.BaseScanLink.position, scanHit.point, Color.HSVToRGB(scanHit.distance / MaxLaserRage, 1, 1));
             }
         }
     }
