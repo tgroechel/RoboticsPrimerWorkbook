@@ -63,12 +63,12 @@ public class TBotCommon : MonoBehaviour
 
         public Vector3 Position
         {
-            get { return BaseLink.localPosition; }
+            get { return BaseLink.position; }
         }
 
         public Quaternion Rotation
         {
-            get { return BaseLink.localRotation; }
+            get { return BaseLink.rotation; }
         }
 
         public Vector3 Heading
@@ -85,7 +85,7 @@ public class TBotCommon : MonoBehaviour
 
         public float GetRotationY()
         {
-            return BaseLink.localRotation.eulerAngles.y;
+            return BaseLink.rotation.eulerAngles.y;
         }
 
     }

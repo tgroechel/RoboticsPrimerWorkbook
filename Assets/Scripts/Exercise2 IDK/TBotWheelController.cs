@@ -23,7 +23,7 @@ namespace RoboticsPrimer {
         public void SendVelocityCommand(HingeJoint wheelHinge, float targetVelocity)
         {
             JointMotor motor = wheelHinge.motor;
-            motor.targetVelocity = targetVelocity;
+            motor.targetVelocity = -targetVelocity;
             wheelHinge.motor = motor;
         }
 

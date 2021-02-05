@@ -2113,9 +2113,9 @@ MonoBehaviour:
   DisplayInertiaGizmo: 0
   rigidbodyDataSource: 0
   Mass: 1.3729095
-  CenterOfMass: {x: 0, y: 0.047255997, z: -0.06337899}
-  InertiaTensor: {x: 0.009193229, y: 0.0162345, z: 0.009091145}
-  InertiaTensorRotation: {x: 0.0032075907, y: 0, z: 0, w: -0.9999949}
+  CenterOfMass: {x: -0.000023702834, y: 0.047255997, z: -0.06337899}
+  InertiaTensor: {x: 0.0091934055, y: 0.01623466, z: 0.00909113}
+  InertiaTensorRotation: {x: -0.0032092775, y: -0.020818882, z: -0.000055455144, w: 0.99977815}
   UrdfMass: 1.3729095
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
   UrdfInertiaTensor: {x: 0.008597184, y: 0.00872052, z: 0.014614835}
@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba5fd74d37a6cf4284698624eb8f6aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsBaseLink: 0
+  IsBaseLink: 1
 --- !u!1 &906692233
 GameObject:
   m_ObjectHideFlags: 8
@@ -2529,8 +2529,8 @@ MonoBehaviour:
   DisplayInertiaGizmo: 0
   rigidbodyDataSource: 0
   Mass: 0.005
-  CenterOfMass: {x: -0, y: 0, z: 0}
-  InertiaTensor: {x: 0.001, y: 0.001, z: 0.001}
+  CenterOfMass: {x: -0.001000002, y: 0, z: 0}
+  InertiaTensor: {x: 0.0000005416666, y: 0.00000040875, z: 0.00000020041662}
   InertiaTensorRotation: {x: 0, y: -0, z: -0, w: 1}
   UrdfMass: 0.005
   UrdfCenterOfMass: {x: -0, y: 0, z: 0}
@@ -3720,6 +3720,7 @@ GameObject:
   - component: {fileID: 1707311387}
   - component: {fileID: 1707311386}
   - component: {fileID: 1707311388}
+  - component: {fileID: 1707311389}
   m_Layer: 0
   m_Name: turtlebot3_waffle
   m_TagString: Untagged
@@ -3763,12 +3764,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707311383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db7367c3da0f48149a7fe7158c4ce365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftWheelVelocity: 4.95
+  leftWheelVelocity: 0
   rightWheelVelocity: 0
 --- !u!114 &1707311387
 MonoBehaviour:
@@ -3796,6 +3797,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numLaserScanLines: 120
   maxLaserRange: 4
+--- !u!114 &1707311389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707311383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1280c44aa19725848b0283854d6801c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: {fileID: 0}
+  speed: 1000
 --- !u!1 &1739254338
 GameObject:
   m_ObjectHideFlags: 8
