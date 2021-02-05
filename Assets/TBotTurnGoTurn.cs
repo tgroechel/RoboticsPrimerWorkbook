@@ -8,71 +8,42 @@ namespace RoboticsPrimer {
         [SerializeField]
         Transform goal;
 
-        [SerializeField]
-        float speed;
-
         TBotCommon tbc;
-        TBotWheelController tbWheelController;
+        TBotWheelController wheelController;
 
         private void Awake()
         {
             tbc = GetComponent<TBotCommon>();
-            tbWheelController = GetComponent<TBotWheelController>();
+            wheelController = GetComponent<TBotWheelController>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
+            UpdateTurnGoTurn();
+
+        }
+
+        private void UpdateTurnGoTurn()
+        {
+            if (Vector3.Distance(goal.position, tbc.Position) < .1f)
+            {
+                return;
+            }
             Debug.DrawLine(tbc.Position, tbc.Position + tbc.Heading, Color.green);
-            if (Input.GetKey(KeyCode.RightArrow))
+            Vector3 goalDirection = (goal.position - tbc.Position).normalized;
+            float angle = Vector3.SignedAngle(goalDirection, tbc.Heading.normalized, Vector3.up);
+            if (angle > 5)
             {
-                TurnRight();
+                wheelController.TurnLeft();
             }
-            else if (Input.GetKey(KeyCode.LeftArrow))
+            else if (angle < -5)
             {
-                TurnLeft();
-            }
-            else if (Input.GetKey(KeyCode.UpArrow))
-            {
-                GoForward();
-            }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                Reverse();
+                wheelController.TurnRight();
             }
             else
             {
-                Stop();
+                wheelController.GoForward();
             }
-        }
-
-        void TurnRight()
-        {
-            tbWheelController.SendVelocityCommand(tbc.RightWheelHinge, 0);
-            tbWheelController.SendVelocityCommand(tbc.LeftWheelHinge, speed);
-        }
-
-        void TurnLeft()
-        {
-            tbWheelController.SendVelocityCommand(tbc.LeftWheelHinge, 0);
-            tbWheelController.SendVelocityCommand(tbc.RightWheelHinge, speed);
-        }
-
-        void GoForward()
-        {
-            tbWheelController.SendVelocityCommand(tbc.RightWheelHinge, speed);
-            tbWheelController.SendVelocityCommand(tbc.LeftWheelHinge, speed); 
-        }
-
-        void Reverse()
-        {
-            tbWheelController.SendVelocityCommand(tbc.RightWheelHinge, -speed);
-            tbWheelController.SendVelocityCommand(tbc.LeftWheelHinge, -speed);
-        }
-
-        void Stop()
-        {
-            tbWheelController.SendVelocityCommand(tbc.LeftWheelHinge, 0);
-            tbWheelController.SendVelocityCommand(tbc.RightWheelHinge, 0);
         }
     }
 }
