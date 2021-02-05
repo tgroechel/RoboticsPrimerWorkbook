@@ -34,6 +34,7 @@ namespace RoboticsPrimer
         {
             if (Vector3.Distance(goal.position, tbc.Position) < .1f)
             {
+                wheelController.Stop();
                 return;
             }
             Debug.DrawLine(tbc.Position, tbc.Position + tbc.Heading, Color.green);
