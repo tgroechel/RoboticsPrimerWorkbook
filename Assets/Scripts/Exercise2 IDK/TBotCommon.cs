@@ -61,20 +61,27 @@ public class TBotCommon : MonoBehaviour
             }
         }
 
+        public Vector3 Position
+        {
+            get { return BaseLink.localPosition; }
+        }
+
+        public Quaternion Rotation
+        {
+            get { return BaseLink.localRotation; }
+        }
+
+        public Vector3 Heading
+        {
+            get { return BaseLink.forward; }
+        }
+
+
         public Transform GetLink(string s)
         {
             return transform.Find(s);
         }
 
-        public Vector3 GetPosition()
-        {
-            return BaseLink.localPosition;
-        }
-
-        public Quaternion GetRotation()
-        {
-            return BaseLink.localRotation;
-        }
 
         public float GetRotationY()
         {

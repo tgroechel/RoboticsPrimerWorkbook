@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoboticsPrimer
@@ -33,7 +30,7 @@ namespace RoboticsPrimer
 
                 if (Physics.Raycast(tbc.BaseScanLink.position, dir, out hit))
                 {
-                    Debug.DrawLine(tbc.BaseScanLink.position, tbc.BaseScanLink.position + hit.point, Color.red);
+                    Debug.DrawLine(tbc.BaseScanLink.position, hit.point, Color.red);
                 }
                 else
                 {
