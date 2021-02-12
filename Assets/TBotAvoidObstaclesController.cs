@@ -27,9 +27,6 @@ namespace RoboticsPrimer
                     ind = i;
                 }
             }
-            Debug.Log(ind);
         }
-
-
     }
 }
