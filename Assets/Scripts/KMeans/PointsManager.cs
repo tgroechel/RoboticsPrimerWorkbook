@@ -84,6 +84,7 @@ namespace RoboticsPrimer {
                 Points[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
                 Points[i].SetParent(transform);
                 Points[i].localScale = scaler;
+                Points[i].GetComponent<MeshRenderer>().material.SetColor("_Color", Color.black);
             }
         }
 
