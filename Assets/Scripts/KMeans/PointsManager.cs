@@ -15,7 +15,7 @@ namespace RoboticsPrimer {
         public Transform[] Points {
             get {
                 if (points == null) {
-                    GeneratePoints();
+                    ResetPoints();
                 }
                 return points;
             }
@@ -26,9 +26,32 @@ namespace RoboticsPrimer {
         public float XBound { get; } = 4f;
         public float YBound { get; } = 4f;
 
-        void Awake() {
-            GeneratePoints();
+        private void Awake() {
+            ResetPoints();
+        }
+
+        public void ResetPoints() {
+            if (points == null || numPoints != points.Length) {
+                RemoveOldPoints();
+                GeneratePoints();
+            }
+            SetPointColors();
             SetPointPositions();
+        }
+
+        private void SetPointColors() {
+            foreach (Transform t in Points) {
+                t.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.black);
+            }
+        }
+
+        private void RemoveOldPoints() {
+            if (points == null) {
+                return;
+            }
+            for (int i = 0; i < points.Length; ++i) {
+                Destroy(points[i].gameObject);
+            }
         }
 
         private void SetPointPositions() {
@@ -84,7 +107,6 @@ namespace RoboticsPrimer {
                 Points[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
                 Points[i].SetParent(transform);
                 Points[i].localScale = scaler;
-                Points[i].GetComponent<MeshRenderer>().material.SetColor("_Color", Color.black);
             }
         }
 

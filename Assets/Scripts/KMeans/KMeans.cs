@@ -95,6 +95,10 @@ namespace RoboticsPrimer {
                 }
                 Reset();
             }
+            else if (Input.GetKeyDown(KeyCode.P)) {
+                pointsManager.ResetPoints();
+                Reset();
+            }
         }
 
         private void UpdateClustering() {
