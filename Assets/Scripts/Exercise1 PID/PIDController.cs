@@ -12,7 +12,7 @@ namespace RoboticsPrimer.ExercisePID
         Motor motor;
         Rigidbody rigidBody;
         Vector3 forceLocation, forceDirection;
-    
+
         void Start()
         {
             rigidBody = GetComponent<Rigidbody>();
@@ -58,13 +58,13 @@ namespace RoboticsPrimer.ExercisePID
             return kd * dError;
         }
 
-        
+
         /// <summary>
         /// Recalculates force location and direction
         /// </summary>
         private void UpdateForceLocationAndDirection()
         {
-            forceLocation = transform.up;
+            forceLocation = transform.up * 2;
             forceDirection = -transform.forward;
         }
 
