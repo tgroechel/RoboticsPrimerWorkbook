@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RoboticsPrimer {
     public class KMeans : MonoBehaviour {
+        public bool usePointInitialization;
         public int NumClusterK { get; set; } = 4;
         public Transform[] ClusterMeans { get; set; }
         public List<Transform>[] ClusterGroups { get; set; }
@@ -14,13 +15,35 @@ namespace RoboticsPrimer {
 
         private void Awake() {
             pointsManager = GetComponent<PointsManager>();
-            ResetClusters();
+            Reset();
         }
 
-        private void ResetClusters() {
+        private void Reset() {
+            RemovePriorClusterMeans();
             GenerateClusterColors();
             InitializeClusterMeans();
+            SetClusterMeanPositions();
             CreateClusterGroups();
+        }
+
+        private void SetClusterMeanPositions() {
+            foreach (Transform t in ClusterMeans) {
+                if (usePointInitialization) {
+                    t.localPosition = pointsManager.Points[UnityEngine.Random.Range(0, pointsManager.numPoints)].localPosition;
+                }
+                else {
+                    t.localPosition = pointsManager.GenerateRandomPosition();
+                }
+            }
+        }
+
+        private void RemovePriorClusterMeans() {
+            if (ClusterMeans == null) {
+                return;
+            }
+            for (int i = 0; i < ClusterMeans.Length; ++i) {
+                Destroy(ClusterMeans[i].gameObject);
+            }
         }
 
         private void CreateClusterGroups() {
@@ -44,14 +67,33 @@ namespace RoboticsPrimer {
                 ClusterMeans[i] = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
                 ClusterMeans[i].SetParent(transform);
                 ClusterMeans[i].localScale = 2 * scaler;
-                ClusterMeans[i].localPosition = pointsManager.GenerateRandomPosition();
                 ClusterMeans[i].GetComponent<MeshRenderer>().material.SetColor("_Color", ClusterColors[i]);
+            }
+        }
+
+        private void ResetClusterGroups() {
+            for (int i = 0; i < NumClusterK; ++i) {
+                ClusterGroups[i].Clear();
             }
         }
 
         void Update() {
             if (Input.GetKeyDown(KeyCode.Alpha0)) {
+                Reset();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 UpdateClustering();
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                NumClusterK += 1;
+                Reset();
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+                NumClusterK -= 1;
+                if (NumClusterK < 2) {
+                    NumClusterK = 2;
+                }
+                Reset();
             }
         }
 
@@ -62,13 +104,9 @@ namespace RoboticsPrimer {
             UpdateClusterMeans();
         }
 
-        private void ResetClusterGroups() {
-            for (int i = 0; i < NumClusterK; ++i) {
-                ClusterGroups[i].Clear();
-            }
-        }
 
         private void AssignPointsToClusters() {
+            float totalError = 0;
             foreach (Transform t in pointsManager.Points) {
                 float bestDist = pointsManager.XBound * pointsManager.YBound;
                 int bestInd = -1;
@@ -80,7 +118,9 @@ namespace RoboticsPrimer {
                     }
                 }
                 ClusterGroups[bestInd].Add(t);
+                totalError += bestDist;
             }
+            Debug.Log("K = " + NumClusterK + "Total Error: " + totalError);
         }
 
         private void UpdateAssignedPointColors() {
@@ -93,6 +133,9 @@ namespace RoboticsPrimer {
 
         private void UpdateClusterMeans() {
             for (int i = 0; i < NumClusterK; ++i) {
+                if (ClusterGroups[i].Count == 0) {
+                    continue;
+                }
                 Vector3 averagePosition = Vector3.zero;
                 foreach (Transform t in ClusterGroups[i]) {
                     averagePosition += t.localPosition;

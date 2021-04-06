@@ -238,6 +238,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numPoints: 50
   pointRadius: 0.2
+  generateFromClusterMeans: 1
+  clusterMeans:
+  - {x: 1, y: 3, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 4, y: 0, z: 0}
+  standardDeviationOfDistanceFromCluster: 1
 --- !u!4 &703194909
 Transform:
   m_ObjectHideFlags: 0
