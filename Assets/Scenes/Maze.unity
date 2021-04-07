@@ -2297,13 +2297,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
 --- !u!1 &1086142212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,7 +2322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1086142213
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3756,10 +3756,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 650778653317758353, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 650778653317758354, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
-      propertyPath: showDebug
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 650778653317758355, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}

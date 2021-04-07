@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MazeConstructor : MonoBehaviour {
@@ -5,6 +6,12 @@ public class MazeConstructor : MonoBehaviour {
     public bool showDebug;
     private MazeDataGenerator dataGenerator;
     private MazeMeshGenerator meshGenerator;
+
+    public enum CELL {
+        O = 0,
+        W = 1,
+        S = 2
+    }
 
     public float HallWidth {
         get; private set;
@@ -52,6 +59,17 @@ public class MazeConstructor : MonoBehaviour {
 
     public void GenerateNewMaze(int[,] _data) {
         data = _data;
+        int rMax = data.GetUpperBound(0) + 1;
+        int cMax = data.GetUpperBound(1) + 1;
+        Debug.Log(rMax);
+        for (int i = 0; i < rMax / 2; ++i) {
+            for (int j = 0; j < cMax; ++j) {
+                int tmp = data[i, j];
+                data[i, j] = data[rMax - i - 1, j];
+                data[rMax - i - 1, j] = tmp;
+            }
+        }
+        Debug.Log(data);
         FindStartPosition();
         FindGoalPosition();
 
@@ -87,7 +105,7 @@ public class MazeConstructor : MonoBehaviour {
 
     private void DisplayMaze() {
         GameObject go = new GameObject();
-        go.transform.position = Vector3.zero;
+        go.transform.position = CalculateZeroStartPosition();
         go.name = "Procedural Maze";
 
         MeshFilter mf = go.AddComponent<MeshFilter>();
@@ -100,6 +118,10 @@ public class MazeConstructor : MonoBehaviour {
         mr.materials = new Material[2] { mazeMat1, mazeMat2 };
     }
 
+    private Vector3 CalculateZeroStartPosition() {
+        return new Vector3(-StartCol, 0, -StartRow);
+    }
+
     private void FindStartPosition() {
         int[,] maze = data;
         int rMax = maze.GetUpperBound(0);
@@ -107,7 +129,7 @@ public class MazeConstructor : MonoBehaviour {
 
         for (int i = 0; i <= rMax; i++) {
             for (int j = 0; j <= cMax; j++) {
-                if (maze[i, j] == 0) {
+                if (maze[i, j] == (int)CELL.S) {
                     StartRow = i;
                     StartCol = j;
                     return;
@@ -173,11 +195,11 @@ public class MazeConstructor : MonoBehaviour {
         //3
         for (int i = rMax; i >= 0; i--) {
             for (int j = 0; j <= cMax; j++) {
-                if (maze[i, j] == 0) {
-                    msg += "....";
+                if (maze[i, j] != (int)CELL.W) {
+                    msg += "==";
                 }
                 else {
-                    msg += "==";
+                    msg += "....";
                 }
             }
             msg += "\n";
