@@ -1164,7 +1164,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1757,13 +1757,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8711336110951290039}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e437a9396918b134293b106cba649f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumLaserScans>k__BackingField: 4
-  <MaxLaserRange>k__BackingField: 0
+  <NumLaserScans>k__BackingField: 120
+  <MaxLaserRange>k__BackingField: 5
 --- !u!114 &8711336110951290045
 MonoBehaviour:
   m_ObjectHideFlags: 0
