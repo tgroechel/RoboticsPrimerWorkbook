@@ -10,7 +10,8 @@ public class MazeConstructor : MonoBehaviour {
     public enum CELL {
         O = 0,
         W = 1,
-        S = 2
+        S = 2,
+        G = 3
     }
 
     public float HallWidth {
@@ -38,6 +39,7 @@ public class MazeConstructor : MonoBehaviour {
     [SerializeField] private Material mazeMat2;
     [SerializeField] private Material startMat;
     [SerializeField] private Material treasureMat;
+    [SerializeField] private GameObject goal;
 
     //2
     public int[,] data {
@@ -57,27 +59,45 @@ public class MazeConstructor : MonoBehaviour {
         meshGenerator = new MazeMeshGenerator();
     }
 
-    public void GenerateNewMaze(int[,] _data) {
+    public void GenerateNewMaze(int[,] _data)
+    {
         data = _data;
-        int rMax = data.GetUpperBound(0) + 1;
-        int cMax = data.GetUpperBound(1) + 1;
-        Debug.Log(rMax);
-        for (int i = 0; i < rMax / 2; ++i) {
-            for (int j = 0; j < cMax; ++j) {
-                int tmp = data[i, j];
-                data[i, j] = data[rMax - i - 1, j];
-                data[rMax - i - 1, j] = tmp;
-            }
-        }
-        Debug.Log(data);
+        ReverseData();
+        SetUpMazeConstraints();
+        DisplayMaze();
+        MoveGoal();
+    }
+
+    private void MoveGoal()
+    {
+        // take goal
+        goal.transform.position = new Vector3(GoalCol - StartCol, 0, GoalRow );
+    }
+
+    private void SetUpMazeConstraints()
+    {
         FindStartPosition();
         FindGoalPosition();
 
         // store values used to generate this mesh
         HallWidth = meshGenerator.width;
         HallHeight = meshGenerator.height;
+    }
 
-        DisplayMaze();
+    private void ReverseData()
+    {
+        int rMax = data.GetUpperBound(0) + 1;
+        int cMax = data.GetUpperBound(1) + 1;
+        Debug.Log(rMax);
+        for (int i = 0; i < rMax / 2; ++i)
+        {
+            for (int j = 0; j < cMax; ++j)
+            {
+                int tmp = data[i, j];
+                data[i, j] = data[rMax - i - 1, j];
+                data[rMax - i - 1, j] = tmp;
+            }
+        }
     }
 
     public void GenerateNewMaze(int sizeRows, int sizeCols,
@@ -90,12 +110,7 @@ public class MazeConstructor : MonoBehaviour {
 
         data = dataGenerator.FromDimensions(sizeRows, sizeCols);
 
-        FindStartPosition();
-        FindGoalPosition();
-
-        // store values used to generate this mesh
-        HallWidth = meshGenerator.width;
-        HallHeight = meshGenerator.height;
+        SetUpMazeConstraints();
 
         DisplayMaze();
 
@@ -146,7 +161,7 @@ public class MazeConstructor : MonoBehaviour {
         // loop top to bottom, right to left
         for (int i = rMax; i >= 0; i--) {
             for (int j = cMax; j >= 0; j--) {
-                if (maze[i, j] == 0) {
+                if (maze[i, j] == (int) CELL.G) {
                     GoalRow = i;
                     GoalCol = j;
                     return;
