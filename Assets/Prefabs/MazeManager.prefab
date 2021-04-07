@@ -49,6 +49,8 @@ MonoBehaviour:
   mazeMat2: {fileID: 2100000, guid: 2019d743bc0984ba1b81150901d44455, type: 2}
   startMat: {fileID: 2100000, guid: c8296ee06001c4d39b0f615626264b85, type: 2}
   treasureMat: {fileID: 2100000, guid: c5b8154923bae4fedbbb1f1aca66fd98, type: 2}
+  robot: {fileID: 0}
+  goal: {fileID: 0}
 --- !u!114 &708490381
 MonoBehaviour:
   m_ObjectHideFlags: 0

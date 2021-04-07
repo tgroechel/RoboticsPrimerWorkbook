@@ -8,10 +8,12 @@ namespace RoboticsPrimer {
         public static string wheel_left_link = string.Join("/", base_link, "wheel_left_link");
         public static string wheel_right_link = string.Join("/", base_link, "wheel_right_link");
         public static string base_scan = string.Join("/", base_link, "base_scan");
+        public static string camera_link = string.Join("/", base_link, "camera_link");
 
-        Transform baseLink, baseScanLink;
+        Transform baseLink, baseScanLink, cameraLink;
         Rigidbody baseLinkRigidBody;
         HingeJoint leftWheelHinge, rightWheelHinge;
+        Camera camera;
 
         private void Awake() {
             BaseLink.GetComponent<Rigidbody>().centerOfMass = new Vector3(0, 0.00f, 0);
@@ -51,6 +53,24 @@ namespace RoboticsPrimer {
                     baseScanLink = GetLink(base_scan);
                 }
                 return baseScanLink;
+            }
+        }
+
+        public Transform CameraLink {
+            get {
+                if (!cameraLink) {
+                    cameraLink = GetLink(camera_link);
+                }
+                return cameraLink;
+            }
+        }
+
+        public Camera Camera {
+            get {
+                if (!camera) {
+                    camera = CameraLink.GetComponent<Camera>();
+                }
+                return camera;
             }
         }
 

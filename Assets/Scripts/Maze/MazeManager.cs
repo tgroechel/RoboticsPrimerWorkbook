@@ -25,8 +25,5 @@ namespace RoboticsPrimer {
             tmp.y = Mathf.Round(tmp.y);
             return tmp;
         }
-
-
-
     }
 }

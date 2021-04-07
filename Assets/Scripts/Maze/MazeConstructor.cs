@@ -73,6 +73,9 @@ namespace RoboticsPrimer {
             if (robot == null) {
                 robot = FindObjectOfType<TBotCommon>()?.gameObject;
             }
+            if (goal == null) {
+                goal = GameObject.Find("Goal");
+            }
         }
 
         public void GenerateNewMaze(int[,] _data) {
@@ -85,11 +88,15 @@ namespace RoboticsPrimer {
         }
 
         private void MoveRobot() {
-            robot.GetComponent<TBotCommon>().GetLink(TBotCommon.base_link).position = new Vector3(StartCol, 0, -StartRow);
+            if (robot != null) {
+                robot.GetComponent<TBotCommon>().GetLink(TBotCommon.base_link).position = new Vector3(StartCol, 0, -StartRow);
+            }
         }
 
         private void MoveGoal() {
-            goal.transform.position = new Vector3(GoalCol, 0, -GoalRow);
+            if (goal != null) {
+                goal.transform.position = new Vector3(GoalCol, 0, -GoalRow);
+            }
         }
 
         private void SetUpMazeConstraints() {
@@ -104,7 +111,6 @@ namespace RoboticsPrimer {
         private void ReverseData() {
             int rMax = data.GetUpperBound(0) + 1;
             int cMax = data.GetUpperBound(1) + 1;
-            Debug.Log(rMax);
             for (int i = 0; i < rMax / 2; ++i) {
                 for (int j = 0; j < cMax; ++j) {
                     int tmp = data[i, j];
@@ -209,35 +215,7 @@ namespace RoboticsPrimer {
             tc.callback = callback;
         }
 
-        void OnGUI() {
-            //1
-            if (!showDebug) {
-                return;
-            }
 
-            //2
-            int[,] maze = data;
-            int rMax = maze.GetUpperBound(0);
-            int cMax = maze.GetUpperBound(1);
-
-            string msg = "";
-
-            //3
-            for (int i = rMax; i >= 0; i--) {
-                for (int j = 0; j <= cMax; j++) {
-                    if (maze[i, j] != (int)CELL.W) {
-                        msg += "==";
-                    }
-                    else {
-                        msg += "....";
-                    }
-                }
-                msg += "\n";
-            }
-
-            //4
-            GUI.Label(new Rect(20, 20, 500, 500), msg);
-        }
 
         public void DisposeOldMaze() {
             // GameObject[] objects = GameObject.FindGameObjectsWithTag("Generated");
