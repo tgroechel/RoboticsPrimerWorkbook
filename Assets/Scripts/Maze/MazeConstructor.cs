@@ -52,7 +52,7 @@ namespace RoboticsPrimer {
         [SerializeField] private Material startMat;
         [SerializeField] private Material treasureMat;
         [SerializeField] private GameObject robot;
-        [SerializeField] private GameObject goal;
+        [SerializeField] public GameObject goal;
 
         //2
         public int[,] data {

@@ -10,6 +10,11 @@ namespace RoboticsPrimer {
             {0, 1, 0}
         };
 
+        public GameObject Goal {
+            get {
+                return mazeConstructor.goal;
+            }
+        }
 
         void Start() {
             mazeConstructor = GetComponent<MazeConstructor>();
