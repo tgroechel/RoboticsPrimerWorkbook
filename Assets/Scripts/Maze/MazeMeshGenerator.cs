@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using RoboticsPrimer;
 
 public class MazeMeshGenerator {
     // generator params

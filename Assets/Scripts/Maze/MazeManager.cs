@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeManager : MonoBehaviour {
-    MazeConstructor mazeConstructor;
-    void Start() {
-        mazeConstructor = GetComponent<MazeConstructor>();
-        int[,] data = new int[,]
-        {
+namespace RoboticsPrimer {
+    public class MazeManager : Singleton<MazeManager> {
+        MazeConstructor mazeConstructor;
+        public int[,] MazeData { get; set; } =   {
             {0, 1, 1},
             {0, 3, 1},
-            {0, 0, 0},
-            {0, 1, 2}
+            {0, 0, 2},
+            {0, 1, 0}
         };
-        mazeConstructor.GenerateNewMaze(data);
+
+
+        void Start() {
+            mazeConstructor = GetComponent<MazeConstructor>();
+            mazeConstructor.GenerateNewMaze(MazeData);
+        }
+
+        public Vector2 GetMazeXYPosition(Vector3 position) {
+            return new Vector2(position.x, -position.z);
+        }
+        public Vector2 GetMazeXYPositionRounded(Vector3 position) {
+            Vector2 tmp = GetMazeXYPosition(position);
+            tmp.x = Mathf.Round(tmp.x);
+            tmp.y = Mathf.Round(tmp.y);
+            return tmp;
+        }
+
+
+
     }
 }
