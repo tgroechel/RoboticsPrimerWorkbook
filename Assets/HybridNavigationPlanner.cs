@@ -18,7 +18,7 @@ namespace RoboticsPrimer {
         public static readonly int[] U = { 0, -1 }; // Up
         public static readonly int[] D = { 0, 1 };  // Down
         public static readonly int[] L = { -1, 0 }; // Left
-        public static int[] R = { 1, 0 };  // Right
+        public static readonly int[] R = { 1, 0 };  // Right
 
         public int[,][] NavPlan { get; set; } = {
             { D, D, D },

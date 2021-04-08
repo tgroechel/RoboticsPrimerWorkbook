@@ -7,6 +7,7 @@ namespace RoboticsPrimer {
 
         TBotCommon tbc;
         TBotWheelController wheelController;
+        float angleTolerance = 10, goalDistTolerance = 0.2f;
 
         private void Awake() {
             tbc = GetComponent<TBotCommon>();
@@ -35,17 +36,17 @@ namespace RoboticsPrimer {
         }
 
         private void UpdateTurnGoTurn() {
-            if (Vector3.Distance(goal.position, tbc.Position) < .1f) {
+            if (Vector3.Distance(goal.position, tbc.Position) < goalDistTolerance) {
                 wheelController.Stop();
                 return;
             }
             Debug.DrawLine(tbc.Position, tbc.Position + tbc.Heading, Color.green);
             Vector3 goalDirection = (goal.position - tbc.Position).normalized;
             float angle = Vector3.SignedAngle(goalDirection, tbc.Heading.normalized, Vector3.up);
-            if (angle > 5) {
+            if (angle > angleTolerance) {
                 wheelController.TurnLeft();
             }
-            else if (angle < -5) {
+            else if (angle < -angleTolerance) {
                 wheelController.TurnRight();
             }
             else {
