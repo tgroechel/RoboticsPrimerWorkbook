@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RoboticsPrimer {
@@ -28,7 +29,7 @@ namespace RoboticsPrimer {
             botTurnGoTurn.enabled = true;
         }
 
-        private void Update() {
+        internal void AskForNextGoal() {
             Vector2Int robotPos = robot.Position.World2MazeRounded();
             Vector2Int goalPos = robotPos;
             goalPos.x += NavPlan[robotPos.y, robotPos.x][0];
