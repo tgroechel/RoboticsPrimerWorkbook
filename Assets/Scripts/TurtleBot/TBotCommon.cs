@@ -14,6 +14,7 @@ namespace RoboticsPrimer {
         Rigidbody baseLinkRigidBody;
         HingeJoint leftWheelHinge, rightWheelHinge;
         Camera camera;
+        float wheelDist;
 
         private void Awake() {
             BaseLink.GetComponent<Rigidbody>().centerOfMass = new Vector3(0, 0.00f, 0);
@@ -102,6 +103,15 @@ namespace RoboticsPrimer {
 
         public float GetRotationY() {
             return BaseLink.rotation.eulerAngles.y;
+        }
+
+        public float WheelDist {
+            get {
+                if (wheelDist == 0) {
+                    wheelDist = Vector3.Distance(LeftWheelHinge.transform.position, RightWheelHinge.transform.position);
+                }
+                return wheelDist;
+            }
         }
 
     }

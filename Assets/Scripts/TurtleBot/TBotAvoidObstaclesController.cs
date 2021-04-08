@@ -12,12 +12,12 @@ namespace RoboticsPrimer {
             laserScanner = GetComponent<TBotFourWayLaserScanner>();
             wheelController = GetComponent<TBotWheelController>();
             if (goal == null) {
-                goal = MazeManager.instance.Goal.transform;
+                goal = MazeManager.instance.Goal?.transform;
             }
         }
 
         private void FixedUpdate() {
-            // Math https://pythonhosted.org/triangula/maths.html
+            // Math https://www.usna.edu/Users/cs/crabbe/SI475/current/mob-kin/mobkin.pdf
             Vector2 wheelDir = Vector2.zero;
             Vector3 goalDir = (goal.position - tbc.Position).normalized + tbc.BaseLink.forward;
             foreach (var scan in laserScanner.Scans) {

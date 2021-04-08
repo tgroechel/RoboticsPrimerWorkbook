@@ -51,7 +51,7 @@ namespace RoboticsPrimer {
         [SerializeField] private Material mazeMat2;
         [SerializeField] private Material startMat;
         [SerializeField] private Material treasureMat;
-        [SerializeField] private GameObject robot;
+        [SerializeField] public GameObject robot;
         [SerializeField] public GameObject goal;
 
         //2
