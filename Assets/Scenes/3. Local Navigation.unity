@@ -990,6 +990,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8711336110951289984, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
+      propertyPath: goal
+      value: 
+      objectReference: {fileID: 1344453566}
     - target: {fileID: 8711336110951290039, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
       propertyPath: m_Name
       value: turtlebot3_waffle
@@ -1038,6 +1042,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8711336110951290045, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
+      propertyPath: goal
+      value: 
+      objectReference: {fileID: 1344453566}
     - target: {fileID: 8711336111509056599, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
       propertyPath: m_Mesh
       value: 

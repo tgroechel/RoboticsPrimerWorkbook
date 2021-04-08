@@ -4,9 +4,8 @@ using UnityEngine;
 namespace RoboticsPrimer {
     public class HybridNavigationPlanner : MonoBehaviour {
 
-        public TBotCommon robot;
+        TBotCommon tbc;
         TBotTurnGoTurn botTurnGoTurn;
-
 
         public static readonly int[] S = { 0, 0 };  // Stay
         public static readonly int[] U = { 0, -1 }; // Up
@@ -22,15 +21,13 @@ namespace RoboticsPrimer {
         };
 
         private void Start() {
-            if (robot == null) {
-                robot = FindObjectOfType<TBotCommon>();
-            }
-            botTurnGoTurn = robot.GetComponent<TBotTurnGoTurn>();
+            tbc = GetComponent<TBotCommon>();
+            botTurnGoTurn = GetComponent<TBotTurnGoTurn>();
             botTurnGoTurn.enabled = true;
         }
 
         internal void AskForNextGoal() {
-            Vector2Int robotPos = robot.Position.World2MazeRounded();
+            Vector2Int robotPos = tbc.Position.World2MazeRounded();
             Vector2Int goalPos = robotPos;
             goalPos.x += NavPlan[robotPos.y, robotPos.x][0];
             goalPos.y += NavPlan[robotPos.y, robotPos.x][1];

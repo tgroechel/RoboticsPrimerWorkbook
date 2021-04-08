@@ -10,6 +10,7 @@ namespace RoboticsPrimer {
         public bool generateFromClusterMeans;
         public Vector3[] clusterMeans;
         public float standardDeviationOfDistanceFromCluster = 1f;
+        public bool useNormalDist;
 
         private Transform[] points;
         public Transform[] Points {
@@ -76,11 +77,17 @@ namespace RoboticsPrimer {
         }
 
         private Vector3 GenerateRandomPositionFromMean(Vector3 mean) {
+            if (useNormalDist) {
+                return new Vector3(ExtensionMethods.NextGaussian(mean.x, standardDeviationOfDistanceFromCluster),
+                    ExtensionMethods.NextGaussian(mean.y, standardDeviationOfDistanceFromCluster),
+                    0);
+            }
             return new Vector3(
-                UnityEngine.Random.Range(mean.x - standardDeviationOfDistanceFromCluster, mean.x + standardDeviationOfDistanceFromCluster),
+                 UnityEngine.Random.Range(mean.x - standardDeviationOfDistanceFromCluster, mean.x + standardDeviationOfDistanceFromCluster),
                 UnityEngine.Random.Range(mean.y - standardDeviationOfDistanceFromCluster, mean.y + standardDeviationOfDistanceFromCluster),
-                0);
+                 0);
         }
+
 
         private void CheckClusterParams(int numClusters) {
             if (numClusters < 2) {

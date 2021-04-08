@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace RoboticsPrimer {
+    [RequireComponent(typeof(HybridNavigationPlanner))]
     public class TBotTurnGoTurn : MonoBehaviour {
         [SerializeField]
         Transform goal;
