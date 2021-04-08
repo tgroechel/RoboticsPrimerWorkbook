@@ -7,16 +7,29 @@ namespace RoboticsPrimer {
 
         TBotCommon tbc;
         TBotWheelController wheelController;
+        TBotNavigationState navState;
+
         float angleTolerance = 10, goalDistTolerance = 0.2f;
 
         private void Awake() {
             tbc = GetComponent<TBotCommon>();
             wheelController = GetComponent<TBotWheelController>();
+            navState = GetComponent<TBotNavigationState>();
+            navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.WAITINGFORNAVGOAL;
         }
 
         private void FixedUpdate() {
-            SetGoalOnGround();
-            UpdateTurnGoTurn();
+            switch (navState.CurState) {
+                case TBotNavigationState.ROBOT_NAV_STATE.WAITINGFORNAVGOAL:
+                    return;
+                case TBotNavigationState.ROBOT_NAV_STATE.ATGOAL:
+                    navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.WAITINGFORNAVGOAL;
+                    break;
+                case TBotNavigationState.ROBOT_NAV_STATE.NAVIGATING:
+                    SetGoalOnGround();
+                    UpdateTurnGoTurn();
+                    break;
+            }
         }
 
         private void SetGoalOnGround() {
@@ -27,6 +40,7 @@ namespace RoboticsPrimer {
 
         public void UpdateGoalPosition(Vector2 pos) {
             UpdateGoalPosition(new Vector3(pos.x, 0, pos.y));
+            navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.NAVIGATING;
         }
 
         public void UpdateGoalPosition(Vector3 pos) {
@@ -37,6 +51,7 @@ namespace RoboticsPrimer {
 
         private void UpdateTurnGoTurn() {
             if (Vector3.Distance(goal.position, tbc.Position) < goalDistTolerance) {
+                navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.ATGOAL;
                 wheelController.Stop();
                 return;
             }

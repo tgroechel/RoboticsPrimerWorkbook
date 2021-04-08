@@ -6,13 +6,6 @@ namespace RoboticsPrimer {
         public TBotCommon robot;
         TBotTurnGoTurn botTurnGoTurn;
 
-        public enum ROBOT_NAV_STATE {
-            NAVIGATING,
-            WAITINGFORNAVGOAL,
-            ATGOAL,
-            STUCK
-        }
-
 
         public static readonly int[] S = { 0, 0 };  // Stay
         public static readonly int[] U = { 0, -1 }; // Up

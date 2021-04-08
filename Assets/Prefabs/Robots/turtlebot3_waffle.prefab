@@ -1703,6 +1703,7 @@ GameObject:
   - component: {fileID: 8711336110951289984}
   - component: {fileID: 8711336110951290047}
   - component: {fileID: 8711336110951289985}
+  - component: {fileID: 774355677}
   m_Layer: 0
   m_Name: turtlebot3_waffle
   m_TagString: Untagged
@@ -1785,7 +1786,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8711336110951290039}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1280c44aa19725848b0283854d6801c9, type: 3}
   m_Name: 
@@ -1841,6 +1842,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 899ca558d50396a499fc01e7e8226343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &774355677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711336110951290039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2351be70269da6d408934f0d958facd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8711336110982283234

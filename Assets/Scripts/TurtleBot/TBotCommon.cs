@@ -13,7 +13,7 @@ namespace RoboticsPrimer {
         Transform baseLink, baseScanLink, cameraLink;
         Rigidbody baseLinkRigidBody;
         HingeJoint leftWheelHinge, rightWheelHinge;
-        Camera camera;
+        Camera cam;
         float wheelDist;
 
         private void Awake() {
@@ -68,10 +68,10 @@ namespace RoboticsPrimer {
 
         public Camera Camera {
             get {
-                if (!camera) {
-                    camera = CameraLink.GetComponent<Camera>();
+                if (!cam) {
+                    cam = CameraLink.GetComponent<Camera>();
                 }
-                return camera;
+                return cam;
             }
         }
 
