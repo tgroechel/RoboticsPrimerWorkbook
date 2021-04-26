@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RoboticsPrimer {
     public class MazeManager : Singleton<MazeManager> {
@@ -12,6 +13,16 @@ namespace RoboticsPrimer {
             }
         }
 
+        UnityEvent mazeHasBeenGenerated;
+        public UnityEvent MazeHasBeenGenerated {
+            get {
+                if (mazeHasBeenGenerated == null) {
+                    mazeHasBeenGenerated = new UnityEvent();
+                }
+                return mazeHasBeenGenerated;
+            }
+        }
+
         public int[,] MazeData { get; set; } =   {
             {0, 1, 1},
             {0, 3, 1},
@@ -19,9 +30,27 @@ namespace RoboticsPrimer {
             {2, 1, 0}
         };
 
-        public GameObject Goal {
+        public GameObject ImmediateGoal {
             get {
                 return MazeConstructor.goal;
+            }
+        }
+
+        public Vector2Int FinalGoalPosition {
+            get {
+                return MazeConstructor.FinalGoalPos;
+            }
+        }
+
+        public bool MazeIsGenerated {
+            get {
+                return MazeConstructor.MazeIsGenerated;
+            }
+        }
+
+        public Vector2Int StartPosition {
+            get {
+                return MazeConstructor.StartPosVec;
             }
         }
 

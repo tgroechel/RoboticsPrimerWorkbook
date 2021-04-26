@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace RoboticsPrimer {
     public static class ExtensionMethods {
@@ -18,6 +19,20 @@ namespace RoboticsPrimer {
             Vector2 tmp = v.World2Maze();
             return new Vector2Int(Mathf.RoundToInt(tmp.x), Mathf.RoundToInt(tmp.y));
         }
+
+        public static Vector2 AddArr(this Vector2 v, int[] arr) {
+            Assert.IsTrue(arr.Length == 2);
+            v.x += arr[0];
+            v.y += arr[1];
+            return v;
+        }
+        public static Vector2Int AddArr(this Vector2Int v, int[] arr) {
+            Assert.IsTrue(arr.Length == 2);
+            v.x += arr[0];
+            v.y += arr[1];
+            return v;
+        }
+
 
         public static Vector3 MazeToWorld(this Vector2Int v) {
             return new Vector3(v.x, 0, -v.y);

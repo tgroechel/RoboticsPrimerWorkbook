@@ -14,6 +14,10 @@ namespace RoboticsPrimer {
             S = 2,
             G = 3
         }
+        public bool MazeIsGenerated {
+            get;
+            set;
+        }
 
         public float HallWidth {
             get; private set;
@@ -36,9 +40,15 @@ namespace RoboticsPrimer {
             get; private set;
         }
 
-        public Vector2 StartPosVec {
+        public Vector2Int FinalGoalPos {
             get {
-                return new Vector2(StartCol, StartRow);
+                return new Vector2Int(GoalRow, GoalCol);
+            }
+        }
+
+        public Vector2Int StartPosVec {
+            get {
+                return new Vector2Int(StartCol, StartRow);
             }
         }
         public Vector2 DataDim {
@@ -62,6 +72,7 @@ namespace RoboticsPrimer {
 
         void Awake() {
             // default to walls surrounding a single empty cell
+            MazeIsGenerated = false;
             data = new int[,]
             {
             {1, 1, 1},
@@ -85,6 +96,8 @@ namespace RoboticsPrimer {
             DisplayMaze();
             MoveRobot();
             MoveGoal();
+            MazeIsGenerated = true;
+            MazeManager.instance.MazeHasBeenGenerated.Invoke();
         }
 
         private void MoveRobot() {

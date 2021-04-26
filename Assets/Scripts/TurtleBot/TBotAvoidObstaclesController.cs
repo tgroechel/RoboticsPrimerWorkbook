@@ -12,7 +12,7 @@ namespace RoboticsPrimer {
             laserScanner = GetComponent<TBotFourWayLaserScanner>();
             wheelController = GetComponent<TBotWheelController>();
             if (goal == null) {
-                goal = MazeManager.instance.Goal?.transform;
+                goal = MazeManager.instance.ImmediateGoal?.transform;
             }
         }
 
