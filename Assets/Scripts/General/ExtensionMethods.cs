@@ -33,6 +33,14 @@ namespace RoboticsPrimer {
             return v;
         }
 
+        public static int[] Add(int[] a, int[] b) {
+            Assert.IsTrue(a.Length == b.Length);
+            for (int i = 0; i < a.Length; ++i) {
+                a[i] += b[i];
+            }
+            return a;
+        }
+
 
         public static Vector3 MazeToWorld(this Vector2Int v) {
             return new Vector3(v.x, 0, -v.y);

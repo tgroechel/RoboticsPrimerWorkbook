@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using static RoboticsPrimer.MazeConstructor;
 
@@ -14,9 +11,7 @@ namespace RoboticsPrimer {
         bool manualPlan;
 
         // Threading variables
-        bool automousPlanFinished;
-        Thread pathFindThread;
-        Vector2Int robotPosition, goalPosition;
+        Vector2Int goalPosition;
         List<Vector2Int> autonomousNavPlan;
 
         public static readonly int[] S = { 0, 0 };  // Stay
@@ -37,12 +32,7 @@ namespace RoboticsPrimer {
             botTurnGoTurn = GetComponent<TBotTurnGoTurn>();
             botTurnGoTurn.enabled = true;
             if (!manualPlan) {
-                automousPlanFinished = false;
-
                 MazeManager.instance.MazeHasBeenGenerated.AddListener(CreateAutonomousPlan);
-                //CreateAutonomousPlan();
-                // pathFindThread = new Thread(CreateAutonomousPlan);
-                //  pathFindThread.Start();
             }
         }
 
@@ -70,8 +60,8 @@ namespace RoboticsPrimer {
 
             if (curPos == goalPosition) {
                 BackTrack(visitedSet, curPos, startPos);
-                automousPlanFinished = true;
             }
+            PathVisualizerManager.instance.VisualizePath(autonomousNavPlan);
         }
 
         private void BackTrack(Dictionary<Vector2Int, int[]> visitedSet, Vector2Int curPos, Vector2Int startPos) {
