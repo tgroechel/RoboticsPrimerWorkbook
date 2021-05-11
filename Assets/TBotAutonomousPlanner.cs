@@ -19,7 +19,7 @@ namespace RoboticsPrimer {
             Vector2Int curPos = startPos;
             int[] dir = new int[] { 0, 0 };
             unvistedStack.Push(new KeyValuePair<Vector2Int, int[]>(startPos, dir));
-            while (curPos != goalPosition) {
+            while (curPos != goalPosition && unvistedStack.Count != 0) {
                 curPos = unvistedStack.Peek().Key;
                 dir = unvistedStack.Peek().Value;
                 unvistedStack.Pop();
@@ -44,7 +44,7 @@ namespace RoboticsPrimer {
             if (curPos.x < 0 || curPos.x >= mazeData.GetLength(0) || curPos.y < 0 || curPos.y >= mazeData.GetLength(1)) {
                 return;
             }
-            if (mazeData[curPos.x, curPos.y] != (int)CELL.O) {
+            if (mazeData[curPos.x, curPos.y] == (int)CELL.W) {
                 return;
             }
             unvistedStack.Push(new KeyValuePair<Vector2Int, int[]>(curPos, direction));
@@ -62,7 +62,7 @@ namespace RoboticsPrimer {
 
 
         public override void SendNextGoal() {
-            if (autonomousNavPlan?.Count != 0) {
+            if (autonomousNavPlan != null && autonomousNavPlan.Count != 0) {
                 botTurnGoTurn.UpdateGoalPosition(autonomousNavPlan[0].Maze2World());
                 autonomousNavPlan.RemoveAt(0);
             }

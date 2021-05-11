@@ -77,6 +77,7 @@ namespace RoboticsPrimer {
 
         public Vector3 Position {
             get { return BaseLink.position; }
+            set { BaseLink.position = value; }
         }
 
         public Quaternion Rotation {

@@ -893,6 +893,18 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
       value: 0.028125763
       objectReference: {fileID: 0}
+    - target: {fileID: 708490381, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
+      propertyPath: numCols
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 708490381, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
+      propertyPath: numRows
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 708490381, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
+      propertyPath: useManualMaze
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 650778653317758353, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
       propertyPath: m_RootOrder
       value: 3

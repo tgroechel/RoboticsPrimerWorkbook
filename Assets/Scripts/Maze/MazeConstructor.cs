@@ -89,6 +89,45 @@ namespace RoboticsPrimer {
             }
         }
 
+        public int[,] GenerateNewMaze(int numRows, int numCols) {
+            int[,] tmpData = dataGenerator.FromDimensions(numRows, numCols);
+            PlaceStart(tmpData);
+            PlaceGoal(tmpData);
+            GenerateNewMaze(tmpData);
+            return tmpData;
+        }
+
+        private void PlaceGoal(int[,] tmpData) {
+            int[,] maze = tmpData;
+            int rMax = maze.GetUpperBound(0);
+            int cMax = maze.GetUpperBound(1);
+
+            // loop top to bottom, right to left
+            for (int i = rMax; i >= 0; i--) {
+                for (int j = cMax; j >= 0; j--) {
+                    if (maze[i, j] == 0) {
+                        maze[i, j] = (int)CELL.G;
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void PlaceStart(int[,] tmpData) {
+            int[,] maze = tmpData;
+            int rMax = maze.GetUpperBound(0);
+            int cMax = maze.GetUpperBound(1);
+
+            for (int i = 0; i <= rMax; i++) {
+                for (int j = 0; j <= cMax; j++) {
+                    if (maze[i, j] == 0) {
+                        maze[i, j] = (int)CELL.S;
+                        return;
+                    }
+                }
+            }
+        }
+
         public void GenerateNewMaze(int[,] _data) {
             data = _data;
             SetUpMazeConstraints();
@@ -97,18 +136,17 @@ namespace RoboticsPrimer {
             MoveRobot();
             MoveGoal();
             MazeIsGenerated = true;
-            MazeManager.instance.MazeHasBeenGenerated.Invoke();
         }
 
         private void MoveRobot() {
             if (robot != null) {
-                robot.GetComponent<TBotCommon>().GetLink(TBotCommon.base_link).position = new Vector3(StartCol, 0, -StartRow);
+                robot.GetComponent<TBotCommon>().Position = StartPosVec.Maze2World();
             }
         }
 
         private void MoveGoal() {
             if (goal != null) {
-                goal.transform.position = new Vector3(GoalCol, 0, -GoalRow);
+                goal.transform.position = FinalGoalPos.Maze2World();
             }
         }
 
@@ -133,23 +171,6 @@ namespace RoboticsPrimer {
             }
         }
 
-        public void GenerateNewMaze(int sizeRows, int sizeCols,
-        TriggerEventHandler startCallback = null, TriggerEventHandler goalCallback = null) {
-            if (sizeRows % 2 == 0 && sizeCols % 2 == 0) {
-                Debug.LogError("Odd numbers work better for dungeon size.");
-            }
-
-            DisposeOldMaze();
-
-            data = dataGenerator.FromDimensions(sizeRows, sizeCols);
-
-            SetUpMazeConstraints();
-
-            DisplayMaze();
-
-            PlaceStartTrigger(startCallback);
-            PlaceGoalTrigger(goalCallback);
-        }
 
         private void DisplayMaze() {
             GameObject go = new GameObject();
@@ -167,8 +188,7 @@ namespace RoboticsPrimer {
         }
 
         private Vector3 CalculateZeroStartPosition() {
-            return new Vector3(0, 0, -DataDim.y);
-            //return new Vector3(-StartCol, 0, -StartRow);
+            return (new Vector2(DataDim.x - 1, 0)).Maze2World();
         }
 
         private void FindStartPosition() {

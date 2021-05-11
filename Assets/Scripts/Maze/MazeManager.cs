@@ -3,6 +3,11 @@ using UnityEngine.Events;
 
 namespace RoboticsPrimer {
     public class MazeManager : Singleton<MazeManager> {
+        [SerializeField]
+        bool useManualMaze = true;
+        [SerializeField]
+        int numCols = 5, numRows = 5;
+
         MazeConstructor mazeConstructor;
         public MazeConstructor MazeConstructor {
             get {
@@ -55,7 +60,13 @@ namespace RoboticsPrimer {
         }
 
         void Start() {
-            MazeConstructor.GenerateNewMaze(MazeData);
+            if (useManualMaze) {
+                MazeConstructor.GenerateNewMaze(MazeData);
+            }
+            else {
+                MazeData = MazeConstructor.GenerateNewMaze(numRows, numCols);
+            }
+            MazeHasBeenGenerated.Invoke();
         }
 
 
