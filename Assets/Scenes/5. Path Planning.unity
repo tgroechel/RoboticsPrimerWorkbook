@@ -1017,7 +1017,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8011542161599549609, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
       propertyPath: manualPlan
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8711336110951290039, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
       propertyPath: m_Name
@@ -1083,7 +1083,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1457304456}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8711336110951289984, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
 --- !u!1001 &8794450165814298311
 PrefabInstance:

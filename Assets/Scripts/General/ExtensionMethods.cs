@@ -19,18 +19,18 @@ namespace RoboticsPrimer {
             Vector2 tmp = v.World2Maze();
             return new Vector2Int(Mathf.RoundToInt(tmp.x), Mathf.RoundToInt(tmp.y));
         }
-        public static Vector3 MazeToWorld(this Vector2Int v) {
+        public static Vector3 Maze2World(this Vector2Int v) {
             return new Vector3(v.y, 0, -v.x);
         }
-        public static Vector3 MazeToWorld(this Vector2 v) {
+        public static Vector3 Maze2World(this Vector2 v) {
             return new Vector3(v.y, 0, -v.x);
         }
-        public static Vector3Int MazeToWorldRounded(this Vector2 v) {
-            Vector3 tmp = v.MazeToWorld();
+        public static Vector3Int Maze2WorldRounded(this Vector2 v) {
+            Vector3 tmp = v.Maze2World();
             return new Vector3Int(Mathf.RoundToInt(tmp.x), 0, Mathf.RoundToInt(tmp.z));
         }
-        public static Vector3Int MazeToWorldRounded(this Vector2Int v) {
-            Vector3 tmp = v.MazeToWorld();
+        public static Vector3Int Maze2WorldRounded(this Vector2Int v) {
+            Vector3 tmp = v.Maze2World();
             return new Vector3Int(Mathf.RoundToInt(tmp.x), 0, Mathf.RoundToInt(tmp.z));
         }
 

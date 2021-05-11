@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace RoboticsPrimer {
-    public class TBotCameraFollower : MonoBehaviour {
+    public class RobotCameraFollower : MonoBehaviour {
         public Transform target;
         public float smoothTime = 0.3F;
         private Vector3 velocity = Vector3.zero;

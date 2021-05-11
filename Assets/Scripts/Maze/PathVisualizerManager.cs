@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static RoboticsPrimer.HybridNavigationPlanner;
+using static RoboticsPrimer.TBotHighLevelNavPlanner;
 
 
 namespace RoboticsPrimer {
@@ -11,7 +11,6 @@ namespace RoboticsPrimer {
     public class PathVisualizerManager : Singleton<PathVisualizerManager> {
         LineRenderer lineRenderer;
         GameObject arrow;
-        Vector3 arrowOffset;
         Dictionary<int[], Quaternion> arrowDirectionMap = new Dictionary<int[], Quaternion> {
             { U , Quaternion.Euler(90f,0f,0f) },
             { D , Quaternion.Euler(270f,0f,0f) },
@@ -22,7 +21,6 @@ namespace RoboticsPrimer {
         private void Awake() {
             lineRenderer = GetComponent<LineRenderer>();
             arrow = Resources.Load<GameObject>(ResourcePathConstants.Arrow);
-            arrowOffset = arrow.transform.localPosition;
         }
 
         public void VisualizePath(List<Vector2Int> path) {
@@ -32,7 +30,7 @@ namespace RoboticsPrimer {
             lineRenderer.startWidth = 0.01f;
             lineRenderer.endWidth = 0.01f;
             for (int i = 0; i < path.Count; ++i) {
-                Vector3 start = path[i].MazeToWorld();
+                Vector3 start = path[i].Maze2World();
                 start.y = 0.1f;
                 lineRenderer.SetPosition(i, start);
             }
@@ -49,9 +47,9 @@ namespace RoboticsPrimer {
                     GameObject tmpArrow = Instantiate(arrow, transform);
                     pos.x = i;
                     pos.y = j;
-                    tmpArrow.transform.position = pos.MazeToWorld() + arrowOffset;
+                    tmpArrow.transform.position = pos.Maze2World();
                     int[] dir = manualNavPlan[i, j];
-                    Vector3 lookDir = (new Vector2(dir[0], dir[1])).MazeToWorld();
+                    Vector3 lookDir = (new Vector2(dir[0], dir[1])).Maze2World();
                     tmpArrow.transform.localRotation = Quaternion.LookRotation(lookDir, transform.forward);
                     tmpArrow.transform.localRotation = arrowDirectionMap[dir];
                 }

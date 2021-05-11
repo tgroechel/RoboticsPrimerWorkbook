@@ -1,28 +1,33 @@
 using UnityEngine;
 
 namespace RoboticsPrimer {
-    [RequireComponent(typeof(HybridNavigationPlanner))]
+    [RequireComponent(typeof(TBotHighLevelNavPlanner))]
     public class TBotTurnGoTurn : MonoBehaviour {
         [SerializeField]
         Transform goal;
+        [SerializeField]
+        bool debugState;
 
         TBotCommon tbc;
         TBotWheelController wheelController;
         TBotNavigationState navState;
-        HybridNavigationPlanner hybridNavigationPlanner;
+        TBotHighLevelNavPlanner hybridNavigationPlanner;
 
         float angleTolerance = 10, goalDistTolerance = 0.2f;
+
 
         private void Awake() {
             tbc = GetComponent<TBotCommon>();
             wheelController = GetComponent<TBotWheelController>();
             navState = GetComponent<TBotNavigationState>();
-            hybridNavigationPlanner = GetComponent<HybridNavigationPlanner>();
+            hybridNavigationPlanner = GetComponent<TBotHighLevelNavPlanner>();
             navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.WAITINGFORNAVGOAL;
         }
 
         private void FixedUpdate() {
-            // Debug.Log(navState.CurState.ToString());
+            if (debugState) {
+                Debug.Log(navState.CurState.ToString());
+            }
             switch (navState.CurState) {
                 case TBotNavigationState.ROBOT_NAV_STATE.WAITINGFORNAVGOAL:
                     hybridNavigationPlanner.AskForNextGoal();

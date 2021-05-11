@@ -3,12 +3,12 @@ using UnityEngine;
 using static RoboticsPrimer.MazeConstructor;
 
 namespace RoboticsPrimer {
-    public class HybridNavigationPlanner : MonoBehaviour {
+    public class TBotHighLevelNavPlanner : MonoBehaviour {
+        [SerializeField]
+        bool manualPlan;
 
         TBotCommon tbc;
         TBotTurnGoTurn botTurnGoTurn;
-        [SerializeField]
-        bool manualPlan;
 
         // Threading variables
         Vector2Int goalPosition;
@@ -103,7 +103,7 @@ namespace RoboticsPrimer {
 
         private void SendNextAutonomousGoal() {
             if (autonomousNavPlan.Count != 0) {
-                botTurnGoTurn.UpdateGoalPosition(autonomousNavPlan[0].MazeToWorld());
+                botTurnGoTurn.UpdateGoalPosition(autonomousNavPlan[0].Maze2World());
                 autonomousNavPlan.RemoveAt(0);
             }
         }
@@ -113,7 +113,7 @@ namespace RoboticsPrimer {
             Vector2Int goalPos = robotPos;
             goalPos.x += ManualNavPlan[robotPos.x, robotPos.y][0];
             goalPos.y += ManualNavPlan[robotPos.x, robotPos.y][1];
-            botTurnGoTurn.UpdateGoalPosition(goalPos.MazeToWorld());
+            botTurnGoTurn.UpdateGoalPosition(goalPos.Maze2World());
         }
     }
 }
