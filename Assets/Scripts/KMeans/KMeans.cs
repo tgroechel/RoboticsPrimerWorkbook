@@ -10,18 +10,21 @@ namespace RoboticsPrimer {
         public Color[] ClusterColors { get; set; }
 
         PointsManager pointsManager;
+        KTextUI kTextUI;
 
         private void Awake() {
             pointsManager = GetComponent<PointsManager>();
+            kTextUI = FindObjectOfType<KTextUI>();
             Reset();
         }
 
-        private void Reset() {
+        public void Reset() {
             RemovePriorClusterMeans();
             GenerateClusterColors();
             InitializeClusterMeans();
             SetClusterMeanPositions();
             CreateClusterGroups();
+            kTextUI.UpdateText(NumClusterK);
         }
 
         private void SetClusterMeanPositions() {
@@ -75,31 +78,25 @@ namespace RoboticsPrimer {
             }
         }
 
-        void Update() {
-            if (Input.GetKeyDown(KeyCode.Alpha0)) {
-                Reset();
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha1)) {
-                UpdateClustering();
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-                NumClusterK += 1;
-                Reset();
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) {
-                NumClusterK -= 1;
-                if (NumClusterK < 2) {
-                    NumClusterK = 2;
-                }
-                Reset();
-            }
-            else if (Input.GetKeyDown(KeyCode.P)) {
-                pointsManager.ResetPoints();
-                Reset();
-            }
+        public void ChangePoints() {
+            pointsManager.ResetPoints();
+            Reset();
         }
 
-        private void UpdateClustering() {
+        public void SubFromK() {
+            NumClusterK -= 1;
+            if (NumClusterK < 2) {
+                NumClusterK = 2;
+            }
+            Reset();
+        }
+
+        public void AddToK() {
+            NumClusterK += 1;
+            Reset();
+        }
+
+        public void UpdateClustering() {
             ResetClusterGroups();
             AssignPointsToClusters();
             UpdateAssignedPointColors();
