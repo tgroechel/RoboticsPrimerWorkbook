@@ -25,7 +25,6 @@ namespace RoboticsPrimer {
             arrowOffset = arrow.transform.localPosition;
         }
 
-
         public void VisualizePath(List<Vector2Int> path) {
             lineRenderer.enabled = true;
             path.Insert(0, MazeManager.instance.StartPosition);
@@ -48,8 +47,8 @@ namespace RoboticsPrimer {
                         continue;
                     }
                     GameObject tmpArrow = Instantiate(arrow, transform);
-                    pos.y = i;
-                    pos.x = j;
+                    pos.x = i;
+                    pos.y = j;
                     tmpArrow.transform.position = pos.MazeToWorld() + arrowOffset;
                     int[] dir = manualNavPlan[i, j];
                     Vector3 lookDir = (new Vector2(dir[0], dir[1])).MazeToWorld();

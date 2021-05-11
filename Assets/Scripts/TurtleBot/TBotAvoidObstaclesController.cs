@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace RoboticsPrimer {
+    // TODO: need to fix or remove this
     [RequireComponent(typeof(TBotCommon), typeof(TBotFourWayLaserScanner), typeof(TBotWheelController))]
     public class TBotAvoidObstaclesController : MonoBehaviour {
         TBotCommon tbc;

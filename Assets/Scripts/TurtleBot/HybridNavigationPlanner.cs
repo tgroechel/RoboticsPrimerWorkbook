@@ -15,10 +15,10 @@ namespace RoboticsPrimer {
         List<Vector2Int> autonomousNavPlan;
 
         public static readonly int[] S = { 0, 0 };  // Stay
-        public static readonly int[] U = { 0, -1 }; // Up
-        public static readonly int[] D = { 0, 1 };  // Down
-        public static readonly int[] L = { -1, 0 }; // Left
-        public static readonly int[] R = { 1, 0 };  // Right
+        public static readonly int[] U = { -1, 0 }; // Up
+        public static readonly int[] D = { 1, 0 };  // Down
+        public static readonly int[] L = { 0, -1 }; // Left
+        public static readonly int[] R = { 0, 1 };  // Right
 
         public int[,][] ManualNavPlan { get; set; } = {
             { D, D, D },
