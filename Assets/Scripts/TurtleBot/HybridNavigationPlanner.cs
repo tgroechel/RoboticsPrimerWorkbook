@@ -92,7 +92,7 @@ namespace RoboticsPrimer {
         }
 
 
-        internal void AskForNextGoal() {
+        public void AskForNextGoal() {
             if (manualPlan) {
                 SendNextManualNavGoal();
             }

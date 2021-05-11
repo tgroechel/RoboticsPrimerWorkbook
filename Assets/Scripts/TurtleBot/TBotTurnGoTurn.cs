@@ -22,7 +22,7 @@ namespace RoboticsPrimer {
         }
 
         private void FixedUpdate() {
-            Debug.Log(navState.CurState.ToString());
+            // Debug.Log(navState.CurState.ToString());
             switch (navState.CurState) {
                 case TBotNavigationState.ROBOT_NAV_STATE.WAITINGFORNAVGOAL:
                     hybridNavigationPlanner.AskForNextGoal();

@@ -12,6 +12,12 @@ namespace RoboticsPrimer {
         LineRenderer lineRenderer;
         GameObject arrow;
         Vector3 arrowOffset;
+        Dictionary<int[], Quaternion> arrowDirectionMap = new Dictionary<int[], Quaternion> {
+            { U , Quaternion.Euler(90f,0f,0f) },
+            { D , Quaternion.Euler(270f,0f,0f) },
+            { L , Quaternion.Euler(270f,90f,0f) },
+            { R , Quaternion.Euler(270f,270f,0f) }
+        };
 
         private void Awake() {
             lineRenderer = GetComponent<LineRenderer>();
@@ -45,7 +51,10 @@ namespace RoboticsPrimer {
                     pos.y = i;
                     pos.x = j;
                     tmpArrow.transform.position = pos.MazeToWorld() + arrowOffset;
-                    //tmpArrow.transform.rotation = 
+                    int[] dir = manualNavPlan[i, j];
+                    Vector3 lookDir = (new Vector2(dir[0], dir[1])).MazeToWorld();
+                    tmpArrow.transform.localRotation = Quaternion.LookRotation(lookDir, transform.forward);
+                    tmpArrow.transform.localRotation = arrowDirectionMap[dir];
                 }
             }
         }
