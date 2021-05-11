@@ -111,8 +111,8 @@ namespace RoboticsPrimer {
         private void SendNextManualNavGoal() {
             Vector2Int robotPos = tbc.Position.World2MazeRounded();
             Vector2Int goalPos = robotPos;
-            goalPos.x += ManualNavPlan[robotPos.y, robotPos.x][0];
-            goalPos.y += ManualNavPlan[robotPos.y, robotPos.x][1];
+            goalPos.x += ManualNavPlan[robotPos.x, robotPos.y][0];
+            goalPos.y += ManualNavPlan[robotPos.x, robotPos.y][1];
             botTurnGoTurn.UpdateGoalPosition(goalPos.MazeToWorld());
         }
     }

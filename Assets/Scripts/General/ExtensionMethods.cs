@@ -6,10 +6,10 @@ using UnityEngine.Assertions;
 namespace RoboticsPrimer {
     public static class ExtensionMethods {
         public static Vector2 World2Maze(this Vector3 v) {
-            return new Vector2(v.x, -v.z);
+            return new Vector2(-v.z, v.x);
         }
         public static Vector2 World2Maze(this Vector3Int v) {
-            return new Vector2(v.x, -v.z);
+            return new Vector2(-v.z, v.x);
         }
         public static Vector2Int World2MazeRounded(this Vector3 v) {
             Vector2 tmp = v.World2Maze();
@@ -18,6 +18,20 @@ namespace RoboticsPrimer {
         public static Vector2Int World2MazeRounded(this Vector3Int v) {
             Vector2 tmp = v.World2Maze();
             return new Vector2Int(Mathf.RoundToInt(tmp.x), Mathf.RoundToInt(tmp.y));
+        }
+        public static Vector3 MazeToWorld(this Vector2Int v) {
+            return new Vector3(v.y, 0, -v.x);
+        }
+        public static Vector3 MazeToWorld(this Vector2 v) {
+            return new Vector3(v.y, 0, -v.x);
+        }
+        public static Vector3Int MazeToWorldRounded(this Vector2 v) {
+            Vector3 tmp = v.MazeToWorld();
+            return new Vector3Int(Mathf.RoundToInt(tmp.x), 0, Mathf.RoundToInt(tmp.z));
+        }
+        public static Vector3Int MazeToWorldRounded(this Vector2Int v) {
+            Vector3 tmp = v.MazeToWorld();
+            return new Vector3Int(Mathf.RoundToInt(tmp.x), 0, Mathf.RoundToInt(tmp.z));
         }
 
         public static Vector2 AddArr(this Vector2 v, int[] arr) {
@@ -42,20 +56,6 @@ namespace RoboticsPrimer {
         }
 
 
-        public static Vector3 MazeToWorld(this Vector2Int v) {
-            return new Vector3(v.x, 0, -v.y);
-        }
-        public static Vector3 MazeToWorld(this Vector2 v) {
-            return new Vector3(v.x, 0, -v.y);
-        }
-        public static Vector3Int MazeToWorldRounded(this Vector2 v) {
-            Vector3 tmp = v.MazeToWorld();
-            return new Vector3Int(Mathf.RoundToInt(tmp.x), 0, Mathf.RoundToInt(tmp.z));
-        }
-        public static Vector3Int MazeToWorldRounded(this Vector2Int v) {
-            Vector3 tmp = v.MazeToWorld();
-            return new Vector3Int(Mathf.RoundToInt(tmp.x), 0, Mathf.RoundToInt(tmp.z));
-        }
 
         public static float NextGaussian() {
             float v1, v2, s;
