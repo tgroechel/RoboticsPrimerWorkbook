@@ -3,7 +3,7 @@ using UnityEngine;
 namespace RoboticsPrimer.ExercisePID {
     public class PIDController : MonoBehaviour {
         [SerializeField]
-        float kp, kd, ki, desiredAngle;
+        public float kp, kd, ki, desiredAngle;
         [SerializeField]
         float lastDesiredAngle, pError, iError, dError;
 
@@ -34,19 +34,31 @@ namespace RoboticsPrimer.ExercisePID {
             rigidBody.AddForceAtPosition(forceVec, forceLocation);
         }
 
+
+        public float GetPError() {
+            return desiredAngle - motor.GetFullyRotatedHingeAngle();
+        }
+
         private float CalculatePGain() {
-            pError = desiredAngle - motor.GetFullyRotatedHingeAngle();
+            pError = GetPError();
             return kp * pError;
         }
 
+        public float GetIError() {
+            return iError;
+        }
 
         private float CalculateIGain() {
             iError += pError;
             return ki * iError;
         }
 
+        public float GetDError() {
+            return -motor.GetVelocity();
+        }
+
         private float CalculateDGain() {
-            dError = -motor.GetVelocity();
+            dError = GetDError();
             return kd * dError;
         }
 
@@ -73,6 +85,7 @@ namespace RoboticsPrimer.ExercisePID {
         /// Resets velocity and errors of pendulum
         /// </summary>
         public void ResetPID() {
+            desiredAngle = 0;
             iError = 0;
             rigidBody.velocity = Vector3.zero;
             lastDesiredAngle = desiredAngle;

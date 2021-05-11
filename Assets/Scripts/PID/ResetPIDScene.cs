@@ -1,24 +1,21 @@
 using UnityEngine;
 
-namespace RoboticsPrimer.ExercisePID
-{
-    public class ResetPIDScene : MonoBehaviour
-    {
+namespace RoboticsPrimer.ExercisePID {
+    public class ResetPIDScene : MonoBehaviour {
         Motor motor;
         PIDController pidController;
+        DesiredAngleUI desiredAngleUI;
 
-        private void Start()
-        {
+        private void Start() {
             motor = GetComponent<Motor>();
             pidController = GetComponentInChildren<PIDController>();
+            desiredAngleUI = FindObjectOfType<DesiredAngleUI>();
         }
-        private void Update()
-        {
-            if (Input.GetKey(KeyCode.Alpha0))
-            {
-                motor.ResetMotor();
-                pidController.ResetPID();
-            }
+
+        public void ResetPIDAndMotor() {
+            motor.ResetMotor();
+            pidController.ResetPID();
+            desiredAngleUI.Reset();
         }
     }
 }
