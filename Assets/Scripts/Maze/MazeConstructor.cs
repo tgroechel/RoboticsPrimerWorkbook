@@ -48,7 +48,7 @@ namespace RoboticsPrimer {
 
         public Vector2Int StartPosVec {
             get {
-                return new Vector2Int(StartCol, StartRow);
+                return new Vector2Int(StartRow, StartCol);
             }
         }
         public Vector2 DataDim {
