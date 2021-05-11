@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 650778653317758353}
   - component: {fileID: 708490381}
   - component: {fileID: 650778653317758354}
+  - component: {fileID: 900718828}
   m_Layer: 0
   m_Name: MazeManager
   m_TagString: Untagged
@@ -63,3 +64,15 @@ MonoBehaviour:
   treasureMat: {fileID: 2100000, guid: c5b8154923bae4fedbbb1f1aca66fd98, type: 2}
   robot: {fileID: 0}
   goal: {fileID: 0}
+--- !u!114 &900718828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650778653317758355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9b7c50bfa922c408df33e735b22849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

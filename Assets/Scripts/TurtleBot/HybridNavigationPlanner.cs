@@ -34,6 +34,9 @@ namespace RoboticsPrimer {
             if (!manualPlan) {
                 MazeManager.instance.MazeHasBeenGenerated.AddListener(CreateAutonomousPlan);
             }
+            else {
+                PathVisualizerManager.instance.VisualizeManualPath(ManualNavPlan);
+            }
         }
 
         void CreateAutonomousPlan() {
