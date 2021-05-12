@@ -55,6 +55,11 @@ namespace RoboticsPrimer {
             }
         }
 
+        public void ToggleGenerateFromClusterMeans() {
+            generateFromClusterMeans = !generateFromClusterMeans;
+            GetComponent<KMeans>().ChangePoints();
+        }
+
         private void SetPointPositions() {
             if (generateFromClusterMeans) {
                 GeneratePositionsFromClusterMeans();

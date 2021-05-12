@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7058e749041d40c439b754b7d6a013be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useManualMaze: 1
+  numCols: 5
+  numRows: 5
 --- !u!114 &650778653317758354
 MonoBehaviour:
   m_ObjectHideFlags: 0

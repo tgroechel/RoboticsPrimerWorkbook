@@ -893,6 +893,18 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
       value: 0.028125763
       objectReference: {fileID: 0}
+    - target: {fileID: 708490381, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
+      propertyPath: numCols
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 708490381, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
+      propertyPath: numRows
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 708490381, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
+      propertyPath: useManualMaze
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 650778653317758353, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1015,7 +1027,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8011542161599549609, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
+    - target: {fileID: 8418888970890756812, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
       propertyPath: manualPlan
       value: 0
       objectReference: {fileID: 0}
@@ -1083,8 +1095,7 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1457304456}
-    m_RemovedComponents:
-    - {fileID: 8711336110951289984, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
 --- !u!1001 &8794450165814298311
 PrefabInstance:
