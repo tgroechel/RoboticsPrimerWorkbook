@@ -13,21 +13,21 @@ namespace RoboticsPrimer {
             Vector2Int startPos = MazeManager.instance.StartPosition;
             goalPosition = MazeManager.instance.FinalGoalPosition;
 
-            //dfs
-            Stack<KeyValuePair<Vector2Int, int[]>> unvistedStack = new Stack<KeyValuePair<Vector2Int, int[]>>();
+            //bfs
+            Queue<KeyValuePair<Vector2Int, int[]>> unvistedQueue = new Queue<KeyValuePair<Vector2Int, int[]>>();
             Dictionary<Vector2Int, int[]> visitedSet = new Dictionary<Vector2Int, int[]>();
             Vector2Int curPos = startPos;
             int[] dir = new int[] { 0, 0 };
-            unvistedStack.Push(new KeyValuePair<Vector2Int, int[]>(startPos, dir));
-            while (curPos != goalPosition && unvistedStack.Count != 0) {
-                curPos = unvistedStack.Peek().Key;
-                dir = unvistedStack.Peek().Value;
-                unvistedStack.Pop();
+            unvistedQueue.Enqueue(new KeyValuePair<Vector2Int, int[]>(startPos, dir));
+            while (curPos != goalPosition && unvistedQueue.Count != 0) {
+                curPos = unvistedQueue.Peek().Key;
+                dir = unvistedQueue.Peek().Value;
+                unvistedQueue.Dequeue();
                 visitedSet[curPos] = dir;
-                UpdateUnvisitedStack(U, curPos, mazeData, visitedSet, unvistedStack);
-                UpdateUnvisitedStack(D, curPos, mazeData, visitedSet, unvistedStack);
-                UpdateUnvisitedStack(L, curPos, mazeData, visitedSet, unvistedStack);
-                UpdateUnvisitedStack(R, curPos, mazeData, visitedSet, unvistedStack);
+                UpdateUnvisitedQueue(U, curPos, mazeData, visitedSet, unvistedQueue);
+                UpdateUnvisitedQueue(D, curPos, mazeData, visitedSet, unvistedQueue);
+                UpdateUnvisitedQueue(L, curPos, mazeData, visitedSet, unvistedQueue);
+                UpdateUnvisitedQueue(R, curPos, mazeData, visitedSet, unvistedQueue);
             }
 
             if (curPos == goalPosition) {
@@ -36,7 +36,7 @@ namespace RoboticsPrimer {
             PathVisualizerManager.instance.VisualizePath(autonomousNavPlan);
         }
 
-        private void UpdateUnvisitedStack(int[] direction, Vector2Int curPos, int[,] mazeData, Dictionary<Vector2Int, int[]> visistedSet, Stack<KeyValuePair<Vector2Int, int[]>> unvistedStack) {
+        private void UpdateUnvisitedQueue(int[] direction, Vector2Int curPos, int[,] mazeData, Dictionary<Vector2Int, int[]> visistedSet, Queue<KeyValuePair<Vector2Int, int[]>> unvistedQueue) {
             curPos = curPos.AddArr(direction);
             if (visistedSet.ContainsKey(curPos)) {
                 return;
@@ -47,7 +47,7 @@ namespace RoboticsPrimer {
             if (mazeData[curPos.x, curPos.y] == (int)CELL.W) {
                 return;
             }
-            unvistedStack.Push(new KeyValuePair<Vector2Int, int[]>(curPos, direction));
+            unvistedQueue.Enqueue(new KeyValuePair<Vector2Int, int[]>(curPos, direction));
         }
 
         private void BackTrack(Dictionary<Vector2Int, int[]> visitedSet, Vector2Int curPos, Vector2Int startPos) {
