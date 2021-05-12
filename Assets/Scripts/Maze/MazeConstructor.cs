@@ -89,14 +89,6 @@ namespace RoboticsPrimer {
             }
         }
 
-        public int[,] GenerateNewMaze(int numRows, int numCols) {
-            int[,] tmpData = dataGenerator.FromDimensions(numRows, numCols);
-            PlaceStart(tmpData);
-            PlaceGoal(tmpData);
-            GenerateNewMaze(tmpData);
-            return tmpData;
-        }
-
         private void PlaceGoal(int[,] tmpData) {
             int[,] maze = tmpData;
             int rMax = maze.GetUpperBound(0);
@@ -128,11 +120,22 @@ namespace RoboticsPrimer {
             }
         }
 
+        public int[,] GenerateNewMaze(int numRows, int numCols) {
+            int[,] tmpData = dataGenerator.FromDimensions(numRows, numCols);
+            PlaceStart(tmpData);
+            PlaceGoal(tmpData);
+            GenerateNewMaze(tmpData);
+            return tmpData;
+        }
+
+
+
         public void GenerateNewMaze(int[,] _data) {
             data = _data;
-            SetUpMazeConstraints();
-            ReverseData();
             DisplayMaze();
+            ReverseData();
+            SetUpMazeConstraints();
+
             MoveRobot();
             MoveGoal();
             MazeIsGenerated = true;

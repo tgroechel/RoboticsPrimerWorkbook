@@ -13,7 +13,7 @@ namespace RoboticsPrimer {
             Vector2Int startPos = MazeManager.instance.StartPosition;
             goalPosition = MazeManager.instance.FinalGoalPosition;
 
-            //bfs
+            //dfs
             Stack<KeyValuePair<Vector2Int, int[]>> unvistedStack = new Stack<KeyValuePair<Vector2Int, int[]>>();
             Dictionary<Vector2Int, int[]> visitedSet = new Dictionary<Vector2Int, int[]>();
             Vector2Int curPos = startPos;

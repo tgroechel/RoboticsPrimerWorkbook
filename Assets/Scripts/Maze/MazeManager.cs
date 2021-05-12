@@ -61,7 +61,7 @@ namespace RoboticsPrimer {
 
         void Start() {
             if (useManualMaze) {
-                MazeConstructor.GenerateNewMaze(MazeData);
+                MazeConstructor.GenerateNewMaze(MazeData); // todo use files for this
             }
             else {
                 MazeData = MazeConstructor.GenerateNewMaze(numRows, numCols);
