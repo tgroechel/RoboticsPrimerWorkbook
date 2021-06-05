@@ -2,17 +2,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using RoboticsPrimer;
 
-public class MazeMeshGenerator {
+public class MazeMeshGenerator
+{
     // generator params
     public float width;     // how wide are hallways
     public float height;    // how tall are hallways
 
-    public MazeMeshGenerator() {
+    public MazeMeshGenerator()
+    {
         width = 1f;
         height = 1f;
     }
 
-    public Mesh FromData(int[,] data) {
+    public Mesh FromData(int[,] data)
+    {
         Mesh maze = new Mesh();
 
         List<Vector3> newVertices = new List<Vector3>();
@@ -26,9 +29,12 @@ public class MazeMeshGenerator {
         int cMax = data.GetUpperBound(1);
         float halfH = height * .5f;
 
-        for (int i = 0; i <= rMax; i++) {
-            for (int j = 0; j <= cMax; j++) {
-                if (data[i, j] != (int)MazeConstructor.CELL.W) {
+        for (int i = 0; i <= rMax; i++)
+        {
+            for (int j = 0; j <= cMax; j++)
+            {
+                if (data[i, j] != (int)MazeConstructor.CELL.W)
+                {
                     // floor
                     AddQuad(Matrix4x4.TRS(
                         new Vector3(j * width, 0, i * width),
@@ -46,7 +52,8 @@ public class MazeMeshGenerator {
 
                     // walls on sides next to blocked grid cells
 
-                    if (i - 1 < 0 || data[i - 1, j] == (int)MazeConstructor.CELL.W) {
+                    if (i - 1 < 0 || data[i - 1, j] == (int)MazeConstructor.CELL.W)
+                    {
                         AddQuad(Matrix4x4.TRS(
                             new Vector3(j * width, halfH, (i - .5f) * width),
                             Quaternion.LookRotation(Vector3.forward),
@@ -54,7 +61,8 @@ public class MazeMeshGenerator {
                         ), ref newVertices, ref newUVs, ref wallTriangles);
                     }
 
-                    if (j + 1 > cMax || data[i, j + 1] == (int)MazeConstructor.CELL.W) {
+                    if (j + 1 > cMax || data[i, j + 1] == (int)MazeConstructor.CELL.W)
+                    {
                         AddQuad(Matrix4x4.TRS(
                             new Vector3((j + .5f) * width, halfH, i * width),
                             Quaternion.LookRotation(Vector3.left),
@@ -62,7 +70,8 @@ public class MazeMeshGenerator {
                         ), ref newVertices, ref newUVs, ref wallTriangles);
                     }
 
-                    if (j - 1 < 0 || data[i, j - 1] == (int)MazeConstructor.CELL.W) {
+                    if (j - 1 < 0 || data[i, j - 1] == (int)MazeConstructor.CELL.W)
+                    {
                         AddQuad(Matrix4x4.TRS(
                             new Vector3((j - .5f) * width, halfH, i * width),
                             Quaternion.LookRotation(Vector3.right),
@@ -70,7 +79,8 @@ public class MazeMeshGenerator {
                         ), ref newVertices, ref newUVs, ref wallTriangles);
                     }
 
-                    if (i + 1 > rMax || data[i + 1, j] == (int)MazeConstructor.CELL.W) {
+                    if (i + 1 > rMax || data[i + 1, j] == (int)MazeConstructor.CELL.W)
+                    {
                         AddQuad(Matrix4x4.TRS(
                             new Vector3(j * width, halfH, (i + .5f) * width),
                             Quaternion.LookRotation(Vector3.back),
@@ -95,7 +105,8 @@ public class MazeMeshGenerator {
 
     //1, 2
     private void AddQuad(Matrix4x4 matrix, ref List<Vector3> newVertices,
-        ref List<Vector2> newUVs, ref List<int> newTriangles) {
+        ref List<Vector2> newUVs, ref List<int> newTriangles)
+    {
         int index = newVertices.Count;
 
         // corners before transforming

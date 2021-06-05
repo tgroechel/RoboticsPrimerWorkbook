@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace RosSharp.Urdf.Editor
 {
-    
+
     [CustomEditor(typeof(HingeJointLimitsManager))]
     public class HingeJointLimitsManagerEditor : UnityEditor.Editor
     {

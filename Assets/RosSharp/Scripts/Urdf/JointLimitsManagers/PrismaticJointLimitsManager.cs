@@ -47,7 +47,7 @@ namespace RosSharp
         private void ApplyLimits()
         {
             float position = Vector3.Dot(transform.localPosition, configurableJoint.axis) - referencePosition;
-            
+
             if (position - PositionLimitMin < Tolerance)
             {
                 configurableJoint.xMotion = ConfigurableJointMotion.Limited;

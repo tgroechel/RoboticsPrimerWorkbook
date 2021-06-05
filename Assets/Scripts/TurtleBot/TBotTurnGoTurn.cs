@@ -1,8 +1,10 @@
 using UnityEngine;
 
-namespace RoboticsPrimer {
+namespace RoboticsPrimer
+{
     [RequireComponent(typeof(TBotHighLevelNavPlanner))]
-    public class TBotTurnGoTurn : MonoBehaviour {
+    public class TBotTurnGoTurn : MonoBehaviour
+    {
         [SerializeField]
         Transform goal;
         [SerializeField]
@@ -16,7 +18,8 @@ namespace RoboticsPrimer {
         float angleTolerance = 10, goalDistTolerance = 0.2f;
 
 
-        private void Awake() {
+        private void Awake()
+        {
             tbc = GetComponent<TBotCommon>();
             wheelController = GetComponent<TBotWheelController>();
             navState = GetComponent<TBotNavigationState>();
@@ -24,11 +27,14 @@ namespace RoboticsPrimer {
             navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.WAITINGFORNAVGOAL;
         }
 
-        private void FixedUpdate() {
-            if (debugState) {
+        private void FixedUpdate()
+        {
+            if (debugState)
+            {
                 Debug.Log(navState.CurState.ToString());
             }
-            switch (navState.CurState) {
+            switch (navState.CurState)
+            {
                 case TBotNavigationState.ROBOT_NAV_STATE.WAITINGFORNAVGOAL:
                     hybridNavigationPlanner.AskForNextGoal();
                     return;
@@ -42,26 +48,33 @@ namespace RoboticsPrimer {
             }
         }
 
-        private void SetGoalOnGround() {
-            if (Mathf.Approximately(goal.position.y, 0)) {
+        private void SetGoalOnGround()
+        {
+            if (Mathf.Approximately(goal.position.y, 0))
+            {
                 goal.position = new Vector3(goal.position.x, 0, goal.position.z);
             }
         }
 
-        public void UpdateGoalPosition(Vector2 pos) {
+        public void UpdateGoalPosition(Vector2 pos)
+        {
             UpdateGoalPosition(new Vector3(pos.x, 0, pos.y));
             navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.NAVIGATING;
         }
 
-        public void UpdateGoalPosition(Vector3 pos) {
-            if (goal != null) {
+        public void UpdateGoalPosition(Vector3 pos)
+        {
+            if (goal != null)
+            {
                 goal.position = pos;
                 navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.NAVIGATING;
             }
         }
 
-        private void UpdateTurnGoTurn() {
-            if (Vector3.Distance(goal.position, tbc.Position) < goalDistTolerance) {
+        private void UpdateTurnGoTurn()
+        {
+            if (Vector3.Distance(goal.position, tbc.Position) < goalDistTolerance)
+            {
                 navState.CurState = TBotNavigationState.ROBOT_NAV_STATE.ATGOAL;
 
                 wheelController.Stop();
@@ -70,13 +83,16 @@ namespace RoboticsPrimer {
             Debug.DrawLine(tbc.Position, tbc.Position + tbc.Heading, Color.green);
             Vector3 goalDirection = (goal.position - tbc.Position).normalized;
             float angle = Vector3.SignedAngle(goalDirection, tbc.Heading.normalized, Vector3.up);
-            if (angle > angleTolerance) {
+            if (angle > angleTolerance)
+            {
                 wheelController.TurnLeft();
             }
-            else if (angle < -angleTolerance) {
+            else if (angle < -angleTolerance)
+            {
                 wheelController.TurnRight();
             }
-            else {
+            else
+            {
                 wheelController.GoForward();
             }
         }

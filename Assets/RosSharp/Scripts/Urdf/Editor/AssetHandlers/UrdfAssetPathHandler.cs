@@ -33,7 +33,7 @@ namespace RosSharp.Urdf.Editor
 
             packageRoot = GetRelativeAssetPath(newPath);
 
-            if(!AssetDatabase.IsValidFolder(Path.Combine(packageRoot, MaterialFolderName)))
+            if (!AssetDatabase.IsValidFolder(Path.Combine(packageRoot, MaterialFolderName)))
                 AssetDatabase.CreateFolder(packageRoot, MaterialFolderName);
 
             if (correctingIncorrectPackageRoot)
@@ -46,7 +46,7 @@ namespace RosSharp.Urdf.Editor
         {
             return packageRoot;
         }
-        
+
         public static string GetRelativeAssetPath(string absolutePath)
         {
             var absolutePathUnityFormat = absolutePath.SetSeparatorChar();

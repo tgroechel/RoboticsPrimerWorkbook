@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace RoboticsPrimer {
-    public class TBotHighLevelNavPlanner : MonoBehaviour {
+namespace RoboticsPrimer
+{
+    public class TBotHighLevelNavPlanner : MonoBehaviour
+    {
         [SerializeField]
         bool manualPlan;
 
@@ -13,17 +15,21 @@ namespace RoboticsPrimer {
         public static readonly int[] L = { 0, -1 }; // Left
         public static readonly int[] R = { 0, 1 };  // Right
 
-        private void Awake() {
-            if (!manualPlan) {
+        private void Awake()
+        {
+            if (!manualPlan)
+            {
                 tBotPlanner = gameObject.AddComponent<TBotAutonomousPlanner>();
 
             }
-            else {
+            else
+            {
                 tBotPlanner = gameObject.AddComponent<TBotManualPlanner>();
             }
         }
 
-        public void AskForNextGoal() {
+        public void AskForNextGoal()
+        {
             tBotPlanner.SendNextGoal();
         }
     }

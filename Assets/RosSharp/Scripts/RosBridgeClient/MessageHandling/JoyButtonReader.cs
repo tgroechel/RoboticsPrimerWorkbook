@@ -20,10 +20,10 @@ namespace RosSharp.RosBridgeClient
     public class JoyButtonReader : MonoBehaviour
     {
         public string Name;
-        
+
         public bool Read()
         {
-            return Input.GetButton(Name);              
+            return Input.GetButton(Name);
         }
     }
 }

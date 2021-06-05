@@ -43,7 +43,7 @@ namespace RosSharp.Urdf
         {
             return subfolder == null ? exportRoot : Path.Combine(exportRoot, subfolder).SetSeparatorChar();
         }
-        
+
         //Returns an absolute path to the export destination for the mesh
         //meshFileName includes the file extension
         public static string GetNewMeshPath(string meshFileName)

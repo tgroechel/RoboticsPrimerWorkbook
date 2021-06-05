@@ -37,7 +37,7 @@ namespace RosSharp.RosBridgeClient
             for (int i = 0; i < numOfSpheres; i++)
             {
                 LaserScan[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                DestroyImmediate(LaserScan[i].GetComponent<Collider>());                    
+                DestroyImmediate(LaserScan[i].GetComponent<Collider>());
                 LaserScan[i].name = "LaserScanSpheres";
                 LaserScan[i].transform.parent = laserScanSpheres.transform;
                 LaserScan[i].GetComponent<Renderer>().material = material;

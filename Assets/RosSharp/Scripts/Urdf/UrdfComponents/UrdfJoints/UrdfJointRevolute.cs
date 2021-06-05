@@ -19,7 +19,7 @@ using UnityEngine;
 namespace RosSharp.Urdf
 {
     public class UrdfJointRevolute : UrdfJoint
-    {                
+    {
         public static UrdfJoint Create(GameObject linkObject)
         {
             UrdfJointRevolute urdfJoint = linkObject.AddComponent<UrdfJointRevolute>();
@@ -34,7 +34,7 @@ namespace RosSharp.Urdf
         }
 
         #region Runtime
-        
+
         public override float GetPosition()
         {
             return -GetComponent<HingeJointAngleCalculator>().Angle * Mathf.Deg2Rad;

@@ -24,7 +24,7 @@ namespace RosSharp.RosBridgeClient
         {
             { "UnityVersion", UnityEngine.Application.version}
         };
-        
+
         protected override bool ServiceCallHandler(rosapi.GetParamRequest request, out rosapi.GetParamResponse response)
         {
             response = new rosapi.GetParamResponse();

@@ -25,7 +25,7 @@ namespace RosSharp.RosBridgeClient
         private MessageTypes.Sensor.LaserScan message;
         private float scanPeriod;
         private float previousScanTime = 0;
-                
+
         protected override void Start()
         {
             base.Start();
@@ -48,14 +48,14 @@ namespace RosSharp.RosBridgeClient
             message = new MessageTypes.Sensor.LaserScan
             {
                 header = new MessageTypes.Std.Header { frame_id = FrameId },
-                angle_min       = laserScanReader.angle_min,
-                angle_max       = laserScanReader.angle_max,
+                angle_min = laserScanReader.angle_min,
+                angle_max = laserScanReader.angle_max,
                 angle_increment = laserScanReader.angle_increment,
-                time_increment  = laserScanReader.time_increment,
-                range_min       = laserScanReader.range_min,
-                range_max       = laserScanReader.range_max,
-                ranges          = laserScanReader.ranges,      
-                intensities     = laserScanReader.intensities
+                time_increment = laserScanReader.time_increment,
+                range_min = laserScanReader.range_min,
+                range_max = laserScanReader.range_max,
+                ranges = laserScanReader.ranges,
+                intensities = laserScanReader.intensities
             };
         }
 

@@ -51,7 +51,7 @@ namespace RosSharp.Urdf.Editor
             GUILayout.Label("All Joints", EditorStyles.boldLabel);
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Generate Unique Joint Names");
-            if (GUILayout.Button("Generate", new GUIStyle (EditorStyles.miniButton) {fixedWidth = 155}))
+            if (GUILayout.Button("Generate", new GUIStyle(EditorStyles.miniButton) { fixedWidth = 155 }))
                 urdfRobot.GenerateUniqueJointNames();
             EditorGUILayout.EndHorizontal();
 

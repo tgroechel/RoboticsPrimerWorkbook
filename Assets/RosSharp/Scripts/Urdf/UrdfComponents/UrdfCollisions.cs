@@ -17,7 +17,7 @@ limitations under the License.
 using UnityEngine;
 
 namespace RosSharp.Urdf
-{ 
+{
     public class UrdfCollisions : MonoBehaviour
     {
     }

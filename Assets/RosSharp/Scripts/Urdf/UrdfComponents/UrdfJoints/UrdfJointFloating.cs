@@ -32,7 +32,7 @@ namespace RosSharp.Urdf
 
         public override float GetPosition()
         {
-            Vector3 distanceFromAnchor = ((ConfigurableJoint)UnityJoint).transform.localPosition - 
+            Vector3 distanceFromAnchor = ((ConfigurableJoint)UnityJoint).transform.localPosition -
                                          ((ConfigurableJoint)UnityJoint).connectedAnchor;
             return distanceFromAnchor.magnitude;
         }

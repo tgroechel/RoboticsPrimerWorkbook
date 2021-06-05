@@ -36,7 +36,7 @@ namespace RosSharp
             if (!isCollada)
                 return;
 
-            if(modelImporter.useFileScale)
+            if (modelImporter.useFileScale)
                 modelImporter.globalScale = readGlobalScale(getAbsolutePath(modelImporter.assetPath));
             modelImporter.animationType = ModelImporterAnimationType.None;
             modelImporter.importCameras = false;
@@ -60,7 +60,7 @@ namespace RosSharp
         }
 
         private Vector3 getColladaPositionFix(Vector3 position, string orientation)
-        { 
+        {
             switch (orientation)
             {
                 case "X_UP": return position; // not tested
@@ -73,7 +73,7 @@ namespace RosSharp
         private static Vector3 getColladaRotationFix(string orientation)
         {
             switch (orientation)
-            { 
+            {
                 case "X_UP": return new Vector3(-90, 90, 90); // not tested
                 case "Y_UP": return new Vector3(-90, 90, 0);  // tested
                 case "Z_UP": return new Vector3(0, 90, 0);    // tested

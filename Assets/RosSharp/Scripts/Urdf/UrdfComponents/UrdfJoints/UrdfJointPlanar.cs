@@ -27,7 +27,7 @@ namespace RosSharp.Urdf
             urdfJoint.UnityJoint = linkObject.AddComponent<ConfigurableJoint>();
             urdfJoint.UnityJoint.autoConfigureConnectedAnchor = true;
 
-            ConfigurableJoint configurableJoint = (ConfigurableJoint) urdfJoint.UnityJoint;
+            ConfigurableJoint configurableJoint = (ConfigurableJoint)urdfJoint.UnityJoint;
 
             // degrees of freedom:
             configurableJoint.xMotion = ConfigurableJointMotion.Free;
@@ -48,7 +48,7 @@ namespace RosSharp.Urdf
 
         protected override void ImportJointData(Joint joint)
         {
-            ConfigurableJoint configurableJoint = (ConfigurableJoint) UnityJoint;
+            ConfigurableJoint configurableJoint = (ConfigurableJoint)UnityJoint;
 
             Vector3 normal = (joint.axis != null) ? GetAxis(joint.axis) : GetDefaultAxis();
             Vector3 axisX = Vector3.forward;
@@ -72,7 +72,7 @@ namespace RosSharp.Urdf
 
         protected override Joint ExportSpecificJointData(Joint joint)
         {
-            ConfigurableJoint configurableJoint = (ConfigurableJoint) UnityJoint;
+            ConfigurableJoint configurableJoint = (ConfigurableJoint)UnityJoint;
 
             joint.axis = GetAxisData(Vector3.Cross(configurableJoint.axis, configurableJoint.secondaryAxis));
             joint.dynamics = new Joint.Dynamics(configurableJoint.xDrive.positionDamper, configurableJoint.xDrive.positionSpring);

@@ -28,14 +28,14 @@ namespace RosSharp.Urdf.Editor
 
         protected virtual void OnEnable()
         {
-            urdfVisuals = (UrdfVisuals) serializedObject.targetObject;
+            urdfVisuals = (UrdfVisuals)serializedObject.targetObject;
         }
 
         public override void OnInspectorGUI()
         {
             GUILayout.Space(10);
             geometryType = (GeometryTypes)EditorGUILayout.EnumPopup("Type of visual", geometryType);
-            
+
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Add visual"))
                 UrdfVisualExtensions.Create(urdfVisuals.transform, geometryType);

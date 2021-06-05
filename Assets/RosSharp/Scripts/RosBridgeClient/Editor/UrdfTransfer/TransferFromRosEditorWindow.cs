@@ -30,7 +30,7 @@ namespace RosSharp.RosBridgeClient
         private static string urdfParameter;
         private static int timeout;
         private static string assetPath;
-      
+
         private TransferFromRosHandler transferHandler;
 
         private bool showSettings = false;
@@ -185,7 +185,7 @@ namespace RosSharp.RosBridgeClient
             EditorPrefs.SetInt("UrdfImporterTimeout", timeout);
             EditorPrefs.SetString("UrdfImporterUrdfParameter", urdfParameter);
         }
-        
+
         #endregion
     }
 }

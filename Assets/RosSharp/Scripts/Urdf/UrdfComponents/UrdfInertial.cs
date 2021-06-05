@@ -26,7 +26,7 @@ namespace RosSharp.Urdf
         [SerializeField] private Rigidbody _rigidbody;
         public bool DisplayInertiaGizmo;
 
-        public enum RigidbodyDataSource { Urdf, Unity, Manual};
+        public enum RigidbodyDataSource { Urdf, Unity, Manual };
         public RigidbodyDataSource rigidbodyDataSource;
 
         public float Mass;
@@ -60,11 +60,11 @@ namespace RosSharp.Urdf
         private void Initialize()
         {
             rigidbodyDataSource = RigidbodyDataSource.Urdf;
-  
+
             Mass = UrdfMass;
             CenterOfMass = UrdfCenterOfMass;
             InertiaTensor = UrdfInertiaTensor;
-            InertiaTensorRotation =  UrdfInertiaTensorRotation;
+            InertiaTensorRotation = UrdfInertiaTensorRotation;
 
             DisplayInertiaGizmo = false;
 
@@ -74,11 +74,11 @@ namespace RosSharp.Urdf
         #region Runtime
         private void Reset()
         {
-            if(isCreated)
+            if (isCreated)
                 Initialize();
         }
 
-         private void OnValidate()
+        private void OnValidate()
         {
             if (isCreated)
                 UpdateRigidBodyData();

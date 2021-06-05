@@ -49,10 +49,10 @@ namespace RosSharp.RosBridgeClient
         {
             Vector2 limits = Vector2.zero;
             if (urdfJoint.IsRevoluteOrContinuous)
-                limits = new Vector2(-hingeJointLimitsManager.LargeAngleLimitMax,-hingeJointLimitsManager.LargeAngleLimitMin);
+                limits = new Vector2(-hingeJointLimitsManager.LargeAngleLimitMax, -hingeJointLimitsManager.LargeAngleLimitMin);
             else if (urdfJoint.JointType == UrdfJoint.JointTypes.Prismatic)
                 limits = new Vector2(prismaticJointLimitsManager.PositionLimitMin, prismaticJointLimitsManager.PositionLimitMax);
-          
+
             state = Mathf.Clamp(state, limits.x, limits.y);
         }
 

@@ -48,7 +48,7 @@ namespace RosSharp.RosBridgeClient
                 Debug.LogWarning("Please select a valid URDF file to publish.");
                 return;
             }
-                        
+
             Thread transferToRos = new Thread(() => TransferAsync(protocolType, serverUrl, timeout, urdfPath, rosPackage, serializer));
             transferToRos.Start();
         }

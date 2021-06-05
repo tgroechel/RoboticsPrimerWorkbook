@@ -28,7 +28,7 @@ namespace RosSharp.Urdf.Editor
 
         protected virtual void OnEnable()
         {
-            urdfJoint = (UrdfJoint)serializedObject.targetObject;    
+            urdfJoint = (UrdfJoint)serializedObject.targetObject;
         }
 
         public override void OnInspectorGUI()
@@ -103,7 +103,7 @@ namespace RosSharp.Urdf.Editor
         private void DisplayAxisMessage(string axisLocation)
         {
             GUILayout.Space(5);
-            
+
             EditorGUILayout.LabelField("Joint Axis");
 
             EditorGUILayout.HelpBox("An axis is required for this joint type. Remember to define an axis in " + axisLocation + ".", MessageType.Info);

@@ -4,8 +4,10 @@ using UnityEngine;
 /// Inherit from this base class to create a singleton.
 /// e.g. public class MyClassName : Singleton<MyClassName> {}
 /// </summary>
-namespace RoboticsPrimer {
-    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
+namespace RoboticsPrimer
+{
+    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+    {
         // Check to see if we're about to be destroyed.
         private static bool m_ShuttingDown = false;
         private static object m_Lock = new object();
@@ -14,21 +16,27 @@ namespace RoboticsPrimer {
         /// <summary>
         /// Access singleton instance through this propriety.
         /// </summary>
-        public static T instance {
-            get {
-                if (m_ShuttingDown) {
+        public static T instance
+        {
+            get
+            {
+                if (m_ShuttingDown)
+                {
                     // Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
                     //    "' already destroyed. Returning null."); // ignoring currently
                     return null;
                 }
 
-                lock (m_Lock) {
-                    if (m_Instance == null) {
+                lock (m_Lock)
+                {
+                    if (m_Instance == null)
+                    {
                         // Search for existing instance.
                         m_Instance = (T)FindObjectOfType(typeof(T));
 
                         // Create new instance if one doesn't already exist.
-                        if (m_Instance == null) {
+                        if (m_Instance == null)
+                        {
                             // Need to create a new GameObject to attach the singleton to.
                             var singletonObject = new GameObject();
                             m_Instance = singletonObject.AddComponent<T>();
@@ -44,12 +52,14 @@ namespace RoboticsPrimer {
             }
         }
 
-        private void OnApplicationQuit() {
+        private void OnApplicationQuit()
+        {
             m_ShuttingDown = true;
         }
 
 
-        private void OnDestroy() {
+        private void OnDestroy()
+        {
             m_ShuttingDown = true;
         }
     }

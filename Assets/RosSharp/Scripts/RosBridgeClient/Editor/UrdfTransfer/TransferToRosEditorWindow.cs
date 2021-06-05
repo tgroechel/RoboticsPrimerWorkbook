@@ -29,7 +29,7 @@ namespace RosSharp.RosBridgeClient
         private static string urdfPath;
         private static int timeout;
         private static string rosPackage;
-        
+
         private TransferToRosHandler transferHandler;
 
         private bool showSettings = false;
@@ -100,7 +100,7 @@ namespace RosSharp.RosBridgeClient
             EditorGUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Publish Robot Description"))
-            { 
+            {
                 SetEditorPrefs();
                 transferHandler.Transfer(protocolType, serverUrl, timeout, urdfPath, rosPackage, serializerType);
             }
@@ -109,7 +109,7 @@ namespace RosSharp.RosBridgeClient
 
             GUILayout.Space(20);
             EditorGUIUtility.labelWidth = 225;
-            
+
             DrawLabelField("Connected: ", "connected");
             DrawLabelField("Robot name published: ", "robotNamePublished");
             DrawLabelField("Robot description published: ", "robotDescriptionPublished");

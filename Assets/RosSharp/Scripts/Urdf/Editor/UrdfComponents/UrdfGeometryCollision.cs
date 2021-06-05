@@ -50,7 +50,7 @@ namespace RosSharp.Urdf.Editor
                     break;
             }
 
-            if(geometryGameObject != null)
+            if (geometryGameObject != null)
             {
                 geometryGameObject.transform.SetParentAndAlign(parent);
                 if (geometry != null)

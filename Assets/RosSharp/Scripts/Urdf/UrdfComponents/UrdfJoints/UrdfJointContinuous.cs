@@ -65,9 +65,9 @@ namespace RosSharp.Urdf
         {
             joint.axis = GetAxisData(UnityJoint.axis);
             joint.dynamics = new Joint.Dynamics(
-                ((HingeJoint)UnityJoint).spring.damper, 
+                ((HingeJoint)UnityJoint).spring.damper,
                 ((HingeJoint)UnityJoint).spring.spring);
-            
+
             return joint;
         }
     }

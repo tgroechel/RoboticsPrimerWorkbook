@@ -29,7 +29,7 @@ namespace RosSharp.Urdf.Editor
         public int selectedSubfolder;
 
         private static string[] subfolderOptions = { "Export URDF to root folder", "Export URDF to the following subfolder:" };
-        
+
         private void OnGUI()
         {
             //Styles definitions
@@ -38,7 +38,7 @@ namespace RosSharp.Urdf.Editor
                 alignment = TextAnchor.MiddleCenter,
                 fontSize = 13
             };
-            GUIStyle buttonStyle = new GUIStyle(EditorStyles.miniButtonRight) {fixedWidth = 75};
+            GUIStyle buttonStyle = new GUIStyle(EditorStyles.miniButtonRight) { fixedWidth = 75 };
 
             //Window title
             GUILayout.Space(10);
@@ -89,7 +89,7 @@ namespace RosSharp.Urdf.Editor
             GUILayout.Space(10);
             EditorGUILayout.BeginHorizontal();
             StlWriter.fileType =
-                (StlWriter.FileType) EditorGUILayout.EnumPopup("Export new meshes to", StlWriter.fileType);
+                (StlWriter.FileType)EditorGUILayout.EnumPopup("Export new meshes to", StlWriter.fileType);
             EditorGUILayout.LabelField("   STL files");
             EditorGUILayout.EndHorizontal();
 
@@ -119,10 +119,10 @@ namespace RosSharp.Urdf.Editor
         {
             exportRoot = EditorPrefs.HasKey("UrdfExportRoot") ?
                 EditorPrefs.GetString("UrdfExportRoot") : "";
-            
+
             subfolder = EditorPrefs.HasKey("UrdfExportSubfolder") ?
                 EditorPrefs.GetString("UrdfExportSubfolder") : "";
-            
+
             selectedSubfolder = EditorPrefs.HasKey("UrdfExportSubfolderOption") ?
                 EditorPrefs.GetInt("UrdfExportSubfolderOption") : 0;
         }

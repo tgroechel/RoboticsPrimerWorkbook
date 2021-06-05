@@ -38,7 +38,7 @@ namespace RosSharp.Urdf.Editor
             GUILayout.Space(5);
 
             EditorGUILayout.BeginVertical("HelpBox");
-            jointType = (UrdfJoint.JointTypes) EditorGUILayout.EnumPopup(
+            jointType = (UrdfJoint.JointTypes)EditorGUILayout.EnumPopup(
                 "Child Joint Type", jointType);
 
             if (GUILayout.Button("Add child link (with joint)"))

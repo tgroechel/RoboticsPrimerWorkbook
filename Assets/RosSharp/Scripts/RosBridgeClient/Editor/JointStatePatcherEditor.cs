@@ -31,8 +31,8 @@ namespace RosSharp.RosBridgeClient
             if (buttonStyle == null)
                 buttonStyle = new GUIStyle(EditorStyles.miniButtonRight) { fixedWidth = 75 };
 
-            jointStatePatcher = (JointStatePatcher) target;
-            
+            jointStatePatcher = (JointStatePatcher)target;
+
             GUILayout.Label("All Urdf Joints", EditorStyles.boldLabel);
             DisplaySettingsToggle(new GUIContent("Publish Joint State", "Adds/removes a Joint State Reader on each joint."),
                 jointStatePatcher.SetPublishJointStates);

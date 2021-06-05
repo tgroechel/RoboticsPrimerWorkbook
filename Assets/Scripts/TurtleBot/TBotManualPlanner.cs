@@ -3,11 +3,14 @@ using UnityEngine;
 using static RoboticsPrimer.MazeConstructor;
 using static RoboticsPrimer.TBotHighLevelNavPlanner;
 
-namespace RoboticsPrimer {
-    public class TBotManualPlanner : TBotPlanner {
+namespace RoboticsPrimer
+{
+    public class TBotManualPlanner : TBotPlanner
+    {
         public int[,][] ManualNavPlan { get; set; }
 
-        public override void CreateAndVisualizePlan() {
+        public override void CreateAndVisualizePlan()
+        {
             ManualNavPlan = new int[,][] {
                 { D, D, D },
                 { R, S, L},
@@ -17,7 +20,8 @@ namespace RoboticsPrimer {
             PathVisualizerManager.instance.VisualizeManualPath(ManualNavPlan);
         }
 
-        public override void SendNextGoal() {
+        public override void SendNextGoal()
+        {
             Vector2Int robotPos = tbc.Position.World2MazeRounded();
             Vector2Int goalPos = robotPos;
             goalPos.x += ManualNavPlan[robotPos.x, robotPos.y][0];

@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoboticsPrimer {
-    public abstract class TBotPlanner : MonoBehaviour {
+namespace RoboticsPrimer
+{
+    public abstract class TBotPlanner : MonoBehaviour
+    {
         protected TBotCommon tbc;
         protected TBotTurnGoTurn botTurnGoTurn;
-        void Awake() {
+        void Awake()
+        {
             tbc = GetComponent<TBotCommon>();
             botTurnGoTurn = GetComponent<TBotTurnGoTurn>();
             botTurnGoTurn.enabled = true;

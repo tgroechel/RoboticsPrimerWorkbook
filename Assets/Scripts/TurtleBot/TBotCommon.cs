@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoboticsPrimer {
-    public class TBotCommon : MonoBehaviour {
+namespace RoboticsPrimer
+{
+    public class TBotCommon : MonoBehaviour
+    {
         public static string base_footprint = "base_footprint";
         public static string base_link = string.Join("/", base_footprint, "base_link");
         public static string wheel_left_link = string.Join("/", base_link, "wheel_left_link");
@@ -16,22 +18,29 @@ namespace RoboticsPrimer {
         Camera cam;
         float wheelDist;
 
-        private void Awake() {
+        private void Awake()
+        {
             BaseLink.GetComponent<Rigidbody>().centerOfMass = new Vector3(0, 0.00f, 0);
         }
 
-        public HingeJoint LeftWheelHinge {
-            get {
-                if (!leftWheelHinge) {
+        public HingeJoint LeftWheelHinge
+        {
+            get
+            {
+                if (!leftWheelHinge)
+                {
                     leftWheelHinge = GetLink(wheel_left_link).GetComponent<HingeJoint>();
                 }
                 return leftWheelHinge;
             }
             set { leftWheelHinge = value; }
         }
-        public HingeJoint RightWheelHinge {
-            get {
-                if (!rightWheelHinge) {
+        public HingeJoint RightWheelHinge
+        {
+            get
+            {
+                if (!rightWheelHinge)
+                {
                     rightWheelHinge = GetLink(wheel_right_link).GetComponent<HingeJoint>();
                 }
                 return rightWheelHinge;
@@ -39,76 +48,99 @@ namespace RoboticsPrimer {
             set { rightWheelHinge = value; }
         }
 
-        public Transform BaseLink {
-            get {
-                if (!baseLink) {
+        public Transform BaseLink
+        {
+            get
+            {
+                if (!baseLink)
+                {
                     baseLink = GetLink(base_link);
                 }
                 return baseLink;
             }
         }
 
-        public Transform BaseScanLink {
-            get {
-                if (!baseScanLink) {
+        public Transform BaseScanLink
+        {
+            get
+            {
+                if (!baseScanLink)
+                {
                     baseScanLink = GetLink(base_scan);
                 }
                 return baseScanLink;
             }
         }
 
-        public Transform CameraLink {
-            get {
-                if (!cameraLink) {
+        public Transform CameraLink
+        {
+            get
+            {
+                if (!cameraLink)
+                {
                     cameraLink = GetLink(camera_link);
                 }
                 return cameraLink;
             }
         }
 
-        public Camera Camera {
-            get {
-                if (!cam) {
+        public Camera Camera
+        {
+            get
+            {
+                if (!cam)
+                {
                     cam = CameraLink.GetComponent<Camera>();
                 }
                 return cam;
             }
         }
 
-        public Vector3 Position {
+        public Vector3 Position
+        {
             get { return BaseLink.position; }
             set { BaseLink.position = value; }
         }
 
-        public Quaternion Rotation {
+        public Quaternion Rotation
+        {
             get { return BaseLink.rotation; }
         }
 
-        public Vector3 Heading {
+        public Vector3 Heading
+        {
             get { return BaseLink.forward; }
         }
 
-        public Vector3 Velocity {
-            get {
-                if (!baseLinkRigidBody) {
+        public Vector3 Velocity
+        {
+            get
+            {
+                if (!baseLinkRigidBody)
+                {
                     baseLinkRigidBody = BaseLink.GetComponent<Rigidbody>();
                 }
                 return baseLinkRigidBody.velocity;
             }
         }
 
-        public Transform GetLink(string s) {
+        public Transform GetLink(string s)
+        {
             return transform.Find(s);
         }
 
 
-        public float GetRotationY() {
+        public float GetRotationY()
+        {
             return BaseLink.rotation.eulerAngles.y;
         }
 
-        public float WheelDist {
-            get {
-                if (wheelDist == 0) {
+        public float WheelDist
+        {
+            get
+            {
+                if (wheelDist == 0)
+                {
                     wheelDist = Vector3.Distance(LeftWheelHinge.transform.position, RightWheelHinge.transform.position);
                 }
                 return wheelDist;

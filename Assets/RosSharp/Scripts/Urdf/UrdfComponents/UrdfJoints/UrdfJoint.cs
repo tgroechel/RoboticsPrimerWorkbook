@@ -127,7 +127,7 @@ namespace RosSharp.Urdf
         #endregion
 
         #region Import Helpers
-        
+
         public static JointTypes GetJointType(string jointType)
         {
             switch (jointType)
@@ -150,7 +150,7 @@ namespace RosSharp.Urdf
         }
 
         protected virtual void ImportJointData(Joint joint) { }
-        
+
         protected static Vector3 GetAxis(Joint.Axis axis)
         {
             return axis.xyz.ToVector3().Ros2Unity();
@@ -254,29 +254,29 @@ namespace RosSharp.Urdf
             double[] rosAxis = axis.Unity2Ros().ToRoundedDoubleArray();
             return new Joint.Axis(rosAxis);
         }
-        
+
         private bool IsAnchorTransformed()
         {
             UnityEngine.Joint joint = GetComponent<UnityEngine.Joint>();
 
-            return Math.Abs(joint.anchor.x) > Tolerance || 
+            return Math.Abs(joint.anchor.x) > Tolerance ||
                 Math.Abs(joint.anchor.x) > Tolerance ||
                 Math.Abs(joint.anchor.x) > Tolerance;
         }
-        
+
         private void CheckForUrdfCompatibility()
         {
             if (!AreLimitsCorrect())
                 Debug.LogWarning("Limits are not defined correctly for Joint " + JointName + " in Link " + name +
-                                 ". This may cause problems when visualizing the robot in RVIZ or Gazebo.", 
+                                 ". This may cause problems when visualizing the robot in RVIZ or Gazebo.",
                                  gameObject);
             if (!IsJointAxisDefined())
                 Debug.LogWarning("Axis for joint " + JointName + " is undefined. Axis will not be written to URDF, " +
-                                 "and the default axis will be used instead.", 
+                                 "and the default axis will be used instead.",
                                  gameObject);
-            if(IsAnchorTransformed())
+            if (IsAnchorTransformed())
                 Debug.LogWarning("The anchor position defined in the joint connected to " + name + " will be" +
-                                 " ignored in URDF. Instead of modifying anchor, change the position of the link.", 
+                                 " ignored in URDF. Instead of modifying anchor, change the position of the link.",
                                  gameObject);
         }
 

@@ -22,8 +22,8 @@ namespace RosSharp.RosBridgeClient
         public List<JointStateReader> JointStateReaders;
         public string FrameId = "Unity";
 
-        private MessageTypes.Sensor.JointState message;    
-        
+        private MessageTypes.Sensor.JointState message;
+
         protected override void Start()
         {
             base.Start();

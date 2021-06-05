@@ -20,7 +20,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace RosSharp.Urdf.Editor
-{ 
+{
     public static class UrdfCollisionsExtensions
     {
         public static void Create(Transform parent, List<Link.Collision> collisions = null)
@@ -38,7 +38,7 @@ namespace RosSharp.Urdf.Editor
                     UrdfCollisionExtensions.Create(urdfCollisions.transform, collision);
             }
         }
-        
+
         public static List<Link.Collision> ExportCollisionsData(this UrdfCollisions urdfCollisions)
         {
             UrdfCollision[] urdfCollisionsList = urdfCollisions.GetComponentsInChildren<UrdfCollision>();

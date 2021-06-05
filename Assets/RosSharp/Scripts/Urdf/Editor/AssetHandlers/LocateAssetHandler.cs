@@ -53,7 +53,7 @@ namespace RosSharp.Urdf.Editor
                     break;
             }
 
-            assetObject = (T) AssetDatabase.LoadAssetAtPath(fileAssetPath, typeof(T));
+            assetObject = (T)AssetDatabase.LoadAssetAtPath(fileAssetPath, typeof(T));
             if (assetObject != null)
                 return assetObject;
 
@@ -70,7 +70,7 @@ namespace RosSharp.Urdf.Editor
 
             if (UrdfAssetPathHandler.IsValidAssetPath(newAssetPath))
                 UrdfAssetPathHandler.SetPackageRoot(newAssetPath, true);
-            else 
+            else
                 Debug.LogWarning("Selected package root " + newAssetPath + " is not within the Assets folder.");
 
             return UrdfAssetPathHandler.GetRelativeAssetPathFromUrdfPath(urdfFileName);
@@ -100,7 +100,7 @@ namespace RosSharp.Urdf.Editor
                 throw new InterruptedUrdfImportException("User cancelled URDF import. Model may be incomplete.");
             }
         }
-        
+
         private class InterruptedUrdfImportException : Exception
         {
             public InterruptedUrdfImportException(string message) : base(message)

@@ -27,7 +27,7 @@ namespace RosSharp.Urdf.Editor
 
         protected virtual void OnEnable()
         {
-            urdfVisual = (UrdfVisual) serializedObject.targetObject;
+            urdfVisual = (UrdfVisual)serializedObject.targetObject;
         }
 
         public override void OnInspectorGUI()
@@ -38,7 +38,7 @@ namespace RosSharp.Urdf.Editor
             EditorGUILayout.PrefixLabel("Geometry Type");
             EditorGUILayout.LabelField(urdfVisual.GeometryType.ToString());
             EditorGUILayout.EndHorizontal();
-            
+
             if (GUILayout.Button("Add collision to match visual"))
             {
                 urdfVisual.AddCorrespondingCollision();

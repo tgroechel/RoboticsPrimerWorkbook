@@ -34,7 +34,7 @@ namespace RosSharp.Urdf.Editor
                     foundExistingColladaOrStl = true;
                 else //Find STL file that corresponds to the prefab, if it already exists
                 {
-                    string[] foldersToSearch = {Path.GetDirectoryName(prefabPath)};
+                    string[] foldersToSearch = { Path.GetDirectoryName(prefabPath) };
                     string prefabName = Path.GetFileNameWithoutExtension(prefabPath);
 
                     foreach (string guid2 in AssetDatabase.FindAssets(prefabName, foldersToSearch))
@@ -49,7 +49,7 @@ namespace RosSharp.Urdf.Editor
                     }
                 }
             }
-            
+
             if (foundExistingColladaOrStl)
                 return CopyMeshToExportDestination(prefabPath);
 
@@ -64,7 +64,7 @@ namespace RosSharp.Urdf.Editor
                 CopyDaeTextureToExportDestination(prefabPath, Path.GetDirectoryName(newPrefabPath));
 
             prefabPath = UrdfAssetPathHandler.GetFullAssetPath(prefabPath);
-            
+
             CopyFileToNewLocation(prefabPath, newPrefabPath);
 
             return newPrefabPath;
@@ -75,7 +75,7 @@ namespace RosSharp.Urdf.Editor
             //Get material from Collada prefab
             Material material = AssetDatabase.LoadAssetAtPath<Material>(prefabPath);
             if (material.mainTexture == null) return;
-            
+
             //Get relative subfolder where texture is, compared to the DAE file.
             string commonFolder = Path.GetDirectoryName(prefabPath).SetSeparatorChar();
             string texturePath = AssetDatabase.GetAssetPath(material.mainTexture).SetSeparatorChar();
@@ -85,7 +85,7 @@ namespace RosSharp.Urdf.Editor
             string newTexturePath = Path.Combine(newFolderLocation, relativeLocation);
 
             Directory.CreateDirectory(Path.GetDirectoryName(newTexturePath));
-            
+
             CopyFileToNewLocation(UrdfAssetPathHandler.GetFullAssetPath(texturePath), newTexturePath);
         }
 
@@ -112,6 +112,6 @@ namespace RosSharp.Urdf.Editor
         private static string GetPrefabPath(GameObject gameObject)
         {
             return AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(gameObject));
-        } 
+        }
     }
 }

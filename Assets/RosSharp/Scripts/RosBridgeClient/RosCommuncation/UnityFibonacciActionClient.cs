@@ -38,9 +38,9 @@ namespace RosSharp.RosBridgeClient.Actionlib
 
         private void Update()
         {
-            status   = fibonacciActionClient.GetStatusString();
+            status = fibonacciActionClient.GetStatusString();
             feedback = fibonacciActionClient.GetFeedbackString();
-            result   = fibonacciActionClient.GetResultString();
+            result = fibonacciActionClient.GetResultString();
         }
 
         public void RegisterGoal()

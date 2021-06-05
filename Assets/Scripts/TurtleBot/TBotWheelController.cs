@@ -1,18 +1,22 @@
 using System;
 using UnityEngine;
 
-namespace RoboticsPrimer {
-    public class TBotWheelController : MonoBehaviour {
+namespace RoboticsPrimer
+{
+    public class TBotWheelController : MonoBehaviour
+    {
         public float maxWheelSpeed;
 
         TBotCommon tbc;
         Vector2 totalVelocity;
 
-        private void Awake() {
+        private void Awake()
+        {
             tbc = GetComponent<TBotCommon>();
         }
 
-        private void UpdateTargetVelocity() {
+        private void UpdateTargetVelocity()
+        {
             ClampAndNormalizeTotalVelocity();
             JointMotor leftMotor = tbc.LeftWheelHinge.motor;
             JointMotor rightMotor = tbc.RightWheelHinge.motor;
@@ -22,45 +26,56 @@ namespace RoboticsPrimer {
             tbc.RightWheelHinge.motor = rightMotor;
         }
 
-        private void ClampAndNormalizeTotalVelocity() {
+        private void ClampAndNormalizeTotalVelocity()
+        {
             float largestVelSent = totalVelocity.x > totalVelocity.y ?
                 Mathf.Abs(totalVelocity.x) :
                 Mathf.Abs(totalVelocity.y);
-            if (largestVelSent > maxWheelSpeed) {
+            if (largestVelSent > maxWheelSpeed)
+            {
                 totalVelocity = totalVelocity / largestVelSent * maxWheelSpeed;
             }
         }
 
-        private void LateUpdate() {
+        private void LateUpdate()
+        {
             UpdateTargetVelocity();
         }
 
-        public void SendVelocityCommand(Vector2 velVec, bool additiveVelocity = false) {
-            if (additiveVelocity) {
+        public void SendVelocityCommand(Vector2 velVec, bool additiveVelocity = false)
+        {
+            if (additiveVelocity)
+            {
                 totalVelocity += velVec;
             }
-            else {
+            else
+            {
                 totalVelocity = velVec;
             }
         }
 
-        public void TurnRight() {
+        public void TurnRight()
+        {
             SendVelocityCommand(new Vector2(maxWheelSpeed, -maxWheelSpeed));
         }
 
-        public void TurnLeft() {
+        public void TurnLeft()
+        {
             SendVelocityCommand(new Vector2(-maxWheelSpeed, maxWheelSpeed));
         }
 
-        public void GoForward() {
+        public void GoForward()
+        {
             SendVelocityCommand(new Vector2(maxWheelSpeed, maxWheelSpeed));
         }
 
-        public void Reverse() {
+        public void Reverse()
+        {
             SendVelocityCommand(new Vector2(-maxWheelSpeed, -maxWheelSpeed));
         }
 
-        public void Stop() {
+        public void Stop()
+        {
             SendVelocityCommand(new Vector2(0, 0));
         }
 

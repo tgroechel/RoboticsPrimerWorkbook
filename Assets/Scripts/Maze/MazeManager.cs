@@ -1,17 +1,22 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace RoboticsPrimer {
-    public class MazeManager : Singleton<MazeManager> {
+namespace RoboticsPrimer
+{
+    public class MazeManager : Singleton<MazeManager>
+    {
         [SerializeField]
         bool useManualMaze = true;
         [SerializeField]
         int numCols = 5, numRows = 5;
 
         MazeConstructor mazeConstructor;
-        public MazeConstructor MazeConstructor {
-            get {
-                if (mazeConstructor == null) {
+        public MazeConstructor MazeConstructor
+        {
+            get
+            {
+                if (mazeConstructor == null)
+                {
                     mazeConstructor = GetComponent<MazeConstructor>();
                 }
                 return mazeConstructor;
@@ -19,9 +24,12 @@ namespace RoboticsPrimer {
         }
 
         UnityEvent mazeHasBeenGenerated;
-        public UnityEvent MazeHasBeenGenerated {
-            get {
-                if (mazeHasBeenGenerated == null) {
+        public UnityEvent MazeHasBeenGenerated
+        {
+            get
+            {
+                if (mazeHasBeenGenerated == null)
+                {
                     mazeHasBeenGenerated = new UnityEvent();
                 }
                 return mazeHasBeenGenerated;
@@ -35,35 +43,46 @@ namespace RoboticsPrimer {
             {2, 1, 0}
         };
 
-        public GameObject ImmediateGoal {
-            get {
+        public GameObject ImmediateGoal
+        {
+            get
+            {
                 return MazeConstructor.goal;
             }
         }
 
-        public Vector2Int FinalGoalPosition {
-            get {
+        public Vector2Int FinalGoalPosition
+        {
+            get
+            {
                 return MazeConstructor.FinalGoalPos;
             }
         }
 
-        public bool MazeIsGenerated {
-            get {
+        public bool MazeIsGenerated
+        {
+            get
+            {
                 return MazeConstructor.MazeIsGenerated;
             }
         }
 
-        public Vector2Int StartPosition {
-            get {
+        public Vector2Int StartPosition
+        {
+            get
+            {
                 return MazeConstructor.StartPosVec;
             }
         }
 
-        void Start() {
-            if (useManualMaze) {
+        void Start()
+        {
+            if (useManualMaze)
+            {
                 MazeConstructor.GenerateNewMaze(MazeData); // todo use files for this
             }
-            else {
+            else
+            {
                 MazeData = MazeConstructor.GenerateNewMaze(numRows, numCols);
             }
             MazeHasBeenGenerated.Invoke();

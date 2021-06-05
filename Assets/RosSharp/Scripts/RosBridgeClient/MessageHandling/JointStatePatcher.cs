@@ -23,7 +23,7 @@ namespace RosSharp.RosBridgeClient
     {
         public UrdfRobot UrdfRobot;
 
-        public void SetPublishJointStates(bool publish) 
+        public void SetPublishJointStates(bool publish)
         {
             if (publish)
             {
@@ -32,7 +32,7 @@ namespace RosSharp.RosBridgeClient
 
                 foreach (UrdfJoint urdfJoint in UrdfRobot.GetComponentsInChildren<UrdfJoint>())
                 {
-                    if(urdfJoint.JointType != UrdfJoint.JointTypes.Fixed)
+                    if (urdfJoint.JointType != UrdfJoint.JointTypes.Fixed)
                         jointStatePublisher.JointStateReaders.Add(urdfJoint.transform.AddComponentIfNotExists<JointStateReader>());
                 }
             }
@@ -53,7 +53,8 @@ namespace RosSharp.RosBridgeClient
                 jointStateSubscriber.JointStateWriters = new List<JointStateWriter>();
                 jointStateSubscriber.JointNames = new List<string>();
 
-                foreach (UrdfJoint urdfJoint in UrdfRobot.GetComponentsInChildren<UrdfJoint>()) {
+                foreach (UrdfJoint urdfJoint in UrdfRobot.GetComponentsInChildren<UrdfJoint>())
+                {
                     if (urdfJoint.JointType != UrdfJoint.JointTypes.Fixed)
                     {
                         jointStateSubscriber.JointStateWriters.Add(urdfJoint.transform.AddComponentIfNotExists<JointStateWriter>());

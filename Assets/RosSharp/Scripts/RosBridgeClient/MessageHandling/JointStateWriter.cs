@@ -43,7 +43,7 @@ namespace RosSharp.RosBridgeClient
         }
         private void WriteUpdate()
         {
-            urdfJoint.UpdateJointState(newState-prevState);
+            urdfJoint.UpdateJointState(newState - prevState);
 
             prevState = newState;
         }

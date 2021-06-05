@@ -59,7 +59,7 @@ namespace RosSharp
 
             UpdateAngles();
         }
-        
+
         private void RecalculateJointLimits()
         {
             if (LargeAngleLimitMax < LargeAngleLimitMin)
@@ -70,7 +70,7 @@ namespace RosSharp
 
             AngleLimitMax = GetAngleLimit(LargeAngleLimitMax);
             RotationNumberMax = GetRotationLimit(LargeAngleLimitMax);
-            
+
             FixAngleLimits();
 
             ApplyJointLimits();
@@ -113,9 +113,9 @@ namespace RosSharp
         private int GetRotationLimit(float largeAngleLimit)
         {
             if (largeAngleLimit > 0)
-                return (int) ((largeAngleLimit + 180) / 360);
+                return (int)((largeAngleLimit + 180) / 360);
             else
-                return (int) ((largeAngleLimit - 180) / 360);
+                return (int)((largeAngleLimit - 180) / 360);
 
         }
 

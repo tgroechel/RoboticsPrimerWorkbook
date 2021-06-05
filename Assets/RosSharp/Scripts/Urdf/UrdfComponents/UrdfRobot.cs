@@ -24,7 +24,7 @@ namespace RosSharp.Urdf
     public class UrdfRobot : MonoBehaviour
     {
         public string FilePath;
-        
+
         #region Configure Robot
 
         public void SetCollidersConvex(bool convex)

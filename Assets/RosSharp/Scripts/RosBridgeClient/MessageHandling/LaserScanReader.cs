@@ -75,7 +75,8 @@ namespace RosSharp.RosBridgeClient
             }
         }
 
-        private Quaternion GetRayRotation(int sample) {
+        private Quaternion GetRayRotation(int sample)
+        {
             float eulerAngleInRadians = angle_min + (angle_increment * sample);
             float eulerAngleInDegrees = eulerAngleInRadians * 180 / Mathf.PI;
 

@@ -142,7 +142,7 @@ namespace RosSharp
             Matrix3x3 result = new Matrix3x3();
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                        result[i][j] += A[i] * B[i][j];
+                    result[i][j] += A[i] * B[i][j];
             return result;
         }
 
@@ -151,7 +151,7 @@ namespace RosSharp
             Matrix3x3 result = new Matrix3x3();
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                        result[i][j] += A[j] * B[i];
+                    result[i][j] += A[j] * B[i];
             return result;
         }
 
@@ -217,7 +217,7 @@ namespace RosSharp
             Matrix3x3 B = (matrix3x3 * (1f / p)) + (new Matrix3x3(new float[] { -q / p, -q / p, -q / p }));
             float angle = Mathf.Clamp(B.Determinant() / 2f, -1, 1);
             float theta = Mathf.Acos(angle) / 3;
-            
+
             Vector3 beta = new Vector3();
             Vector3 alpha = new Vector3();
             for (int k = 0; k < 3; k++)

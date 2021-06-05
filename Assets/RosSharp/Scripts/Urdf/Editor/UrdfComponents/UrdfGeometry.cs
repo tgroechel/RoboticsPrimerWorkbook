@@ -47,7 +47,7 @@ namespace RosSharp.Urdf.Editor
 
             return geometry;
         }
-        
+
         #region Import Helpers
 
         public static GeometryTypes GetGeometryType(Link.Geometry geometry)

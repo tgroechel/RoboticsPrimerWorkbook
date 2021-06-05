@@ -22,7 +22,7 @@ namespace RosSharp.RosBridgeClient
         public Transform PublishedTransform;
 
         private MessageTypes.Geometry.Twist message;
-        private float previousRealTime;        
+        private float previousRealTime;
         private Vector3 previousPosition = Vector3.zero;
         private Quaternion previousRotation = Quaternion.identity;
 
@@ -45,7 +45,7 @@ namespace RosSharp.RosBridgeClient
         }
         private void UpdateMessage()
         {
-           
+
             Vector3 linearVelocity = (PublishedTransform.localPosition - previousPosition) / Time.fixedDeltaTime;
             Vector3 angularVelocity = (PublishedTransform.localRotation.eulerAngles - previousRotation.eulerAngles) / Time.fixedDeltaTime;
 
