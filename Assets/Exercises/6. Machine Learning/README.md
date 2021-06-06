@@ -7,7 +7,7 @@ In this exercise you will learn how to write an unsupervised learning algorithm:
 
 ## Code Explained
 
-You will be writing code within `Machine Learning-Scripts/KMeans.cs`. 
+You will be writing code within `Machine Learning Scripts/KMeans.cs`. 
 
 All functions that need coding are marking with `CODE` and found within the `#region CODE`.
 
