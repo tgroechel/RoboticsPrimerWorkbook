@@ -18,6 +18,7 @@ and add the resulting forces in `UpdateMotorForce()`. The force is then applied 
 ## Coding Order and Tips
 - If all the comments and extra funcitons are distracting, look into your Editor's ability to do "code folding". An example of this feature can be found [here](https://code.visualstudio.com/docs/editor/codebasics#:~:text=Use%20Shift%20%2B%20Click%20on%20the,uncollapsed%20region%20at%20the%20cursor.).
 - Start with calculating the `PError` and then the `PGain` (`kP*PError`)
+- You will want to use the `motor` variable to get the motor angle. See `Motor.cs` for details.
 - Having the `PGain` calculated should allow you to then apply that force win `UpdateMotorForce()`
 - Play around with just the `PGain` until you have a somewhat stable system, the pendulum will likely cycle overshooting and undershooting
 - Once you have this osscilating over/undershoot behavior, move onto the `DGain` and then `IGain`

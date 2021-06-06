@@ -8,6 +8,7 @@ namespace RoboticsPrimer.ExercisePID
         float m_lastAngle = 0;
         int m_numRotations;
 
+#region ENGINE
         void Start()
         {
             m_hingeJoint = GetComponent<HingeJoint>();
@@ -18,7 +19,19 @@ namespace RoboticsPrimer.ExercisePID
         {
             UpdateNumRotations();
         }
+#endregion 
+#region PUBLIC FUNCTIONS
+        public float GetMotorFullAngle()
+        {
+            return GetAdjustedHingeAngle() + m_numRotations * 360;
+        }
 
+        public float GetVelocity()
+        {
+            return m_hingeJoint.velocity;
+        }
+#endregion
+#region HELPERS AND UI
         public void ResetMotor()
         {
             m_numRotations = 0;
@@ -44,14 +57,6 @@ namespace RoboticsPrimer.ExercisePID
         {
             return m_hingeJoint.angle + 180;
         }
-
-        public float GetFullyRotatedHingeAngle()
-        {
-            return GetAdjustedHingeAngle() + m_numRotations * 360;
-        }
-        public float GetVelocity()
-        {
-            return m_hingeJoint.velocity;
-        }
+#endregion
     }
 }
