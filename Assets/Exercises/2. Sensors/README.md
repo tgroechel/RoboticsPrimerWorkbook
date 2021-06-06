@@ -1,9 +1,9 @@
-# Exercise 1: PID Control
+# Exercise 2: Sensors
 
-![PID](../../../.images/PID.png)
+![Sensors](../../../.images/Sensors.png)
 
 ## Overview
-In this exercise you will learn how to write a PID controller for an inverted pendulum as well as how to tune different gains. Open up the `PID` Unity Scene to get started. Your Unity scene should look similar to the above picture with the inverted pendulum.
+In this exercise you will learn how to write basic sensors.
 
 ## Code Explained
 

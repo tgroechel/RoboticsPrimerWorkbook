@@ -5,15 +5,25 @@ namespace RoboticsPrimer
 {
     public class KMeans : MonoBehaviour
     {
+#region MEMBERS
         public bool usePointInitialization;
+
         public int NumClusterK { get; set; } = 4;
+
         public Transform[] ClusterMeans { get; set; }
+
         public List<Transform>[] ClusterGroups { get; set; }
+
         public Color[] ClusterColors { get; set; }
 
         PointsManager pointsManager;
-        KTextUI kTextUI;
 
+        KTextUI kTextUI;
+#endregion
+
+
+
+#region ENGINE
         private void Awake()
         {
             pointsManager = GetComponent<PointsManager>();
@@ -28,8 +38,10 @@ namespace RoboticsPrimer
             InitializeClusterMeans();
             SetClusterMeanPositions();
             CreateClusterGroups();
-            kTextUI.UpdateText(NumClusterK);
+            kTextUI.UpdateText (NumClusterK);
         }
+#endregion
+
 
         private void SetClusterMeanPositions()
         {
@@ -37,7 +49,12 @@ namespace RoboticsPrimer
             {
                 if (usePointInitialization)
                 {
-                    t.localPosition = pointsManager.Points[UnityEngine.Random.Range(0, pointsManager.numPoints)].localPosition;
+                    t.localPosition =
+                        pointsManager
+                            .Points[UnityEngine
+                                .Random
+                                .Range(0, pointsManager.numPoints)]
+                            .localPosition;
                 }
                 else
                 {
@@ -72,20 +89,28 @@ namespace RoboticsPrimer
             ClusterColors = new Color[NumClusterK];
             for (int i = 0; i < NumClusterK; ++i)
             {
-                ClusterColors[i] = Color.HSVToRGB((float)i / NumClusterK, 1, 1);
+                ClusterColors[i] =
+                    Color.HSVToRGB((float) i / NumClusterK, 1, 1);
             }
         }
 
         private void InitializeClusterMeans()
         {
             ClusterMeans = new Transform[NumClusterK];
-            Vector3 scaler = new Vector3(pointsManager.pointRadius, pointsManager.pointRadius, pointsManager.pointRadius);
+            Vector3 scaler =
+                new Vector3(pointsManager.pointRadius,
+                    pointsManager.pointRadius,
+                    pointsManager.pointRadius);
             for (int i = 0; i < NumClusterK; ++i)
             {
-                ClusterMeans[i] = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+                ClusterMeans[i] =
+                    GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
                 ClusterMeans[i].SetParent(transform);
                 ClusterMeans[i].localScale = 2 * scaler;
-                ClusterMeans[i].GetComponent<MeshRenderer>().material.SetColor("_Color", ClusterColors[i]);
+                ClusterMeans[i]
+                    .GetComponent<MeshRenderer>()
+                    .material
+                    .SetColor("_Color", ClusterColors[i]);
             }
         }
 
@@ -127,7 +152,6 @@ namespace RoboticsPrimer
             UpdateClusterMeans();
         }
 
-
         private void AssignPointsToClusters()
         {
             float totalError = 0;
@@ -137,7 +161,8 @@ namespace RoboticsPrimer
                 int bestInd = -1;
                 for (int i = 0; i < NumClusterK; ++i)
                 {
-                    float dist = Vector3.Distance(t.position, ClusterMeans[i].position);
+                    float dist =
+                        Vector3.Distance(t.position, ClusterMeans[i].position);
                     if (dist < bestDist)
                     {
                         bestDist = dist;
@@ -156,7 +181,10 @@ namespace RoboticsPrimer
             {
                 foreach (Transform t in ClusterGroups[i])
                 {
-                    t.GetComponent<MeshRenderer>().material.SetColor("_Color", ClusterColors[i]);
+                    t
+                        .GetComponent<MeshRenderer>()
+                        .material
+                        .SetColor("_Color", ClusterColors[i]);
                 }
             }
         }

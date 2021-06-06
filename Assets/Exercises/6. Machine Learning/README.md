@@ -1,9 +1,9 @@
-# Exercise 1: PID Control
+# Exercise 6: Machine Learning
 
-![PID](../../../.images/PID.png)
+![MachineLearning](../../../.images/PID.png)
 
 ## Overview
-In this exercise you will learn how to write a PID controller for an inverted pendulum as well as how to tune different gains. Open up the `PID` Unity Scene to get started. Your Unity scene should look similar to the above picture with the inverted pendulum.
+In this exercise you will learn how to write an unsupervised learning algorithm: [*k*-means clustering](https://en.wikipedia.org/wiki/K-means_clustering). 
 
 ## Code Explained
 
