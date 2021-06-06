@@ -5,6 +5,7 @@ namespace RoboticsPrimer
 {
     public class PointsManager : MonoBehaviour
     {
+        #region MEMBERS
         public int numPoints = 50;
         public float pointRadius = 0.2f;
         public bool generateFromClusterMeans;
@@ -30,10 +31,27 @@ namespace RoboticsPrimer
         }
         public float XBound { get; } = 4f;
         public float YBound { get; } = 4f;
-
+#endregion
+        #region ENGINE
         private void Awake()
         {
             ResetPoints();
+        }
+#endregion
+        #region HELPERS AND UI
+        private void GeneratePositionsFromClusterMeans()
+        {
+            int numClusters = clusterMeans.Length;
+            standardDeviationOfDistanceFromCluster = Math.Abs(standardDeviationOfDistanceFromCluster);
+            CheckClusterParams(numClusters);
+            int stepSize = numPoints / numClusters;
+            for (int i = 0; i < numClusters; ++i)
+            {
+                for (int j = 0; j < stepSize; ++j)
+                {
+                    Points[i * stepSize + j].localPosition = GenerateRandomPositionFromMean(clusterMeans[i]);
+                }
+            }
         }
 
         public void ResetPoints()
@@ -82,21 +100,6 @@ namespace RoboticsPrimer
             else
             {
                 GenerateRandomPositions();
-            }
-        }
-
-        private void GeneratePositionsFromClusterMeans()
-        {
-            int numClusters = clusterMeans.Length;
-            standardDeviationOfDistanceFromCluster = Math.Abs(standardDeviationOfDistanceFromCluster);
-            CheckClusterParams(numClusters);
-            int stepSize = numPoints / numClusters;
-            for (int i = 0; i < numClusters; ++i)
-            {
-                for (int j = 0; j < stepSize; ++j)
-                {
-                    Points[i * stepSize + j].localPosition = GenerateRandomPositionFromMean(clusterMeans[i]);
-                }
             }
         }
 
@@ -155,5 +158,6 @@ namespace RoboticsPrimer
         {
             return new Vector3(UnityEngine.Random.Range(-XBound, XBound), UnityEngine.Random.Range(-YBound, YBound), 0);
         }
+#endregion
     }
 }
