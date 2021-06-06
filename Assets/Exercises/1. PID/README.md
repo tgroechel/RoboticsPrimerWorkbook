@@ -1,17 +1,17 @@
 # Exercise 1: PID Control
 
-**INSERT IMAGE HERE of PID**
+![PID](../../../.images/PID.png)
 
 ## Overview
-In this exercise you will learn how to write a PID controller for an inverted pendulum as well as how to tune different gains.
+In this exercise you will learn how to write a PID controller for an inverted pendulum as well as how to tune different gains. Open up the `PID` Unity Scene to get started. Your Unity scene should look similar to the above picture with the inverted pendulum.
 
 ## Code Explained
 
 You will be writing code within `PID-Scripts/PIDController.cs`. You will calculate each error and gain:
 ```C#
-"Proportional" : "P"
-"Integral" : "I"
-"Derivative" : "D"
+"P" : "Proportional"
+"I" : "Integral" 
+"D" : "Derivative"
 ```
 and add the resulting forces in `UpdateMotorForce()`. The force is then applied to the end of the inverted pendulum. All functions that need coding are marking with `CODE` and found within the `#region CODE`.
 
@@ -23,3 +23,5 @@ and add the resulting forces in `UpdateMotorForce()`. The force is then applied 
 - Once you have this osscilating over/undershoot behavior, move onto the `DGain` and then `IGain`
 - Rememeber tuning gains happens one at a time and should give you a relative idea of how adjusting each knob affects the system
 - The memebers `iError` and `forceDirection` will be helpful
+- Zero is the down angle with 180 being the top
+- When pressing play, each slider is reset to the default values. The defualt values can be changed in the Inspector view of the `PIDController.cs` script. The script is attached in the Hierarchy under `MotorLink/PendulumLink`

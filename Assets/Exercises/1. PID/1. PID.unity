@@ -1882,9 +1882,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948504b91ef023f458f7ebdac9dcb06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kp: 5
-  kd: 0.5
-  ki: 0.05
+  kp: 0
+  kd: 0
+  ki: 0
   desiredAngle: 0
   lastDesiredAngle: 0
   pError: 0

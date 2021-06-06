@@ -43,11 +43,11 @@ namespace RoboticsPrimer.ExercisePID
         {
             Vector3 forceVec = Vector3.zero;
 
-            /* SOLUTION
+       
             forceVec += forceDirection * CalculatePGain();
             forceVec += forceDirection * CalculateIGain();
             forceVec += forceDirection * CalculateDGain();
-            END */
+            
 
             DrawDebugLine(forceVec, forceLocation);
             rigidBody.AddForceAtPosition(forceVec, forceLocation);
@@ -60,10 +60,10 @@ namespace RoboticsPrimer.ExercisePID
         /// <returns>P error</returns>
         public float GetPError()
         {
-            return 0;
-            /* SOLUTION
+  
+
             return desiredAngle - motor.GetFullyRotatedHingeAngle();
-            END */
+
         }
 
         /// <summary>
@@ -72,11 +72,11 @@ namespace RoboticsPrimer.ExercisePID
         /// <returns>Calculated P Gain</returns>
         private float CalculatePGain()
         {
-            return 0;
-            /* SOLUTION
+
+
             pError = GetPError();
             return kp * pError;
-            END */
+
         }
 
         /// <summary>
@@ -85,10 +85,9 @@ namespace RoboticsPrimer.ExercisePID
         /// <returns>Integrated Error</returns>
         public float GetIError()
         {
-            return 0;
-            /* SOLUTION
+
             return iError;
-            END */
+
         }
 
         /// <summary>
@@ -97,11 +96,10 @@ namespace RoboticsPrimer.ExercisePID
         /// <returns>I Gain</returns>
         private float CalculateIGain()
         {
-            return 0;
-            /* SOLUTION
+
             iError += pError;
             return ki * iError;
-            END */
+
         }
 
         /// <summary>
@@ -111,9 +109,9 @@ namespace RoboticsPrimer.ExercisePID
         public float GetDError()
         {
             return 0;
-            /* SOLUTION
+
             return -motor.GetVelocity();
-            END */
+
         }
 
         /// <summary>
@@ -123,10 +121,10 @@ namespace RoboticsPrimer.ExercisePID
         private float CalculateDGain()
         {
             return 0;
-            /* SOLUTION
+
             dError = GetDError();
             return kd * dError;
-            END */
+
         }
 #endregion
 
