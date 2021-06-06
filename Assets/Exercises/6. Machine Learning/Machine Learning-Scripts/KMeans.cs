@@ -7,22 +7,13 @@ namespace RoboticsPrimer
     {
 #region MEMBERS
         public bool usePointInitialization;
-
         public int NumClusterK { get; set; } = 4;
-
         public Transform[] ClusterMeans { get; set; }
-
         public List<Transform>[] ClusterGroups { get; set; }
-
         public Color[] ClusterColors { get; set; }
-
         PointsManager pointsManager;
-
         KTextUI kTextUI;
 #endregion
-
-
-
 #region ENGINE
         private void Awake()
         {
@@ -40,9 +31,78 @@ namespace RoboticsPrimer
             CreateClusterGroups();
             kTextUI.UpdateText (NumClusterK);
         }
+
+        public void UpdateClustering()
+        {
+            ResetClusterGroups();
+            AssignPointsToClusters();
+            UpdateAssignedPointColors();
+            UpdateClusterMeans();
+        }
 #endregion
+#region CODE
+     private void InitializeClusterMeans()
+        {
+            ClusterMeans = new Transform[NumClusterK];
+            Vector3 scaler =
+                new Vector3(pointsManager.pointRadius,
+                    pointsManager.pointRadius,
+                    pointsManager.pointRadius);
+            for (int i = 0; i < NumClusterK; ++i)
+            {
+                ClusterMeans[i] =
+                    GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+                ClusterMeans[i].SetParent(transform);
+                ClusterMeans[i].localScale = 2 * scaler;
+                ClusterMeans[i]
+                    .GetComponent<MeshRenderer>()
+                    .material
+                    .SetColor("_Color", ClusterColors[i]);
+            }
+        }
 
-
+        private void AssignPointsToClusters()
+        {
+            float totalError = 0;
+            foreach (Transform t in pointsManager.Points)
+            {
+                float bestDist = pointsManager.XBound * pointsManager.YBound;
+                int bestInd = -1;
+                for (int i = 0; i < NumClusterK; ++i)
+                {
+                    float dist =
+                        Vector3.Distance(t.position, ClusterMeans[i].position);
+                    if (dist < bestDist)
+                    {
+                        bestDist = dist;
+                        bestInd = i;
+                    }
+                }
+                ClusterGroups[bestInd].Add(t);
+                totalError += bestDist;
+            }
+            Debug.Log("K = " + NumClusterK + "Total Error: " + totalError);
+        }
+        
+        private void UpdateClusterMeans()
+        {
+            for (int i = 0; i < NumClusterK; ++i)
+            {
+                if (ClusterGroups[i].Count == 0)
+                {
+                    continue;
+                }
+                Vector3 averagePosition = Vector3.zero;
+                foreach (Transform t in ClusterGroups[i])
+                {
+                    averagePosition += t.localPosition;
+                }
+                averagePosition /= ClusterGroups[i].Count;
+                ClusterMeans[i].localPosition = averagePosition;
+            }
+        }
+#endregion
+#region HELPERS AND UI
         private void SetClusterMeanPositions()
         {
             foreach (Transform t in ClusterMeans)
@@ -94,26 +154,6 @@ namespace RoboticsPrimer
             }
         }
 
-        private void InitializeClusterMeans()
-        {
-            ClusterMeans = new Transform[NumClusterK];
-            Vector3 scaler =
-                new Vector3(pointsManager.pointRadius,
-                    pointsManager.pointRadius,
-                    pointsManager.pointRadius);
-            for (int i = 0; i < NumClusterK; ++i)
-            {
-                ClusterMeans[i] =
-                    GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
-                ClusterMeans[i].SetParent(transform);
-                ClusterMeans[i].localScale = 2 * scaler;
-                ClusterMeans[i]
-                    .GetComponent<MeshRenderer>()
-                    .material
-                    .SetColor("_Color", ClusterColors[i]);
-            }
-        }
-
         private void ResetClusterGroups()
         {
             for (int i = 0; i < NumClusterK; ++i)
@@ -144,37 +184,6 @@ namespace RoboticsPrimer
             Reset();
         }
 
-        public void UpdateClustering()
-        {
-            ResetClusterGroups();
-            AssignPointsToClusters();
-            UpdateAssignedPointColors();
-            UpdateClusterMeans();
-        }
-
-        private void AssignPointsToClusters()
-        {
-            float totalError = 0;
-            foreach (Transform t in pointsManager.Points)
-            {
-                float bestDist = pointsManager.XBound * pointsManager.YBound;
-                int bestInd = -1;
-                for (int i = 0; i < NumClusterK; ++i)
-                {
-                    float dist =
-                        Vector3.Distance(t.position, ClusterMeans[i].position);
-                    if (dist < bestDist)
-                    {
-                        bestDist = dist;
-                        bestInd = i;
-                    }
-                }
-                ClusterGroups[bestInd].Add(t);
-                totalError += bestDist;
-            }
-            Debug.Log("K = " + NumClusterK + "Total Error: " + totalError);
-        }
-
         private void UpdateAssignedPointColors()
         {
             for (int i = 0; i < NumClusterK; ++i)
@@ -188,23 +197,6 @@ namespace RoboticsPrimer
                 }
             }
         }
-
-        private void UpdateClusterMeans()
-        {
-            for (int i = 0; i < NumClusterK; ++i)
-            {
-                if (ClusterGroups[i].Count == 0)
-                {
-                    continue;
-                }
-                Vector3 averagePosition = Vector3.zero;
-                foreach (Transform t in ClusterGroups[i])
-                {
-                    averagePosition += t.localPosition;
-                }
-                averagePosition /= ClusterGroups[i].Count;
-                ClusterMeans[i].localPosition = averagePosition;
-            }
-        }
+#endregion
     }
 }

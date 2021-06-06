@@ -5,8 +5,6 @@ namespace RoboticsPrimer
 {
     public class PointsManager : MonoBehaviour
     {
-
-
         public int numPoints = 50;
         public float pointRadius = 0.2f;
         public bool generateFromClusterMeans;

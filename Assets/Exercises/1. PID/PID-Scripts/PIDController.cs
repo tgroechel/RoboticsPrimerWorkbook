@@ -4,7 +4,7 @@ namespace RoboticsPrimer.ExercisePID
 {
     public class PIDController : MonoBehaviour
     {
-        #region MEMBERS
+#region MEMBERS
         [SerializeField]
         public float kp, kd, ki, desiredAngle;
         [SerializeField]
@@ -13,9 +13,8 @@ namespace RoboticsPrimer.ExercisePID
         Motor motor;
         Rigidbody rigidBody;
         Vector3 forceLocation, forceDirection;
-        #endregion
-
-        #region ENGINE
+#endregion
+#region ENGINE
         void Start()
         {
             rigidBody = GetComponent<Rigidbody>();
@@ -29,10 +28,8 @@ namespace RoboticsPrimer.ExercisePID
             UpdateIErrorOnChangeOfDesiredAngle();
             UpdateMotorForce();
         }
-        #endregion
-
-        #region CODE
-
+#endregion
+#region CODE
         /// <summary>
         /// CODE: Adds motor force calculated from the different gains.
         /// Called from `FixedUpdate` every frame
@@ -48,11 +45,9 @@ namespace RoboticsPrimer.ExercisePID
             forceVec += forceDirection * CalculateIGain();
             forceVec += forceDirection * CalculateDGain();
             END */
-
-            DrawDebugLine(forceVec, forceLocation);
-            rigidBody.AddForceAtPosition(forceVec, forceLocation);
+            DrawDebugLine (forceVec, forceLocation);
+            rigidBody.AddForceAtPosition (forceVec, forceLocation);
         }
-
 
         /// <summary>
         /// CODE: calculates the P Error using the motor and desired angle
@@ -128,9 +123,8 @@ namespace RoboticsPrimer.ExercisePID
             return kd * dError;
             END */
         }
-        #endregion
-
-        #region HELPERS
+#endregion
+#region HELPERS
         /// <summary>
         /// Recalculates force location and direction
         /// </summary>
@@ -170,11 +164,12 @@ namespace RoboticsPrimer.ExercisePID
         /// <param name="forceLocation">Local position of Force vector</param>
         void DrawDebugLine(Vector3 force, Vector3 forceLocation)
         {
-            Debug.DrawRay(transform.position + forceLocation,
-            Vector3.Normalize(force),
-            Color.red,
-             Time.deltaTime);
+            Debug
+                .DrawRay(transform.position + forceLocation,
+                Vector3.Normalize(force),
+                Color.red,
+                Time.deltaTime);
         }
-        #endregion
+#endregion
     }
 }

@@ -4,10 +4,11 @@ namespace RoboticsPrimer.ExercisePID
 {
     public class Motor : MonoBehaviour
     {
+#region MEMBERS
         HingeJoint m_hingeJoint;
         float m_lastAngle = 0;
         int m_numRotations;
-
+#endregion
 #region ENGINE
         void Start()
         {
