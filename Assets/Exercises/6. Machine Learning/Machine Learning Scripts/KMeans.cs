@@ -41,7 +41,7 @@ namespace RoboticsPrimer
         }
 #endregion
 #region CODE
-     private void InitializeClusterMeans()
+        private void InitializeClusterMeans()
         {
             ClusterMeans = new Transform[NumClusterK];
             Vector3 scaler =
