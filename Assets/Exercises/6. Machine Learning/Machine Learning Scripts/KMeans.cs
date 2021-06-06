@@ -51,33 +51,6 @@ namespace RoboticsPrimer
             END */
         }
 
-        /// <summary>
-        /// CODE: Sets the initial `ClusterMean` positions.
-        /// If `usePointInitilization`, the clustermeans should be initialized
-        /// to one of the points positions. The default will generate a random
-        /// point within the bounds given in `PointManager.cs`
-        /// </summary>
-        private void SetClusterMeanPositions()
-        {
-            foreach (Transform t in ClusterMeans)
-            {
-                if (usePointInitialization)
-                {
-                    /* SOLUTION
-                    t.localPosition =
-                        pointsManager
-                            .Points[UnityEngine
-                                .Random
-                                .Range(0, pointsManager.numPoints)]
-                            .localPosition;
-                    END */
-                }
-                else
-                {
-                    t.localPosition = pointsManager.GenerateRandomPosition();
-                }
-            }
-        }
 
         /// <summary>
         /// CODE: looks through all of `pointManager.Points` and assigns
@@ -135,6 +108,34 @@ namespace RoboticsPrimer
                 ClusterMeans[i].localPosition = averagePosition;
             }
             END */
+        }
+
+        /// <summary>
+        /// CODE: Sets the initial `ClusterMean` positions.
+        /// If `usePointInitilization`, the clustermeans should be initialized
+        /// to one of the points positions. The default will generate a random
+        /// point within the bounds given in `PointManager.cs`
+        /// </summary>
+        private void SetClusterMeanPositions()
+        {
+            foreach (Transform t in ClusterMeans)
+            {
+                if (usePointInitialization)
+                {
+                    /* SOLUTION
+                    t.localPosition =
+                        pointsManager
+                            .Points[UnityEngine
+                                .Random
+                                .Range(0, pointsManager.numPoints)]
+                            .localPosition;
+                    END */
+                }
+                else
+                {
+                    t.localPosition = pointsManager.GenerateRandomPosition();
+                }
+            }
         }
         #endregion
         #region HELPERS AND UI
