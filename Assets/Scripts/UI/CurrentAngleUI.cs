@@ -17,7 +17,7 @@ namespace RoboticsPrimer
 
         private void Update()
         {
-            text.text = string.Join("", baseText, motor.GetFullyRotatedHingeAngle().ToString());
+            text.text = string.Join("", baseText, motor.GetMotorFullAngle().ToString());
         }
     }
 }

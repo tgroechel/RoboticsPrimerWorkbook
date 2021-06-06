@@ -4,7 +4,7 @@ namespace RoboticsPrimer.ExercisePID
 {
     public class PIDController : MonoBehaviour
     {
-#region MEMBERS
+        #region MEMBERS
         [SerializeField]
         public float kp, kd, ki, desiredAngle;
         [SerializeField]
@@ -13,9 +13,9 @@ namespace RoboticsPrimer.ExercisePID
         Motor motor;
         Rigidbody rigidBody;
         Vector3 forceLocation, forceDirection;
-#endregion
+        #endregion
 
-#region ENGINE
+        #region ENGINE
         void Start()
         {
             rigidBody = GetComponent<Rigidbody>();
@@ -29,9 +29,9 @@ namespace RoboticsPrimer.ExercisePID
             UpdateIErrorOnChangeOfDesiredAngle();
             UpdateMotorForce();
         }
-#endregion
+        #endregion
 
-#region CODE
+        #region CODE
 
         /// <summary>
         /// CODE: Adds motor force calculated from the different gains.
@@ -62,7 +62,7 @@ namespace RoboticsPrimer.ExercisePID
         {
             return 0;
             /* SOLUTION
-            return desiredAngle - motor.GetFullyRotatedHingeAngle();
+            return desiredAngle - motor.GetMotorFullAngle();
             END */
         }
 
@@ -128,9 +128,9 @@ namespace RoboticsPrimer.ExercisePID
             return kd * dError;
             END */
         }
-#endregion
+        #endregion
 
-#region HELPERS
+        #region HELPERS
         /// <summary>
         /// Recalculates force location and direction
         /// </summary>
@@ -175,6 +175,6 @@ namespace RoboticsPrimer.ExercisePID
             Color.red,
              Time.deltaTime);
         }
-#endregion
+        #endregion
     }
 }
