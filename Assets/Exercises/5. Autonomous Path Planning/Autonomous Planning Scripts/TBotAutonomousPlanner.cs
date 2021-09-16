@@ -26,6 +26,7 @@ namespace RoboticsPrimer
             Vector2Int startPos = MazeManager.instance.StartPosition;
             goalPosition = MazeManager.instance.FinalGoalPosition;
 
+            /* SOLUTION
             // Breath First Search (BFS)
             // Switch to a `Stack` for Depth First Search (DFS)
             Queue<KeyValuePair<Vector2Int, int[]>> unvistedQueue = new Queue<KeyValuePair<Vector2Int, int[]>>();
@@ -50,6 +51,7 @@ namespace RoboticsPrimer
                 BackTrack(visitedSet, curPos, startPos);
             }
             
+            END */
             PathVisualizerManager.instance.VisualizePath(autonomousNavPlan);
         }
 
@@ -66,7 +68,7 @@ namespace RoboticsPrimer
         {
 
             curPos = curPos.AddArr(direction);
-
+            /* SOLUTION
             if (visistedSet.ContainsKey(curPos))
             {
                 return;
@@ -80,7 +82,7 @@ namespace RoboticsPrimer
                 return;
             }
             unvisted.Enqueue(new KeyValuePair<Vector2Int, int[]>(curPos, direction));
- 
+            END */
         }
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace RoboticsPrimer
         /// <param name="startPos"></param>
         private void BackTrack(Dictionary<Vector2Int, int[]> visitedSet, Vector2Int curPos, Vector2Int startPos)
         {
-
+            /* SOLUTION
             while (curPos != startPos)
             {
                 autonomousNavPlan.Insert(0, curPos);
@@ -99,7 +101,7 @@ namespace RoboticsPrimer
                 curPos.x -= visitedSet[lastPos][0];
                 curPos.y -= visitedSet[lastPos][1];
             }
-
+            END */
         }
         #endregion
         #region HELPERS

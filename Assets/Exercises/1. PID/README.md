@@ -7,7 +7,7 @@ In this exercise you will learn how to write a PID controller for an inverted pe
 
 ## Code Explained
 
-You will be writing code within `PID-Scripts/PIDController.cs`. You will calculate each error and gain:
+You will be writing code within `PID Scripts/PIDController.cs`. You will calculate each error and gain:
 ```C#
 "P" : "Proportional"
 "I" : "Integral" 
