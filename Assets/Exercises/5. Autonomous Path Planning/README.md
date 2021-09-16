@@ -1,6 +1,6 @@
 # Exercise 1: PID Control
 
-![PID](../../../.images/PID.png)
+![AutonomousNavigation](../../../.images/AutonomousNavigation.png)
 
 ## Overview
 In this exercise you will learn how to write a PID controller for an inverted pendulum as well as how to tune different gains. Open up the `PID` Unity Scene to get started. Your Unity scene should look similar to the above picture with the inverted pendulum.
