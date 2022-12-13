@@ -31,8 +31,8 @@ namespace RoboticsPrimer
             lineRenderer.enabled = true;
             path.Insert(0, MazeManager.instance.StartPosition);
             lineRenderer.positionCount = path.Count;
-            lineRenderer.startWidth = 0.01f;
-            lineRenderer.endWidth = 0.01f;
+            lineRenderer.startWidth = 0.05f;
+            lineRenderer.endWidth = 0.05f;
             for (int i = 0; i < path.Count; ++i)
             {
                 Vector3 start = path[i].Maze2World();

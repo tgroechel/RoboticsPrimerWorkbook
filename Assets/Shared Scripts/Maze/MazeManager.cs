@@ -2,6 +2,7 @@ using System.IO;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using System;
 
 namespace RoboticsPrimer
 {
@@ -125,6 +126,11 @@ namespace RoboticsPrimer
             yield return null;
             yield return null;
             MazeHasBeenGenerated.Invoke();
+        }
+
+        internal Vector3 GetWorldPositionFromMazePosition(Vector2 mazePosition)
+        {
+            return MazeConstructor.GetWorldPositionFromMazePosition(mazePosition);
         }
     }
 }

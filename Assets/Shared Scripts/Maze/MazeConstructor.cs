@@ -187,6 +187,11 @@ namespace RoboticsPrimer
             }
         }
 
+        public Vector3 GetWorldPositionFromMazePosition(Vector2 mazePosition)
+        {
+            return mazePosition.Maze2World();
+        }
+
         private void SetUpMazeConstraints()
         {
             FindStartPosition();
