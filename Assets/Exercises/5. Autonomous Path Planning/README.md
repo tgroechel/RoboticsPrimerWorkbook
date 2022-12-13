@@ -1,4 +1,4 @@
-# Exercise 1: PID Control
+# Exercise 5: Autonomous Navigation
 
 ![AutonomousNavigation](../../../.images/AutonomousNavigation.PNG)
 
@@ -7,22 +7,17 @@ In this exercise you will learn how to write an autonomous path planner. This as
 
 ## Code Explained
 
-You will be writing code within `PID-Scripts/PIDController.cs`. You will calculate each error and gain:
-```C#
-"P" : "Proportional"
-"I" : "Integral" 
-"D" : "Derivative"
-```
-and add the resulting forces in `UpdateMotorForce()`. The force is then applied to the end of the inverted pendulum. All functions that need coding are marking with `CODE` and found within the `#region CODE`.
+You will be writing code within `Autonomous Planning Scripts/TBotAutonomousPlanner.cs`. 
+
+The main function you will be writng is `CreateAndVisualizePlan()`. The visualize portion is already completed for you so that you can see your plan ourput with the orange line renderer. That leaves the creation of the plan.
+
+You are given a start and `startPos` and an `endPos`. Given these, you will want to search from start to end positions. There are many search algorithms you can use to accomplish this, I would reccomend either Breath First Search (BFS) or Depth First Search (DFS) You can also take advantage of the directions given in `RoboticsPrimer.TBotHighLevelNavPlanner` of `U`, `D`, `L`, `R`.
+
+Skeleton code for helper functions is also provided. `UpdatedUnvisited` is there to update the unvisted set with only valid locations (i.e., not visited && in bounds) as well an add any unvisted nodes to the search data structure (e.g., stack or queue). Many search algorithms end with the sequence in reverse (start at the final position going to the start position). `BackTrack` can help write the code necessary to create the `autonomousNavPlan` in the correct order.
+
+All functions that need coding are marking with `CODE` and found within the `#region CODE`.
 
 ## Coding Order and Tips
 - If all the comments and extra funcitons are distracting, look into your Editor's ability to do "code folding". An example of this feature can be found [here](https://code.visualstudio.com/docs/editor/codebasics#:~:text=Use%20Shift%20%2B%20Click%20on%20the,uncollapsed%20region%20at%20the%20cursor.).
-- Start with calculating the `PError` and then the `PGain` (`kP*PError`)
-- You will want to use the `motor` variable to get the motor angle. See `Motor.cs` for details.
-- Having the `PGain` calculated should allow you to then apply that force win `UpdateMotorForce()`
-- Play around with just the `PGain` until you have a somewhat stable system, the pendulum will likely cycle overshooting and undershooting
-- Once you have this osscilating over/undershoot behavior, move onto the `DGain` and then `IGain`
-- Rememeber tuning gains happens one at a time and should give you a relative idea of how adjusting each knob affects the system
-- The memebers `iError` and `forceDirection` will be helpful
-- Zero is the down angle with 180 being the top
-- When pressing play, each slider is reset to the default values. The defualt values can be changed in the Inspector view of the `PIDController.cs` script. The script is attached in the Hierarchy under `MotorLink/PendulumLink`
+- There is no real coding order as there is only 1 function you must do. Use the helpers only if you find the helpful to abstract out long parts of your search routine.
+- There are many search algorithms online but BFS and DFS are typically the first learned. I would highly reccomend watching online tutorials on these algorithms as well as tracing examples out by hand. This includes doing the backtracking part of the algorithm.
