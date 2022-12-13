@@ -8,7 +8,7 @@ namespace RoboticsPrimer
     {
         protected TBotCommon tbc;
         protected TBotTurnGoTurn botTurnGoTurn;
-        void Awake()
+        void Start()
         {
             tbc = GetComponent<TBotCommon>();
             botTurnGoTurn = GetComponent<TBotTurnGoTurn>();

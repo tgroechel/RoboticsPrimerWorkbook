@@ -902,6 +902,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 708490381, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
+      propertyPath: useMazeFile
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708490381, guid: 76190411bc46ef6488b5dd3dd00d93f1, type: 3}
       propertyPath: useManualMaze
       value: 0
       objectReference: {fileID: 0}

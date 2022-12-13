@@ -3,7 +3,7 @@
 ![AutonomousNavigation](../../../.images/AutonomousNavigation.PNG)
 
 ## Overview
-In this exercise you will learn how to write a PID controller for an inverted pendulum as well as how to tune different gains. Open up the `PID` Unity Scene to get started. Your Unity scene should look similar to the above picture with the inverted pendulum.
+In this exercise you will learn how to write an autonomous path planner. This assumes you have completed exercises #2-4.
 
 ## Code Explained
 

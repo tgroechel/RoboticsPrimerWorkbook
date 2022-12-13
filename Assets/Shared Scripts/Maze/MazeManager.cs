@@ -1,4 +1,6 @@
+using System.IO;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Events;
 
 namespace RoboticsPrimer
@@ -6,10 +8,14 @@ namespace RoboticsPrimer
     public class MazeManager : Singleton<MazeManager>
     {
         [SerializeField]
-        bool useManualMaze = true;
+        bool useMazeFile = true;
+        [SerializeField]
+        string mazeDataFile = "mazeDataExample.txt";
         [SerializeField]
         int numCols = 5, numRows = 5;
 
+
+        string mazeDataFilePath = "Assets/MazeData/";
         MazeConstructor mazeConstructor;
         public MazeConstructor MazeConstructor
         {
@@ -17,6 +23,7 @@ namespace RoboticsPrimer
             {
                 if (mazeConstructor == null)
                 {
+                    Init();
                     mazeConstructor = GetComponent<MazeConstructor>();
                 }
                 return mazeConstructor;
@@ -30,6 +37,7 @@ namespace RoboticsPrimer
             {
                 if (mazeHasBeenGenerated == null)
                 {
+                    Init();
                     mazeHasBeenGenerated = new UnityEvent();
                 }
                 return mazeHasBeenGenerated;
@@ -75,19 +83,48 @@ namespace RoboticsPrimer
             }
         }
 
-        void Start()
+        private void ReadMazeDataFile()
         {
-            if (useManualMaze)
+            string[] lines = File.ReadAllLines(mazeDataFilePath + mazeDataFile);
+            MazeData = new int[lines.Length, lines[0].Split(' ').Length];
+            for (int i = 0; i < lines.Length; i++)
             {
-                MazeConstructor.GenerateNewMaze(MazeData); // todo use files for this
+                string[] cells = lines[i].Split(' ');
+                for (int j = 0; j < cells.Length; j++)
+                {
+                    int flippedJ = cells.Length - j - 1;
+                    MazeData[i, flippedJ] = int.Parse(cells[j]);
+                }
+            }
+        }
+        private void Start()
+        {
+            Init();
+        }
+
+        bool hasBeenGenerated = false;
+        void Init()
+        {
+            if (hasBeenGenerated) { return; }
+            hasBeenGenerated = true;
+
+            if (useMazeFile)
+            {
+                ReadMazeDataFile();
+                MazeConstructor.GenerateNewMaze(MazeData);
             }
             else
             {
                 MazeData = MazeConstructor.GenerateNewMaze(numRows, numCols);
             }
-            MazeHasBeenGenerated.Invoke();
+            StartCoroutine(SayMazeReadyAfterACoupleOfFrames());
         }
 
-
+        IEnumerator SayMazeReadyAfterACoupleOfFrames()
+        {
+            yield return null;
+            yield return null;
+            MazeHasBeenGenerated.Invoke();
+        }
     }
 }

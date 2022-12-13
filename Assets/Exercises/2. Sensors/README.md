@@ -3,7 +3,7 @@
 ![Sensors](../../../.images/Sensors.png)
 
 ## Overview
-In this exercise you will learn how to write basic sensors.
+In this exercise you will learn how to write basic sensors and teleoperation controls for the turtlebot.
 
 ## Code Explained
 
