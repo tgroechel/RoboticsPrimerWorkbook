@@ -87,9 +87,9 @@ namespace RoboticsPrimer
         /// <summary>
         /// CODE: This is a suggested helper for your search algorithm that creates `autonomousNavPlan` by backtracking
         /// </summary>
-        /// <param name="visitedSet"></param>
-        /// <param name="curPos"></param>
-        /// <param name="startPos"></param>
+        /// <param name="visitedSet">All nodes visited</param>
+        /// <param name="curPos">Current position of the search algorithm</param>
+        /// <param name="startPos">StartPosition of the algorithm</param>
         private void BackTrack(Dictionary<Vector2Int, int[]> visitedSet, Vector2Int curPos, Vector2Int startPos)
         {
             /* SOLUTION
