@@ -19,5 +19,6 @@ All functions that need coding are marking with `CODE` and found within the `#re
 
 ## Coding Order and Tips
 - If all the comments and extra funcitons are distracting, look into your Editor's ability to do "code folding". An example of this feature can be found [here](https://code.visualstudio.com/docs/editor/codebasics#:~:text=Use%20Shift%20%2B%20Click%20on%20the,uncollapsed%20region%20at%20the%20cursor.).
+- Make sure the component `TBotHighLevelPlanner` on the `turtlebot3_waffle` has the `ManualPlan` box unchecked
 - There is no real coding order as there is only 1 function you must do. Use the helpers only if you find the helpful to abstract out long parts of your search routine.
 - There are many search algorithms online but BFS and DFS are typically the first learned. I would highly reccomend watching online tutorials on these algorithms as well as tracing examples out by hand. This includes doing the backtracking part of the algorithm.
