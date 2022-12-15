@@ -1,6 +1,6 @@
 # Exercise 4: State and Manual Path Planning
 
-![ManualPath](../../../.images/ManualPath.png)
+![ManualPath](../../../.images/ManualPath.PNG)
 
 ## Overview
 In this exercise you will learn how to write an local navigation algorithm (turn-go-turn) to be used in a manual path planner. This assumes you have completed exercises #2 & #3.
