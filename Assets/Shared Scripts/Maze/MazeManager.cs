@@ -101,6 +101,7 @@ namespace RoboticsPrimer
         private void Start()
         {
             Init();
+            Debug.Log("init");
         }
 
         bool hasBeenGenerated = false;

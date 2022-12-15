@@ -5,7 +5,7 @@ namespace RoboticsPrimer
 {
     public class TBotLaserScanner : MonoBehaviour
     {
-#region MEMBERS
+        #region MEMBERS
         [field: SerializeField]
         public int NumLaserScans
         {
@@ -31,8 +31,8 @@ namespace RoboticsPrimer
         }
 
         TBotCommon tbc;
-#endregion
-#region ENGINE
+        #endregion
+        #region ENGINE
         private void Awake()
         {
             tbc = GetComponent<TBotCommon>();
@@ -43,13 +43,13 @@ namespace RoboticsPrimer
             UpdateLaserScan();
             DrawDebugLaserLines();
         }
-#endregion
-#region CODE
+        #endregion
+        #region CODE
 
         private void UpdateLaserScan()
         {
-           // /* SOLUTION
-            float angle = 0;
+            // /* SOLUTION
+            float angle = tbc.GetRotationYRad();
             for (int i = 0; i < NumLaserScans; i++)
             {
                 Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
@@ -62,12 +62,12 @@ namespace RoboticsPrimer
                 }
 
                 Scans[i] = hit;
-                angle += 2 * Mathf.PI / NumLaserScans;
+                angle += 2 * Mathf.PI / NumLaserScans % (2 * Mathf.PI);
             }
-          //  END */
+            //  END */
         }
-#endregion
-#region HELPERS AND UI
+        #endregion
+        #region HELPERS AND UI
         private void DrawDebugLaserLines()
         {
             foreach (RaycastHit scanHit in Scans)
@@ -75,6 +75,6 @@ namespace RoboticsPrimer
                 Debug.DrawLine(tbc.BaseScanLink.position, scanHit.point, Color.HSVToRGB(scanHit.distance / MaxLaserRange, 1, 1));
             }
         }
-#endregion
+        #endregion
     }
 }

@@ -1005,7 +1005,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8418888970890756812, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
       propertyPath: manualPlan
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8711336110951290039, guid: 3f2f2e3f36e05a2419b888bd87eb9263, type: 3}
       propertyPath: m_Name

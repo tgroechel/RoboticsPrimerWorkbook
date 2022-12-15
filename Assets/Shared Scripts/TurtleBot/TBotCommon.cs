@@ -130,9 +130,14 @@ namespace RoboticsPrimer
         }
 
 
-        public float GetRotationY()
+        public float GetRotationYDeg()
         {
             return BaseLink.rotation.eulerAngles.y;
+        }
+
+        public float GetRotationYRad()
+        {
+            return BaseLink.rotation.eulerAngles.y * Mathf.Deg2Rad;
         }
 
         public float WheelDist
