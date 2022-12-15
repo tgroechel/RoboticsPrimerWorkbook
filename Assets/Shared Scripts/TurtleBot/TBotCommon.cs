@@ -104,7 +104,7 @@ namespace RoboticsPrimer
 
         public Quaternion Rotation
         {
-            get { return BaseLink.rotation; }
+            get { return BaseLink.localRotation; }
         }
 
         public Vector3 Heading
@@ -132,12 +132,12 @@ namespace RoboticsPrimer
 
         public float GetRotationYDeg()
         {
-            return BaseLink.rotation.eulerAngles.y;
+            return BaseLink.localRotation.eulerAngles.y;
         }
 
         public float GetRotationYRad()
         {
-            return BaseLink.rotation.eulerAngles.y * Mathf.Deg2Rad;
+            return GetRotationYDeg() * Mathf.Deg2Rad;
         }
 
         public float WheelDist

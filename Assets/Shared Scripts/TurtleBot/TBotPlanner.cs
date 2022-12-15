@@ -12,7 +12,8 @@ namespace RoboticsPrimer
         {
             tbc = GetComponent<TBotCommon>();
             botTurnGoTurn = GetComponent<TBotTurnGoTurn>();
-            botTurnGoTurn.enabled = true;
+            if (botTurnGoTurn)
+                botTurnGoTurn.enabled = true;
             MazeManager.instance.MazeHasBeenGenerated.AddListener(CreateAndVisualizePlan);
         }
         public abstract void SendNextGoal();

@@ -10,7 +10,7 @@ namespace RoboticsPrimer
         TBotCommon tbc;
         TBotWheelController wheelController;
         TBotFourWayLaserScanner fourWayLaser;
-        float distToWallThreshold = 0.2f, goalDistThreshold = 0.5f;
+        float distToWallThreshold = 0.5f, goalDistThreshold = 0.5f;
         Vector3 goalLocation;
         #endregion
         #region ENGINE
@@ -55,6 +55,7 @@ namespace RoboticsPrimer
             else
             {
                 // turn right
+                Debug.Log("turn right");
                 wheelController.TurnRight();
             }
 

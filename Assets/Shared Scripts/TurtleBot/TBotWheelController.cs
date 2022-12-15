@@ -9,6 +9,7 @@ namespace RoboticsPrimer
 
         TBotCommon tbc;
         Vector2 totalVelocity;
+        float modelWheelSpeed = 1.05f;
 
         private void Awake()
         {
@@ -52,6 +53,7 @@ namespace RoboticsPrimer
             {
                 totalVelocity = velVec;
             }
+            totalVelocity.y *= modelWheelSpeed;
         }
 
         public void TurnRight()
